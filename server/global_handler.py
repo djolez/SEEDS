@@ -3,6 +3,7 @@ import logging
 
 import config
 import models
+import helper
 '''from models.base import *
 from models.board import *
 from models.device import *
@@ -32,7 +33,7 @@ def process_json_data(data):
         for d in data["data"]:
             #loop through all the values for a device
             for r in d["values"]:
-                dr = models.device_reading.Device_reading.create(device = d["id"], name = r["name"], value = r["value"], datetime = r["datetime"])
+                dr = models.device_reading.Device_reading.create(device = d["id"], name = r["name"], value = r["value"], timestamp = helper.string_to_datetime(r["timestamp"]))
                 dr.save()
             
         

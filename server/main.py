@@ -8,6 +8,7 @@ from models.device_reading import *
 #import communication.comm_implementation as comm
 from scheduler.action import * 
 from scheduler.time_module import *
+import server
 
 logging.basicConfig(
     level = logging.DEBUG,
@@ -37,6 +38,7 @@ def init_db(file_path = 'db/db.sqlite'):
 
 init_db()
 
+
 comm.handle_msg("""
     {
         "action": "board_init",
@@ -55,15 +57,13 @@ comm.handle_msg("""
     }
 """)
 
-b, c = Board.get_or_create(name = "STM32")
+#b, c = Board.get_or_create(name = "STM32")
 #b.read_all()
-a = Action("test", time = Time(hour=18, minute=33, second=5), callbacks=[b.devices[0].read])
-a.schedule()
+#a = Action("test", time = Time(hour=18, minute=33, second=5), callbacks=[b.devices[0].read])
+#a.schedule()
 
-#b.devices[1].write(123)
-
-
-'''comm.handle_msg("""
+'''
+comm.handle_msg("""
     {
         "action": "read$all",
         "data": [
@@ -74,12 +74,12 @@ a.schedule()
                     {
                         "name": "Temperature",
                         "value": 28,
-                        "datetime": "15-11-1990"
+                        "timestamp": "15-11-1990 13:30:21"
                     },
                     {
                         "name": "Humidity",
                         "value": 64,
-                        "datetime": "15-11-1990"
+                        "timestamp": "15-11-1990 13:30:21"
                     }
 
                 ]
@@ -97,4 +97,4 @@ dr = Device_reading.create(device = d.id, value = 28, datetime = "22-06-2017 16:
 dr.save()
 '''
 
-
+server.run()

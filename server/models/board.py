@@ -46,6 +46,8 @@ class Board(BaseModel):
         
         self.send_data(msg) 
 
-
+    def get_all():
+        res = Board.select()
+        return res
 
 
