@@ -71,11 +71,17 @@ def get_device_readings_range(id, start_datetime, end_datetime):
     try:
         start = helper.string_to_datetime(start_datetime)
         end = helper.string_to_datetime(end_datetime)
-        print(start)
         device = Device.get(id = id)
+        board = Board.get(id = device.board_id)
         readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
 
-        return jsonify(list_to_dict(readings))
+        res = {
+            "board": board.to_dict(),
+            "device": device.to_dict(),
+            "values": list_to_dict(readings)
+        }
+
+        return jsonify(res)
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
     except Exception as e:
