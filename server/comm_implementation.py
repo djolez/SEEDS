@@ -15,16 +15,15 @@ def send_msg(msg):
         serial_conn.write(bytearray(msg + '\n', encoding='utf-8'))
     except serial.SerialTimeoutException as e:
         pass
-        #logger.exception(e)
+        #logger.exception("Serial timeout expired")
 
 def handle_msg(data):
+    logger.debug("Trying to parse JSON string ({})".format(data))
     try:
         dict_obj = json.loads(data)
         gh.process_json_data(dict_obj)
-    except ValueError as e:
-        logging.error('Failed to parse JSON: {}'.format(data))
-        logging.exception(e)
-
+    except ValueError:
+        logger.exception('Failed to parse JSON: {}'.format(data))
 
 def main():
 

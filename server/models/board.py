@@ -18,12 +18,6 @@ class Board(BaseModel):
     def to_dict(self):
         return self.__dict__['_data']
 
-    """def __send_cmd(self, name, action):
-        cmd = name + config.ACTION_MSG_DELIMITER + action
-        logger.debug("Sending command\t({}, board: {})".format(cmd, self.name))
-        comm.send_msg(cmd)
-    """
-
     def send_data(self, data):
         comm.send_msg(json.dumps(data))
 
