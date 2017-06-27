@@ -66,7 +66,7 @@ def get_all_device_readings(id):
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
 
-@app.route('/device/<int:id>/reading/from/<start_datetime>/to/<end_datetime>')
+@app.route('/device/<int:id>/from/<start_datetime>/to/<end_datetime>')
 def get_device_readings_range(id, start_datetime, end_datetime):
     try:
         start = helper.string_to_datetime(start_datetime)
