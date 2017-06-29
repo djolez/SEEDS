@@ -1,5 +1,7 @@
 from peewee import *
 import logging
+from logging.handlers import TimedRotatingFileHandler
+import time
 
 from models.base import *
 from models.board import *
@@ -28,7 +30,20 @@ logging.basicConfig(
 #console.setLevel(logging.DEBUG)
 #logging.getLogger('').addHandler(console)
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('')
+log_handler = TimedRotatingFileHandler(
+        "logs/log",
+        when="midnight",
+        #interval=1,
+        backupCount=5)
+#log_handler.suffix = "any strftime permitted string"
+logger.addHandler(log_handler)
+
+'''for i in range(6):
+    logger.info("This is a test!")
+    time.sleep(2)
+'''
+
 pw = logging.getLogger("peewee")
 pw.disabled = True
 
