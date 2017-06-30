@@ -2,15 +2,17 @@ from peewee import *
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import time
+import json
+import atexit
 
 from models.base import *
 from models.board import *
 from models.device import *
 from models.device_reading import *
-#import communication.comm_implementation as comm
 from scheduler.action import * 
 from scheduler.time_module import *
 import server
+import global_handler as gh
 
 logging.basicConfig(
     level = logging.DEBUG,
@@ -39,22 +41,55 @@ log_handler = TimedRotatingFileHandler(
 #log_handler.suffix = "any strftime permitted string"
 logger.addHandler(log_handler)
 
-'''for i in range(6):
-    logger.info("This is a test!")
-    time.sleep(2)
-'''
-
 pw = logging.getLogger("peewee")
 pw.disabled = True
 
-def init_db(file_path = 'db/db.sqlite'):
+def init_db(file_path = "db/db.sqlite"):
     db_proxy.initialize(SqliteDatabase(file_path))
     db_proxy.create_tables([Board, Device, Device_reading], safe=True)
 
+def load_settings(path = "settings.json"):
+    res = config.DEFAULT_SETTINGS
+    try:
+        logger.debug("Trying to open '{}'".format(path))
+
+        with open(path, "r") as file:
+            res = json.load(file)
+    except IOError:
+        logger.exception("Settings file not found in path, using default settings".format(path))
+    except ValueError:
+        logger.exception("Failed to parse as JSON, using default settings".format(file))
+    finally:
+        return res
+
+def apply_settings():
+    try:
+        settings = load_settings()
+
+        if(settings["poll_interval"]):
+            actions["data_polling"] = Action("data_poll_all", repeat=Time(second=settings["poll_interval"]), callbacks=[gh.retrieve_data_all_boards])
+            actions["data_polling"].schedule()
+
+            #data_polling_thread(settings["poll_interval"])
+    except KeyError:
+        pass
+
+actions = {}
+def data_polling_thread(time):
+    gh.retrieve_data_all_boards()
+    active_threads["data_polling"] = threading.Timer(time, data_polling_thread, [time])
+    active_threads["data_polling"].start()
+
+def cleanup():
+    logger.debug("Exit by user request, performing cleanup...")
+    for name in actions:
+        actions[name].deschedule()
+    logger.debug("Done")
+
 init_db()
+apply_settings()
 
-
-comm.handle_msg("""
+'''comm.handle_msg("""
     {
         "action": "board_init",
         "name": "STM32",
@@ -71,8 +106,9 @@ comm.handle_msg("""
         ]
     }
 """)
+'''
 
-#b, c = Board.get_or_create(name = "STM32")
+#b,c = Board.get_or_create(name = "STM32")
 #b.read_all()
 #a = Action("test", time = Time(hour=18, minute=33, second=5), callbacks=[b.devices[0].read])
 #a.schedule()
@@ -113,3 +149,4 @@ dr.save()
 '''
 
 server.run()
+atexit.register(cleanup)

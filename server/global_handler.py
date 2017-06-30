@@ -11,6 +11,12 @@ from models.device_reading import *
 '''
 logger = logging.getLogger(__name__)
 
+def retrieve_data_all_boards():
+    boards = models.board.Board.select()
+
+    for b in boards:
+        b.read_all()
+
 def process_json_data(data):
     action_name = data["action"].split(config.ACTION_MSG_DELIMITER)[0]
 
