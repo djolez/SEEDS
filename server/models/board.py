@@ -3,8 +3,12 @@ import json
 from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
-import config
+import configi
+from datetime import datetime
 from .base import *
+from .device import *
+from .device_reading import *
+
 import comm_implementation as comm
 
 logger = logging.getLogger(__name__)
@@ -43,5 +47,50 @@ class Board(BaseModel):
     def get_all():
         res = Board.select()
         return res
+
+    def add_test_values():
+        i = 0
+        while i < 100
+            b = Board.create(name = "STM32")
+            b.save()
+
+            humidity = Device.create(
+                    name = "dht11",
+                    type = 1,
+                    board_id = b.id
+                    )
+            humidity.save()
+
+            for v in randomize_values(20, 70):
+                Device_reading.create(
+                        device_id = humidity.id,
+                        value = v,
+                        timestamp = Datetime.now()
+                        )
+            
+
+            temp = Device.create(
+                    name = "ds18b20",
+                    type = 2,
+                    board_id = b.id
+                    )
+            temp.save()
+
+            for v in randomize_values(20, 40):
+                Device_reading.create(
+                        device_id = temp.id,
+                        value = v,
+                        timestamp = Datetime.now()
+                        )
+
+
+
+
+
+
+
+
+
+
 
 

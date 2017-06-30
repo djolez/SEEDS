@@ -19,7 +19,7 @@ class Device(BaseModel):
     
     def get_parent_board(self):
         return Board.get(id = self.board_id)
-
+            
     def read(self):
         msg = {
             "action": "read",
