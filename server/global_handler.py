@@ -1,14 +1,12 @@
 import json
 import logging
+from random import randint
+from datetime import datetime
 
 import config
 import models
 import helper
-'''from models.base import *
-from models.board import *
-from models.device import *
-from models.device_reading import *
-'''
+
 logger = logging.getLogger(__name__)
 
 def retrieve_data_all_boards():
@@ -50,4 +48,66 @@ def process_json_data(data):
             except Exception:
                 logger.exception("An error occured while entering device data to DB")
             
-        
+
+def randomize_values(count, min_val, max_val):
+    res = []
+    
+    for i in range(0, count):
+        res.append(randint(min_val, max_val))
+    return res
+
+def add_test_values():
+    i = 0
+    b, c = models.board.Board.get_or_create(name = "STM32")
+    if c:
+        b.save()
+
+    dht, c = models.device.Device.get_or_create(
+            name = "dht11",
+            type = 1,
+            board_id = b.id
+            )
+    if c:
+        dht.save()
+
+    temp, c = models.device.Device.get_or_create(
+            name = "ds18b20",
+            type = 2,
+            board_id = b.id
+            )
+    if c:
+        temp.save()
+
+    for v in randomize_values(50, 20, 70):
+        models.device_reading.Device_reading.create(
+                device_id = dht.id,
+                name = "humidity",
+                value = v,
+                timestamp = datetime.now()
+                )
+    
+    for v in randomize_values(50, 20, 40):
+        models.device_reading.Device_reading.create(
+                device_id = dht.id,
+                name = "temperature",
+                value = v,
+                timestamp = datetime.now()
+                )
+
+    for v in randomize_values(50, 20, 40):
+        models.device_reading.Device_reading.create(
+                device_id = temp.id,
+                name = "water_temp",
+                value = v,
+                timestamp = datetime.now()
+                )
+
+
+
+
+
+
+
+
+
+

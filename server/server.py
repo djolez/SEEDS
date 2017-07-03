@@ -69,24 +69,59 @@ def get_all_device_readings(id):
 @app.route('/device/<int:id>/from/<start_datetime>/to/<end_datetime>')
 def get_device_readings_range(id, start_datetime, end_datetime):
     try:
+        logger.debug("Fetching device readings id: {}, start: {}, end: {}".format(id, start_datetime, end_datetime))
         start = helper.string_to_datetime(start_datetime)
         end = helper.string_to_datetime(end_datetime)
         device = Device.get(id = id)
         board = Board.get(id = device.board_id)
         readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
 
+        '''values = {}
+        for r in readings:
+            if(not r.name in values):
+                values[r.name] = []
+            values[r.name].append(r.to_dict())
+        
         res = {
             "board": board.to_dict(),
             "device": device.to_dict(),
-            "values": list_to_dict(readings)
-        }
+            "values": values        
+            }
+        '''
 
-        return jsonify(res)
+        device.values = {}
+        for r in readings:
+            if(not r.name in device.values):
+                logger.debug("Found new sub-device: '{}'".format(r.name))
+                device.values[r.name] = []
+            device.values[r.name].append(r.to_dict())
+
+        res = {
+            "board": board.to_dict(),
+            "device": device.to_dict(),
+            }
+        res["device"]["values"] = device.values
+
+        #if(request):
+        #    return jsonify(res)
+        #else:
+        return res
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
     except Exception as e:
         logger.exception(e)
         return bad_request()
+
+@app.route('/device/from/<start_datetime>/to/<end_datetime>', methods = ["POST"])
+def get_readings_from_devices_list(start_datetime, end_datetime):
+    print(request.form)
+    data = request.form.getlist('ids')
+
+    res = []
+    for id in data:
+        dr = get_device_readings_range(int(id), start_datetime, end_datetime)
+        res.append(dr)
+    return jsonify(res)
 
 def run():
     app.run(host='0.0.0.0', use_reloader=False)

@@ -2,7 +2,7 @@ from peewee import *
 import json
 
 from .base import *
-from .board import Board
+from .board import *
 import comm_implementation as comm
 
 class Device(BaseModel):

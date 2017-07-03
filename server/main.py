@@ -44,9 +44,12 @@ logger.addHandler(log_handler)
 pw = logging.getLogger("peewee")
 pw.disabled = True
 
-def init_db(file_path = "db/db.sqlite"):
+def init_db(file_path = "db/db.sqlite", init_values = False):
     db_proxy.initialize(SqliteDatabase(file_path))
     db_proxy.create_tables([Board, Device, Device_reading], safe=True)
+
+    if(init_values):
+        gh.add_test_values()
 
 def load_settings(path = "settings.json"):
     res = config.DEFAULT_SETTINGS
@@ -67,10 +70,9 @@ def apply_settings():
         settings = load_settings()
 
         if(settings["poll_interval"]):
-            actions["data_polling"] = Action("data_poll_all", repeat=Time(second=settings["poll_interval"]), callbacks=[gh.retrieve_data_all_boards])
-            actions["data_polling"].schedule()
-
-            #data_polling_thread(settings["poll_interval"])
+            pass
+            #actions["data_polling"] = Action("data_poll_all", repeat=Time(second=settings["poll_interval"]), callbacks=[gh.retrieve_data_all_boards])
+            #actions["data_polling"].schedule()
     except KeyError:
         pass
 
@@ -87,6 +89,8 @@ def cleanup():
     logger.debug("Done")
 
 init_db()
+#init_db(init_values = True)
+
 apply_settings()
 
 '''comm.handle_msg("""
