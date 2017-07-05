@@ -81,7 +81,7 @@ def apply_settings():
     except KeyError:
         pass
 
-actions = {}
+active_threads = {}
 def data_polling_thread(time):
     gh.retrieve_data_all_boards()
     active_threads["data_polling"] = threading.Timer(time, data_polling_thread, [time])
@@ -109,10 +109,12 @@ def app_start(argv):
             
             logger.debug("DB init finished")
         elif(arg == "run_server"):
-            server_thread = Thread(target = server.run)
-            server_thread.start()
+            active_threads["server"] = Thread(target = server.run)
+            active_threads["server"].start()
         elif(arg == "run_console_app"):
-            pass
+            from simple_interface import SimpleInterface
+            active_threads["console_app"] = Thread(target = SimpleInterface().cmdloop)
+            active_threads["console_app"].start()
         else:
             logger.error("Unknown argument '{}' passed, skipping".format(arg))
     
@@ -120,16 +122,15 @@ def app_start(argv):
         init_db()
 
 def cleanup():
-    logger.debug("Exit by user request, performing cleanup...")
-    for name in actions:
-        actions[name].deschedule()
-
-    if(server_thread is not None):
-        server_thread.stop()
+    pass
+    '''logger.debug("Exit by user request, performing cleanup...")
+    for t_name in active_threads:
+        active_threads[t_name].stop()
 
     logger.debug("Done")
-
+    '''
 app_start(sys.argv[1:])
+#Fix cleaning up of scheduled Actions and Threads(if possible)
 atexit.register(cleanup)
 
 

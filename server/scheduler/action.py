@@ -43,7 +43,7 @@ class Action:
 
         logger.debug('{} -- Scheduled'.format(self))
 
-    def deschedule(self):
+    def stop(self):
         if(self.scheduler_object is not None):
             self.scheduler_object.stop()
 
