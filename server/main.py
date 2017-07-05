@@ -4,6 +4,8 @@ from logging.handlers import TimedRotatingFileHandler
 import time
 import json
 import atexit
+import sys, getopt
+from threading import Thread
 
 from models.base import *
 from models.board import *
@@ -44,12 +46,9 @@ logger.addHandler(log_handler)
 pw = logging.getLogger("peewee")
 pw.disabled = True
 
-def init_db(file_path = "db/db.sqlite", init_values = False):
+def init_db(file_path = "db/db.sqlite"):
     db_proxy.initialize(SqliteDatabase(file_path))
     db_proxy.create_tables([Board, Device, Device_reading], safe=True)
-
-    if(init_values):
-        gh.add_test_values()
 
 def load_settings(path = "settings.json"):
     res = config.DEFAULT_SETTINGS
@@ -59,9 +58,9 @@ def load_settings(path = "settings.json"):
         with open(path, "r") as file:
             res = json.load(file)
     except IOError:
-        logger.exception("Settings file not found in path, using default settings".format(path))
+        logger.warning("Settings file not found in path, using default settings".format(path))
     except ValueError:
-        logger.exception("Failed to parse as JSON, using default settings".format(file))
+        logger.error("Failed to parse as JSON, using default settings".format(file))
     finally:
         return res
 
@@ -71,8 +70,14 @@ def apply_settings():
 
         if(settings["poll_interval"]):
             pass
-            #actions["data_polling"] = Action("data_poll_all", repeat=Time(second=settings["poll_interval"]), callbacks=[gh.retrieve_data_all_boards])
-            #actions["data_polling"].schedule()
+            '''
+            actions["data_polling"] = Action(
+                "data_poll_all",
+                repeat=Time(second=settings["poll_interval"]),
+                callbacks=[gh.retrieve_data_all_boards]
+                )
+            actions["data_polling"].schedule()
+            '''
     except KeyError:
         pass
 
@@ -82,75 +87,49 @@ def data_polling_thread(time):
     active_threads["data_polling"] = threading.Timer(time, data_polling_thread, [time])
     active_threads["data_polling"].start()
 
+server_thread = None
+def app_start(argv):
+    db_initialized = False
+    apply_settings()
+   
+    #Parse arguments
+    opts, args = getopt.getopt(argv, "i:")
+    print(opts)
+    print(args)
+
+    for arg in args:
+        if(arg == "init_db"):
+            logger.debug("DB init start")
+            from subprocess import call
+            
+            call(["rm", "db/db.sqlite"])
+            call(["touch", "db/db.sqlite"])
+            init_db()
+            gh.add_test_values()
+            
+            logger.debug("DB init finished")
+        elif(arg == "run_server"):
+            server_thread = Thread(target = server.run)
+            server_thread.start()
+        elif(arg == "run_console_app"):
+            pass
+        else:
+            logger.error("Unknown argument '{}' passed, skipping".format(arg))
+    
+    if(db_initialized is False):
+        init_db()
+
 def cleanup():
     logger.debug("Exit by user request, performing cleanup...")
     for name in actions:
         actions[name].deschedule()
+
+    if(server_thread is not None):
+        server_thread.stop()
+
     logger.debug("Done")
 
-init_db()
-#init_db(init_values = True)
-
-apply_settings()
-
-'''comm.handle_msg("""
-    {
-        "action": "board_init",
-        "name": "STM32",
-        "devices": [
-            {
-                "name": "dht11",
-                "type": 1
-            },
-            {
-                "name": "ds18b20",
-                "type": 2
-            }
-
-        ]
-    }
-""")
-'''
-
-#b,c = Board.get_or_create(name = "STM32")
-#b.read_all()
-#a = Action("test", time = Time(hour=18, minute=33, second=5), callbacks=[b.devices[0].read])
-#a.schedule()
-
-'''
-comm.handle_msg("""
-    {
-        "action": "read$all",
-        "data": [
-            {
-                "id": 1,
-                "name": "dht11",
-                "values": [
-                    {
-                        "name": "Temperature",
-                        "value": 28,
-                        "timestamp": "15-11-1990 13:30:21"
-                    },
-                    {
-                        "name": "Humidity",
-                        "value": 64,
-                        "timestamp": "15-11-1990 13:30:21"
-                    }
-
-                ]
-            }
-        ]
-    }
-""")
-'''
-
-'''b = Board.create(name = "Board_1")
-b.save()
-d = Device.create(name = "Temp_sensor", type = 1, board = b.id)
-d.save()
-dr = Device_reading.create(device = d.id, value = 28, datetime = "22-06-2017 16:37:00")
-dr.save()
-'''
-
-server.run()
+app_start(sys.argv[1:])
 atexit.register(cleanup)
+
+

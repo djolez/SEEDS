@@ -76,19 +76,6 @@ def get_device_readings_range(id, start_datetime, end_datetime):
         board = Board.get(id = device.board_id)
         readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
 
-        '''values = {}
-        for r in readings:
-            if(not r.name in values):
-                values[r.name] = []
-            values[r.name].append(r.to_dict())
-        
-        res = {
-            "board": board.to_dict(),
-            "device": device.to_dict(),
-            "values": values        
-            }
-        '''
-
         device.values = {}
         for r in readings:
             if(not r.name in device.values):
@@ -126,7 +113,8 @@ def get_readings_from_devices_list(start_datetime, end_datetime):
 def run():
     app.run(host='0.0.0.0', use_reloader=False)
 
-
+if __name__ == '__main__':
+    run()
 
 
 
