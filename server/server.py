@@ -25,23 +25,21 @@ def bad_request(code = 400, msg = "An error occured"):
 #BOARD
 @app.route('/board')
 def get_board_all():
-    res = Board.get_all()
-    return jsonify(list_to_dict(res))
+    boards = Board.get_all()
+    return jsonify(list_to_dict(boards))
 
 @app.route('/board/<int:id>')
 def get_board(id):
     try:
-        boards = Board.get(id = id)
-
-        return jsonify(boards.to_dict())
+        board = Board.get_by_id(id)
+        return jsonify(board.to_dict())
     except Board.DoesNotExist:
         return bad_request(404, "Board not found")
 
 @app.route('/board/<int:id>/device')
 def get_devices_by_board_id(id):
     try:
-        board = Board.get(id = id)
-
+        board = Board.get_by_id(id)
         return jsonify(list_to_dict(board.devices))
     except Board.DoesNotExist:
         return bad_request(404, "Board not found")
@@ -50,8 +48,7 @@ def get_devices_by_board_id(id):
 @app.route('/device/<int:id>')
 def get_device(id):
     try:
-        device = Device.get(id = id)
-
+        device = Device.get_by_id(id)
         return jsonify(device.to_dict())
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
@@ -60,39 +57,31 @@ def get_device(id):
 @app.route('/device/<int:id>/reading')
 def get_all_device_readings(id):
     try:
-        device = Device.get(id = id)
-
+        device = Device.get_by_id(id)
         return jsonify(list_to_dict(device.readings))
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
 
+def get_full_device_with_readings(id, start, end):
+    device = Device.get_with_readings(id, start, end)
+    board = Board.get_by_id(device.board_id)
+
+    res = {
+        "board": board.to_dict(),
+        "device": device.to_dict(),
+        }
+    res["device"]["values"] = device.values
+
+
 @app.route('/device/<int:id>/from/<start_datetime>/to/<end_datetime>')
-def get_device_readings_range(id, start_datetime, end_datetime):
+def get_device_with_readings(id, start_datetime, end_datetime):
     try:
         logger.debug("Fetching device readings id: {}, start: {}, end: {}".format(id, start_datetime, end_datetime))
         start = helper.string_to_datetime(start_datetime)
         end = helper.string_to_datetime(end_datetime)
-        device = Device.get(id = id)
-        board = Board.get(id = device.board_id)
-        readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
+        res = get_full_device_with_readings(id, start, end)        
 
-        device.values = {}
-        for r in readings:
-            if(not r.name in device.values):
-                logger.debug("Found new sub-device: '{}'".format(r.name))
-                device.values[r.name] = []
-            device.values[r.name].append(r.to_dict())
-
-        res = {
-            "board": board.to_dict(),
-            "device": device.to_dict(),
-            }
-        res["device"]["values"] = device.values
-
-        #if(request):
-        #    return jsonify(res)
-        #else:
-        return res
+        return jsonify(res)
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
     except Exception as e:
@@ -101,12 +90,13 @@ def get_device_readings_range(id, start_datetime, end_datetime):
 
 @app.route('/device/from/<start_datetime>/to/<end_datetime>', methods = ["POST"])
 def get_readings_from_devices_list(start_datetime, end_datetime):
-    print(request.form)
-    data = request.form.getlist('ids')
+    ids = request.form.getlist('ids')
+    start = helper.string_to_datetime(start_datetime)
+    end = helper.string_to_datetime(end_datetime)
 
     res = []
-    for id in data:
-        dr = get_device_readings_range(int(id), start_datetime, end_datetime)
+    for id in ids:
+        dr = get_full_device_with_readings(int(id), start_datetime, end_datetime)
         res.append(dr)
     return jsonify(res)
 

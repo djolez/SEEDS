@@ -46,8 +46,12 @@ class Board(BaseModel):
         res = Board.select()
         return res
 
-
-
+    def get_by_id(id):
+        try:
+            board = Board.get(Board.id == id)
+            return board 
+        except Board.DoesNotExist:
+            logger.error("Board with id {} not found".format(id))
 
 
 

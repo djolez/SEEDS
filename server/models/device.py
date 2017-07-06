@@ -34,4 +34,46 @@ class Device(BaseModel):
             "value": value
         }
         self.get_parent_board().send_data(msg)
-         
+    
+    def get_by_id(id):
+        try:
+            return Device.get(id = id)
+        except Device.DoesNotExist:
+            logger.error("Device with id {} not found".format(id))
+    
+    def get_with_readings(id, start, end):
+        try:
+            # This is to solve the circular dependency problem
+            from. device_reading import Device_reading
+            
+            device = Device.get(id = id)
+            board = Board.get(id = device.board_id)
+            readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
+
+            device.values = {}
+            for r in readings:
+                if(not r.name in device.values):
+                    logger.debug("Found new sub-device: '{}'".format(r.name))
+                    device.values[r.name] = []
+                device.values[r.name].append(r.to_dict())
+            
+            return device
+        except Device.DoesNotExist:
+            logger.error("Device with id {} not found".format(id))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

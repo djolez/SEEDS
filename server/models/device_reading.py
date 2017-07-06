@@ -1,6 +1,6 @@
 from peewee import *
-from models.base import *
-from models.device import *
+from .base import *
+from .device import *
 
 class Device_reading(BaseModel):
     device = ForeignKeyField(Device, related_name = "readings")
