@@ -5,3 +5,4 @@ SERIAL_BAUD_RATE = 9600
 DEFAULT_SETTINGS = {
         "poll_interval": 10     
 }
+

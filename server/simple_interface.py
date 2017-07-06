@@ -2,6 +2,8 @@ import cmd
 import logging
 
 import server
+from models.board import *
+import global_vars
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +39,27 @@ class SimpleInterface(cmd.Cmd):
     
         #TODO: save to the config file
 
-    def do_get_available_devices(self, arg):
-        print("1, 2, 3")
+    def do_get_all_boards(self, arg):
+        boards = Board.get_all()
+
+        print("ID\tNAME")
+        print("-" * 20)
+
+        for b in boards:
+            print("{}\t{}".format(b.id, b.name))
+
+    def do_get_devices_by_board_id(self, board_id):
+        board = Board.get_by_id(board_id)
+        
+        print("ID\tNAME\t\tTYPE")
+        print("-" * 30)
+
+        for d in board.devices:
+            print("{}\t{}\t\t{}".format(d.id, d.name, global_vars.Device_type[d.type]))
+
+
+
+
+
 
 
