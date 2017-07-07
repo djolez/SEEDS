@@ -6,11 +6,12 @@ from datetime import datetime
 import config
 import models
 import helper
+import global_vars
 
 logger = logging.getLogger(__name__)
 
 def retrieve_data_all_boards():
-    boards = models.board.Board.select()
+    boards = models.board.Board.get_all()
 
     for b in boards:
         b.read_all()
@@ -47,7 +48,15 @@ def process_json_data(data):
                     models.device_reading.Device_reading.add_from_json(r, d)
             except Exception:
                 logger.exception("An error occured while entering device data to DB")
-            
+
+def save_settings_to_file():
+    logger.debug("Writing settings to a file")
+
+    try:
+        with open("settings.json", "w") as file:
+            file.write(json.dumps(global_vars.SETTINGS))
+    except Exception:
+        logger.error("Something bad happened")
 
 def randomize_values(count, min_val, max_val):
     res = []
@@ -70,6 +79,21 @@ def add_test_values():
     if c:
         dht.save()
 
+    dht_temp, c = models.device.Device.get_or_create(
+            name = "temperature",
+            parent_id = dht.id
+            )
+    if c:
+        dht_temp.save()
+
+    dht_hum, c = models.device.Device.get_or_create(
+            name = "humidity",
+            parent_id = dht.id
+            )
+    if c:
+        dht_hum.save()
+ 
+
     temp, c = models.device.Device.get_or_create(
             name = "ds18b20",
             type = 2,
@@ -80,28 +104,26 @@ def add_test_values():
 
     for v in randomize_values(50, 20, 70):
         models.device_reading.Device_reading.create(
-                device_id = dht.id,
-                name = "humidity",
+                device_id = dht_hum.id,
                 value = v,
                 timestamp = datetime.now()
                 )
     
     for v in randomize_values(50, 20, 40):
         models.device_reading.Device_reading.create(
-                device_id = dht.id,
-                name = "temperature",
+                device_id = dht_temp.id,
                 value = v,
                 timestamp = datetime.now()
                 )
 
-    for v in randomize_values(50, 20, 40):
+    '''for v in randomize_values(50, 20, 40):
         models.device_reading.Device_reading.create(
                 device_id = temp.id,
                 name = "water_temp",
                 value = v,
                 timestamp = datetime.now()
-                )
-
+             )
+    '''
 
 
 

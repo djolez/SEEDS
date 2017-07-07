@@ -4,7 +4,7 @@ from .device import *
 
 class Device_reading(BaseModel):
     device = ForeignKeyField(Device, related_name = "readings")
-    name = CharField()
+    #name = CharField()
     value = IntegerField()
     timestamp = DateTimeField()
 
@@ -12,7 +12,7 @@ class Device_reading(BaseModel):
         database = db_proxy
 
     def add_from_json(value, device):
-        dr = Device_reading.create(device_id = device["id"], name = value["name"], value = value["value"], timestamp = helper.string_to_datetime(value["timestamp"]))
+        dr = Device_reading.create(device_id = device["id"], value = value["value"], timestamp = helper.string_to_datetime(value["timestamp"]))
         dr.save()
 
     def to_dict(self):

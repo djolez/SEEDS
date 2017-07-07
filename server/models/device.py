@@ -6,9 +6,11 @@ from .board import *
 import comm_implementation as comm
 
 class Device(BaseModel):
-    board = ForeignKeyField(Board, related_name = "devices")
+    board = ForeignKeyField(Board, related_name = "devices", null = True)
+    # Used for subdevices (like temp and humidity in DHT11)
+    parent_id = IntegerField(null = True)
     name = CharField()
-    type = IntegerField()
+    type = IntegerField(null = True)
     display_name = CharField(null = True)
 
     class Meta:
@@ -61,13 +63,27 @@ class Device(BaseModel):
         except Device.DoesNotExist:
             logger.error("Device with id {} not found".format(id))
 
+    def get_avg_for_subdevice(device_id, start, end):
+        from .device_reading import Device_reading
 
+        device = Device.get(id = device_id)
+        readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
 
+        try:
+            sum_all = 0
+            for r in readings:
+                sum_all += r.value
 
+            return device, (sum_all / len(readings))
+        except ZeroDivisionError:
+            logger.warning("No records found for device {}".format(device_id))
+            return device, None
 
-
-
-
+    def value_out_of_range(self, direction):
+        if(direction < 0):
+            logger.warning("Device '{}' - value LOW".format(self.name))
+        else:
+            logger.warning("Device '{}' - value HIGH".format(self.name))
 
 
 

@@ -1,6 +1,9 @@
 import datetime as dt
+import logging
 
 from .schedule import *
+
+logger = logging.getLogger(__name__)
 
 class Action:
 
@@ -23,7 +26,6 @@ class Action:
         return '[action: {} @ {}]'.format(self.name, self.time or self.repeat)
 
     def schedule(self):
-        
         if(self.time is not None):
             time = self.time.to_date()
             now = dt.datetime.now()
@@ -40,7 +42,6 @@ class Action:
             time = now + dt.timedelta(seconds=self.repeat.to_seconds())
         
         self.scheduler_object = Schedule(self.name, time, self.execute)
-
         logger.debug('{} -- Scheduled'.format(self))
 
     def stop(self):

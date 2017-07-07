@@ -5,3 +5,7 @@ Device_type = {
     2: "RELAY",
     3: "SWITCH"
 }
+
+CONSOLE_MODE = False
+
+SETTINGS = {}
