@@ -177,9 +177,20 @@ def cleanup():
     logger.debug("Done")
     '''
 app_start(sys.argv[1:])
+
+b = Board.get(id = 1)
+b.sync()
+b.read_all()
+
+d = Device.get_by_id(1)
+d.write(1)
+
+d.read()
+
 #Fix cleaning up of scheduled Actions and Threads(if possible)
 atexit.register(cleanup)
 
 while True:
     pass
+
 

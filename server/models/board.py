@@ -20,8 +20,16 @@ class Board(BaseModel):
     def to_dict(self):
         return self.__dict__['_data']
 
-    def send_data(self, data):
-        comm.send_msg(json.dumps(data))
+    def get_all():
+        res = Board.select()
+        return res
+
+    def get_by_id(id):
+        try:
+            board = Board.get(Board.id == id)
+            return board 
+        except Board.DoesNotExist:
+            logger.error("Board with id {} not found".format(id))
 
     def read_all(self):
         msg = {
@@ -33,7 +41,7 @@ class Board(BaseModel):
     def sync(self):
         msg = {
             "action": "sync",
-            "board_id": self.name,
+            "board_id": self.id,
             "devices": []
         }
 
@@ -42,16 +50,29 @@ class Board(BaseModel):
         
         self.send_data(msg) 
 
-    def get_all():
-        res = Board.select()
-        return res
+    def send_data(self, data):
+        msg = ""
 
-    def get_by_id(id):
-        try:
-            board = Board.get(Board.id == id)
-            return board 
-        except Board.DoesNotExist:
-            logger.error("Board with id {} not found".format(id))
+        if("action" in data):
+            if(data["action"] == "sync"):
+                msg = "sync" + config.ACTION_MSG_DELIMITER
+                
+                i = 0
+                for d in data["devices"]:
+                    msg += "{}_{}".format(d["name"], d["id"])
+                    if(i < len(data["devices"]) - 1):
+                        msg += ","
+                    i += 1
+                    
+            if(data["action"] == "read"):
+                msg = "read{}{}".format(config.ACTION_MSG_DELIMITER, data["device_id"])
+
+            if(data["action"] == "write"):
+                msg = "write{}{}_{}".format(config.ACTION_MSG_DELIMITER, data["device_id"], data["value"])
+            
+
+        comm.send_msg(msg)
+
 
 
 

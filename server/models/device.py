@@ -19,6 +19,12 @@ class Device(BaseModel):
     def to_dict(self):
         return self.__dict__['_data']
     
+    def get_by_id(id):
+        try:
+            return Device.get(id = id)
+        except Device.DoesNotExist:
+            logger.error("Device with id {} not found".format(id))
+    
     def get_parent_board(self):
         return Board.get(id = self.board_id)
     
@@ -36,12 +42,6 @@ class Device(BaseModel):
             "value": value
         }
         self.get_parent_board().send_data(msg)
-    
-    def get_by_id(id):
-        try:
-            return Device.get(id = id)
-        except Device.DoesNotExist:
-            logger.error("Device with id {} not found".format(id))
     
     def get_with_readings(id, start, end):
         try:
