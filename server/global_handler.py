@@ -40,7 +40,7 @@ def process_json_data(data):
             board.sync()
         except Exception:
             logger.exception("An error occured while initializing board DB")
-    elif(action_name == "read"):
+    elif(action_name == "reading"):
         for d in data["data"]:
             try:
                 #loop through all the values for a device

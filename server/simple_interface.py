@@ -41,6 +41,8 @@ class SimpleInterface(cmd.Cmd):
             except ValueError as e:
                 print(e)
 
+    # SETTINGS
+
     def do_change_update_interval(self, arg):
         hour = SimpleInterface.get_int_input("hour")
         minute = SimpleInterface.get_int_input("minute")
@@ -49,7 +51,9 @@ class SimpleInterface(cmd.Cmd):
         global_vars.SETTINGS["check_interval_minutes"] = hour * 60 + minute
         gh.save_settings_to_file()
 
-    def do_get_all_boards(self, arg):
+    # BOARD
+
+    def do_board_get_all(self, arg):
         boards = Board.get_all()
 
         print("ID\tNAME")
@@ -58,7 +62,9 @@ class SimpleInterface(cmd.Cmd):
         for b in boards:
             print("{}\t{}".format(b.id, b.name))
 
-    def do_get_devices_by_board_id(self, board_id):
+    # DEVICE
+
+    def do_device_get_by_board_id(self, board_id):
         board = Board.get_by_id(board_id)
         
         print("ID\tNAME\t\tTYPE")
@@ -67,7 +73,19 @@ class SimpleInterface(cmd.Cmd):
         for d in board.devices:
             print("{}\t{}\t\t{}".format(d.id, d.name, global_vars.Device_type[d.type]))
 
-    def do_get_avg_for_device(self, id):
+    def do_device_get_last_reading(self, device_id):
+        try:
+            result = Device.get_last_reading(device_id)
+                
+            if(len(result) == 0):
+                print("No entries found")
+
+            for r in result:
+                print("{}\t\t{}\t{}".format(r["device"].name, r["reading"].value, r["reading"].timestamp))
+        except Exception:
+            pass
+
+    def do_device_get_avg(self, id):
         now = datetime.now()
         start = now - timedelta(hours = 2)
         end = now

@@ -85,10 +85,28 @@ class Device(BaseModel):
         else:
             logger.warning("Device '{}' - value HIGH".format(self.name))
 
+    def is_complex(self):
+        return (self.parent_id is None) and (self.type is not None)
 
+    def get_last_reading(id):
+        from .device_reading import Device_reading
+        
+        device = Device.get_by_id(id = id)
+        res = []
 
-
-
+        try:
+            # Get values for all subdevices
+            if(device.is_complex()):
+                sub_devices = Device.select().where(Device.parent_id == device.id)
+                
+                for s_dev in sub_devices:
+                    dr = Device_reading.select().where(Device_reading.device_id == s_dev.id).order_by(Device_reading.timestamp.desc()).get()
+                    res.append({"device": s_dev, "reading": dr})
+            else:
+                dr = device.readings.select().order_by(Device_reading.timestamp.desc()).get()
+                res.append({"device": device, "reading": dr})
+        finally:
+            return res
 
 
 
