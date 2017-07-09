@@ -62,29 +62,25 @@ class Device(BaseModel):
 
                 for s_dev in sub_devices:
                     device.sub_devices[s_dev.name] = []
-                    readings = s_dev.readings.select().where(Device_reading.timestamp.between(start, end)) 
+                    readings = s_dev.readings.select().where(
+                            Device_reading.timestamp.between(
+                                start, end)
+                            ) 
                     for r in readings:
-                        device.sub_devices[s_dev.name].append(r.to_dict())
+                        device.sub_devices[s_dev.name].append(
+                                r.to_dict()
+                            )
             else:
-                readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
+                readings = device.readings.select().where(
+                        Device_reading.timestamp.between(
+                            start, end)
+                        )
 
                 for r in readings:
                     device.values.append(r.to_dict())
                 
-
             return device
 
-            '''readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
-
-            device.values = {}
-            for r in readings:
-                if(not r.name in device.values):
-                    logger.debug("Found new sub-device: '{}'".format(r.name))
-                    device.values[r.name] = []
-                device.values[r.name].append(r.to_dict())
-            
-            return device
-            '''
         except Device.DoesNotExist:
             logger.error("Device with id {} not found".format(id))
 
@@ -92,7 +88,9 @@ class Device(BaseModel):
         from .device_reading import Device_reading
 
         device = Device.get(id = device_id)
-        readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
+        readings = device.readings.select().where(
+                Device_reading.timestamp.between(start, end)
+                )
 
         try:
             sum_all = 0
@@ -128,10 +126,23 @@ class Device(BaseModel):
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
-                    dr = Device_reading.select().where(Device_reading.device_id == s_dev.id).order_by(Device_reading.timestamp.desc()).get()
+                    dr = Device_reading
+                            .select()
+                            .where(
+                                Device_reading.device_id == s_dev.id
+                            )
+                            .order_by(
+                                Device_reading.timestamp.desc()
+                            )
+                            .get()
+
                     res.append({"device": s_dev, "reading": dr})
             else:
-                dr = device.readings.select().order_by(Device_reading.timestamp.desc()).get()
+                dr = device.readings.select().order_by(
+                        Device_reading.timestamp.desc()
+                    )
+                    .get()
+
                 res.append({"device": device, "reading": dr})
         finally:
             return res
