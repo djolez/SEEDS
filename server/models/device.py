@@ -122,20 +122,20 @@ class Device(BaseModel):
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
-                    dr = Device_reading
-                            .select()
+                    dr = Device_reading\
+                            .select()\
                             .where(
-                                Device_reading.device_id == s_dev.id)
+                                Device_reading.device_id == s_dev.id)\
                             .order_by(
-                                Device_reading.timestamp.desc())
+                                Device_reading.timestamp.desc())\
                             .get()
 
                     res.append({"device": s_dev, "reading": dr})
             else:
-                dr = device.readings
-                    .select()
+                dr = device.readings\
+                    .select()\
                     .order_by(
-                        Device_reading.timestamp.desc())
+                        Device_reading.timestamp.desc())\
                     .get()
 
                 res.append({"device": device, "reading": dr})
