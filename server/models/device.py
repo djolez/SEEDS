@@ -6,7 +6,7 @@ from .board import *
 import comm_implementation as comm
 
 class Device(BaseModel):
-    board = ForeignKeyField(Board, related_name = "devices", null = True)
+    board = ForeignKeyField(Board, related_name = "devices", null = False)
     # Used for subdevices (like temp and humidity in DHT11)
     parent_id = IntegerField(null = True)
     name = CharField()
@@ -27,6 +27,10 @@ class Device(BaseModel):
     
     def get_parent_board(self):
         return Board.get(id = self.board_id)
+    
+    def get_sub_devices(self):
+        res = Device.select().where(Device.parent_id == self.id)
+        return res 
     
     def read(self):
         msg = {

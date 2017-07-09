@@ -16,38 +16,75 @@ def retrieve_data_all_boards():
     for b in boards:
         b.read_all()
 
-def process_json_data(data):
-    #TODO: Change to JSON 
-    action_name = data["action"].split(config.ACTION_MSG_DELIMITER)[0]
+def process_comm_data(data):
+    tmp = data.split(config.ACTION_MSG_DELIMITER)
+    action_name = tmp[0]
 
     if(action_name == "board_init"):
         try:
-            board, created = models.board.Board.get_or_create(name = data["name"])
+            payload = tmp[1]
+            
+            tmp = payload.split(":")
+            board_name = tmp[0]
+            devices = tmp[1].split("|")
+
+            board, created = models.board.Board.get_or_create(name = board_name)
+            
             if(created):
                 board.save()
+            
+            for d in devices:
+                tmp = d.split("-")
+                
+                has_sub_devices = False
+                if(len(tmp) > 1):
+                    has_sub_devices = True
 
-            #Add mising devices to DB
-            for d in data["devices"]:
+                device_name = tmp[0].split(".")[0]
+                device_type = (int)(tmp[0].split(".")[1])
+
                 device, created = models.device.Device.get_or_create(
                         board = board.id,
-                        name = d["name"],
-                        type = d["type"]
+                        name = device_name,
+                        type = device_type
                         )
                 if(created):
                     device.save()
-            
-            #send back the data to the board in order to save IDs of the devices
+                
+                if(has_sub_devices is False):
+                    continue
+
+                sub_devices = tmp[1].split(",")
+                
+                for s_d in sub_devices:
+                    sub_device, created = models.device.Device.get_or_create(
+                            board_id = board.id,
+                            name = s_d,
+                            parent_id = device.id
+                            )
+                    if(created):
+                        sub_device.save()
+
             board.sync()
         except Exception:
             logger.exception("An error occured while initializing board DB")
     elif(action_name == "reading"):
-        for d in data["data"]:
+        payload = tmp[1]
+        tmp = payload.split("_")
+
+        device_id = tmp[0]
+        value = tmp[1]
+
+        models.device_reading.Device_reading.add(device_id, value)
+        
+        '''for d in data["data"]:
             try:
                 #loop through all the values for a device
                 for r in d["values"]:
                     models.device_reading.Device_reading.add_from_json(r, d)
             except Exception:
                 logger.exception("An error occured while entering device data to DB")
+        '''
 
 def save_settings_to_file():
     logger.debug("Writing settings to a file")

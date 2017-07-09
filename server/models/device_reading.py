@@ -1,4 +1,6 @@
 from peewee import *
+from datetime import datetime
+
 from .base import *
 from .device import *
 
@@ -11,9 +13,12 @@ class Device_reading(BaseModel):
     class Meta:
         database = db_proxy
 
-    def add_from_json(value, device):
-        dr = Device_reading.create(device_id = device["id"], value = value["value"], timestamp = helper.string_to_datetime(value["timestamp"]))
+    def add(device_id, value):
+        dr = Device_reading.create(device_id = device_id, value = value, timestamp = datetime.now()) 
         dr.save()
+
+        #dr = Device_reading.create(device_id = device["id"], value = value["value"], timestamp = helper.string_to_datetime(value["timestamp"]))
+        #dr.save()
 
     def to_dict(self):
         return self.__dict__['_data']

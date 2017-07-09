@@ -18,12 +18,8 @@ def send_msg(msg):
         #logger.exception("Serial timeout expired")
 
 def handle_msg(data):
-    logger.debug("Trying to parse JSON string '{}'".format(data))
-    try:
-        dict_obj = json.loads(data)
-        gh.process_json_data(dict_obj)
-    except ValueError:
-        logger.exception("Failed to parse JSON: '{}'".format(data))
+    logger.debug("Received msg: '{}'".format(data))
+    gh.process_comm_data(data)
 
 def main():
 

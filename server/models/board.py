@@ -46,32 +46,55 @@ class Board(BaseModel):
         }
 
         for d in self.devices:
-           msg["devices"].append(d.to_dict())
+            if(d.parent_id is not None):
+                continue
+
+            res = {}
+            res["device"] = d.to_dict()
+            res["sub_devices"] = []
+
+            s_devices = d.get_sub_devices()
+            for s_dev in s_devices:
+                res["sub_devices"].append(s_dev.to_dict())
+
+            msg["devices"].append(res)
         
         self.send_data(msg) 
 
     def send_data(self, data):
-        msg = ""
+        msg = None
 
         if("action" in data):
             if(data["action"] == "sync"):
                 msg = "sync" + config.ACTION_MSG_DELIMITER
                 
                 i = 0
-                for d in data["devices"]:
-                    msg += "{}_{}".format(d["name"], d["id"])
-                    if(i < len(data["devices"]) - 1):
-                        msg += ","
-                    i += 1
+                for i, d in enumerate(data["devices"]):
+                    msg += "{}_{}".format(d["device"]["name"], d["device"]["id"])
+
+                    if(len(d["sub_devices"]) > 0):
+                        msg += ":"
+
+                    for j, s_dev in enumerate(d["sub_devices"]):
+                        msg += "{}_{}".format(s_dev["name"], s_dev["id"])
+
+                        if(j < len(d["sub_devices"]) - 1):
+                            msg += ","
                     
-            if(data["action"] == "read"):
+                    if(i < len(data["devices"]) - 1):
+                        msg += "|"
+                    
+            elif(data["action"] == "read"):
                 msg = "read{}{}".format(config.ACTION_MSG_DELIMITER, data["device_id"])
 
-            if(data["action"] == "write"):
+            elif(data["action"] == "write"):
                 msg = "write{}{}_{}".format(config.ACTION_MSG_DELIMITER, data["device_id"], data["value"])
             
+            else:
+                logger.error("Unknown action '{}'".format(data["action"]))
 
-        comm.send_msg(msg)
+            if(msg is not None):
+                comm.send_msg(msg)
 
 
 

@@ -17,6 +17,7 @@ from scheduler.time_module import *
 import server
 import global_handler as gh
 import global_vars
+import comm_implementation as comm
 
 logging.basicConfig(
     level = logging.DEBUG,
@@ -176,9 +177,11 @@ def cleanup():
 
     logger.debug("Done")
     '''
+
 app_start(sys.argv[1:])
 
-b = Board.get(id = 1)
+# COMM TEST
+'''b = Board.get(id = 1)
 b.sync()
 b.read_all()
 
@@ -186,6 +189,11 @@ d = Device.get_by_id(1)
 d.write(1)
 
 d.read()
+'''
+
+comm.handle_msg("board_init$STM32:dht11.1-humidity,temperature|ds18b20.0")
+
+comm.handle_msg("reading$2_2850")
 
 #Fix cleaning up of scheduled Actions and Threads(if possible)
 atexit.register(cleanup)
