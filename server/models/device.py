@@ -64,17 +64,14 @@ class Device(BaseModel):
                     device.sub_devices[s_dev.name] = []
                     readings = s_dev.readings.select().where(
                             Device_reading.timestamp.between(
-                                start, end)
-                            ) 
+                                start, end)) 
                     for r in readings:
                         device.sub_devices[s_dev.name].append(
-                                r.to_dict()
-                            )
+                                r.to_dict())
             else:
                 readings = device.readings.select().where(
                         Device_reading.timestamp.between(
-                            start, end)
-                        )
+                            start, end))
 
                 for r in readings:
                     device.values.append(r.to_dict())
@@ -89,8 +86,7 @@ class Device(BaseModel):
 
         device = Device.get(id = device_id)
         readings = device.readings.select().where(
-                Device_reading.timestamp.between(start, end)
-                )
+                Device_reading.timestamp.between(start, end))
 
         try:
             sum_all = 0
@@ -129,18 +125,17 @@ class Device(BaseModel):
                     dr = Device_reading
                             .select()
                             .where(
-                                Device_reading.device_id == s_dev.id
-                            )
+                                Device_reading.device_id == s_dev.id)
                             .order_by(
-                                Device_reading.timestamp.desc()
-                            )
+                                Device_reading.timestamp.desc())
                             .get()
 
                     res.append({"device": s_dev, "reading": dr})
             else:
-                dr = device.readings.select().order_by(
-                        Device_reading.timestamp.desc()
-                    )
+                dr = device.readings
+                    .select()
+                    .order_by(
+                        Device_reading.timestamp.desc())
                     .get()
 
                 res.append({"device": device, "reading": dr})
