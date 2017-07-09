@@ -63,15 +63,22 @@ def get_all_device_readings(id):
         return bad_request(404, "Device not found")
 
 def get_full_device_with_readings(id, start, end):
-    device = Device.get_with_readings(id, start, end)
-    board = Board.get_by_id(device.board_id)
+    try:
+        device = Device.get_with_readings(id, start, end)
+        board = Board.get_by_id(device.board_id)
+        
+        print(len(device.values))
 
-    res = {
-        "board": board.to_dict(),
-        "device": device.to_dict(),
-        }
-    res["device"]["values"] = device.values
+        res = {
+            "board": board.to_dict(),
+            "device": device.to_dict(),
+            }
+        res["device"]["values"] = device.values
+        res["device"]["sub_devices"] = device.sub_devices
 
+        return res
+    except Device.DoesNotExist:
+        return bad_request(404, "Device not found")
 
 @app.route('/device/<int:id>/from/<start_datetime>/to/<end_datetime>')
 def get_device_with_readings(id, start_datetime, end_datetime):

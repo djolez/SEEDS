@@ -117,6 +117,7 @@ def add_test_values():
         dht.save()
 
     dht_temp, c = models.device.Device.get_or_create(
+            board_id = b.id,
             name = "temperature",
             parent_id = dht.id
             )
@@ -124,6 +125,7 @@ def add_test_values():
         dht_temp.save()
 
     dht_hum, c = models.device.Device.get_or_create(
+            board_id = b.id,
             name = "humidity",
             parent_id = dht.id
             )

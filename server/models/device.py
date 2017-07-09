@@ -54,7 +54,27 @@ class Device(BaseModel):
             
             device = Device.get(id = id)
             board = Board.get(id = device.board_id)
-            readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
+            
+            device.values = []
+            device.sub_devices = {}
+            if(device.is_complex()):
+                sub_devices = device.get_sub_devices()
+
+                for s_dev in sub_devices:
+                    device.sub_devices[s_dev.name] = []
+                    readings = s_dev.readings.select().where(Device_reading.timestamp.between(start, end)) 
+                    for r in readings:
+                        device.sub_devices[s_dev.name].append(r.to_dict())
+            else:
+                readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
+
+                for r in readings:
+                    device.values.append(r.to_dict())
+                
+
+            return device
+
+            '''readings = device.readings.select().where(Device_reading.timestamp.between(start, end))
 
             device.values = {}
             for r in readings:
@@ -64,6 +84,7 @@ class Device(BaseModel):
                 device.values[r.name].append(r.to_dict())
             
             return device
+            '''
         except Device.DoesNotExist:
             logger.error("Device with id {} not found".format(id))
 
@@ -92,6 +113,9 @@ class Device(BaseModel):
     def is_complex(self):
         return (self.parent_id is None) and (self.type is not None)
 
+    def get_sub_devices(self):
+        return Device.select().where(Device.parent_id == self.id)
+
     def get_last_reading(id):
         from .device_reading import Device_reading
         
@@ -101,7 +125,7 @@ class Device(BaseModel):
         try:
             # Get values for all subdevices
             if(device.is_complex()):
-                sub_devices = Device.select().where(Device.parent_id == device.id)
+                sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
                     dr = Device_reading.select().where(Device_reading.device_id == s_dev.id).order_by(Device_reading.timestamp.desc()).get()
