@@ -17,8 +17,25 @@ class Device(BaseModel):
         database = db_proxy
 
     def to_dict(self):
-        return self.__dict__['_data']
-    
+        res = self.__dict__['_data']
+        if(hasattr(self, "values")):
+            res["values"] = self.values
+        if(hasattr(self, "sub_devices")):
+            res["sub_devices"] = self.sub_devices
+            
+        return res
+        #return self.__dict__['_data']
+
+    def to_string(self):
+        res = "ID: {}, Name: {}, Type: {}, Num_Values: {}, Num_sub_devices".format(self.id, self.name, self.type)
+
+        if(hasattr(self, "values")):
+            res += ", Num_Values: {}".format(len(self.values))
+        if(hasattr(self, "sub_devices")):
+            res += ", Num_Sub_devices: {}".format(len(self.sub_devices))
+
+        return res
+
     def get_by_id(id):
         try:
             return Device.get(id = id)
@@ -56,7 +73,33 @@ class Device(BaseModel):
             board = Board.get(id = device.board_id)
             
             device.values = []
-            device.sub_devices = {}
+            device.sub_devices = []
+            if(device.is_complex()):
+                sub_devices = device.get_sub_devices()
+
+                for s_dev in sub_devices:
+                    print(sub_devices)
+                    s_dev.values = []
+                    readings = s_dev.readings.select().where(
+                            Device_reading.timestamp.between(
+                                start, end)) 
+                    
+                    for r in readings:
+                        s_dev.values.append(
+                                r.to_dict())
+
+                    device.sub_devices.append(s_dev.to_dict())
+            else:
+                readings = device.readings.select().where(
+                        Device_reading.timestamp.between(
+                            start, end))
+
+                for r in readings:
+                    device.values.append(r.to_dict())
+                
+            return device
+            
+            '''device.sub_devices = {}
             if(device.is_complex()):
                 sub_devices = device.get_sub_devices()
 
@@ -77,7 +120,7 @@ class Device(BaseModel):
                     device.values.append(r.to_dict())
                 
             return device
-
+            '''
         except Device.DoesNotExist:
             logger.error("Device with id {} not found".format(id))
 
@@ -114,15 +157,18 @@ class Device(BaseModel):
         from .device_reading import Device_reading
         
         device = Device.get_by_id(id = id)
-        res = []
+        #res = []
 
         try:
             # Get values for all subdevices
             if(device.is_complex()):
+                device.sub_devices = []
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
-                    dr = Device_reading\
+                    s_dev.values = [s_dev.readings.order_by(Device_reading.timestamp.desc()).get()]
+                    device.sub_devices.append(s_dev)
+                    '''dr = Device_reading\
                             .select()\
                             .where(
                                 Device_reading.device_id == s_dev.id)\
@@ -131,16 +177,18 @@ class Device(BaseModel):
                             .get()
 
                     res.append({"device": s_dev, "reading": dr})
+                    '''
             else:
+                device.values = []
                 dr = device.readings\
-                    .select()\
                     .order_by(
                         Device_reading.timestamp.desc())\
                     .get()
-
-                res.append({"device": device, "reading": dr})
+                
+                device.values.append(dr)
+                #res.append({"device": device, "reading": dr})
         finally:
-            return res
+            return device
 
 
 

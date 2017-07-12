@@ -97,7 +97,7 @@ def app_start(argv):
     logging.getLogger('').addHandler(console)
     '''
 
-    gh.apply_settings()
+    #gh.apply_settings()
     
 def cleanup():
     logger.debug("Exit by user request, performing cleanup...")

@@ -75,12 +75,16 @@ class SimpleInterface(cmd.Cmd):
     def do_device_get_last_reading(self, device_id):
         try:
             result = Device.get_last_reading(device_id)
-                
+            
+            print(result.to_dict())
+            return
+
             if(len(result) == 0):
                 print("No entries found")
 
             for r in result:
-                print("{}\t\t{}\t{}".format(r["device"].name, r["reading"].value, r["reading"].timestamp))
+                print()
+                #print("{}\t\t{}\t{}".format(r["device"].name, r["reading"].value, r["reading"].timestamp))
         except Exception:
             pass
 
