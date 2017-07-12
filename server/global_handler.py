@@ -1,7 +1,7 @@
 import json
 import logging
 from random import randint
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import config
 import models
@@ -133,7 +133,6 @@ def apply_settings():
                 "analyze_values",
                 repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
                 callbacks=[analyze_db_values],
-                force_execute=True
                 )
             actions["analyze_values"].schedule()
     except KeyError:
@@ -150,6 +149,35 @@ def save_settings_to_file(reload_actions = True):
             apply_settings()
     except Exception as e:
         logger.exception(e)
+
+# DB
+
+def analyze_db_values():
+    now = datetime.now()
+    # TODO: Change hours to minutes
+    start = now - timedelta(hours = global_vars.SETTINGS["check_interval_minutes"])
+    end = now
+
+    try:
+        for device in global_vars.SETTINGS["value_ranges"]:
+            db_device, avg = models.device.Device.get_avg_for_subdevice(
+                    device["device_id"],
+                    start,
+                    end
+                    )
+            # No records found
+            if(avg is None):
+                continue
+
+            if(avg < device["min_value"]):
+                db_device.value_out_of_range(-1)            
+            elif(avg > device["max_value"]):
+                db_device.value_out_of_range(1)
+    except KeyError as e:
+        logger.exception("value_ranges not found or badly formatted")
+        '''actions["analyze_values"].stop()
+        del actions["analyze_values"]
+        '''
 
 # MOCK DATA
 

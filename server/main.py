@@ -50,35 +50,7 @@ def init_db(file_path = "db/db.sqlite"):
     db_proxy.initialize(SqliteDatabase(file_path))
     db_proxy.create_tables([Board, Device, Device_reading], safe=True)
 
-def analyze_db_values():
-    now = datetime.now()
-    # TODO: Change hours to minutes
-    start = now - timedelta(hours = settings["check_interval_minutes"])
-    end = now
-
-    for device in settings["value_ranges"]:
-        db_device, avg = Device.get_avg_for_subdevice(
-                device["device_id"],
-                start,
-                end
-                )
-        # No records found
-        if(avg is None):
-            continue
-
-        if(avg < device["min_value"]):
-            db_device.value_out_of_range(-1)            
-        elif(avg > device["max_value"]):
-            db_device.value_out_of_range(1)
-
-
 active_threads = {}
-def data_polling_thread(time):
-    gh.retrieve_data_all_boards()
-    active_threads["data_polling"] = threading.Timer(time, data_polling_thread, [time])
-    active_threads["data_polling"].start()
-
-server_thread = None
 def app_start(argv):
     db_initialized = False
     gh.load_settings()
@@ -159,5 +131,4 @@ atexit.register(cleanup)
 
 while True:
     pass
-
 
