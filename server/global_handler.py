@@ -7,6 +7,9 @@ import config
 import models
 import helper
 import global_vars
+import global_handler as gh
+from scheduler.action import *
+from scheduler.time_module import *
 
 logger = logging.getLogger(__name__)
 
@@ -86,14 +89,69 @@ def process_comm_data(data):
                 logger.exception("An error occured while entering device data to DB")
         '''
 
-def save_settings_to_file():
+# SETTINGS
+
+def load_settings(path = "settings.json"):
+    res = config.DEFAULT_SETTINGS
+    try:
+        logger.debug("Trying to open '{}'".format(path))
+
+        with open(path, "r") as file:
+            res = json.load(file)
+    except IOError:
+        logger.warning("Settings file not found in path, using default settings".format(path))
+    except ValueError:
+        logger.error("Failed to parse as JSON, using default settings".format(file))
+    finally:
+        global_vars.SETTINGS = res
+
+def stop_running_actions():
+    global actions
+    for name in actions:
+        actions[name].stop()
+
+    actions = {}
+
+actions = {}
+settings = {}
+def apply_settings():
+    stop_running_actions()
+    
+    try:
+        if(global_vars.SETTINGS["poll_interval_minutes"]):
+            
+            actions["data_polling"] = Action(
+                "data_poll_all",
+                repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+                callbacks=[gh.retrieve_data_all_boards]
+                )
+            actions["data_polling"].schedule()
+                    
+        if(global_vars.SETTINGS["check_interval_minutes"]):
+
+            actions["analyze_values"] = Action(
+                "analyze_values",
+                repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+                callbacks=[analyze_db_values],
+                force_execute=True
+                )
+            actions["analyze_values"].schedule()
+    except KeyError:
+        pass
+
+def save_settings_to_file(reload_actions = True):
     logger.debug("Writing settings to a file")
 
     try:
         with open("settings.json", "w") as file:
             file.write(json.dumps(global_vars.SETTINGS))
-    except Exception:
-        logger.error("Something bad happened")
+
+        if(reload_actions):
+            apply_settings()
+    except Exception as e:
+        logger.exception(e)
+
+# MOCK DATA
 
 def randomize_values(count, min_val, max_val):
     res = []

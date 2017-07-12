@@ -47,7 +47,6 @@ class SimpleInterface(cmd.Cmd):
         hour = SimpleInterface.get_int_input("hour")
         minute = SimpleInterface.get_int_input("minute")
     
-        #TODO: save to the config file
         global_vars.SETTINGS["check_interval_minutes"] = hour * 60 + minute
         gh.save_settings_to_file()
 

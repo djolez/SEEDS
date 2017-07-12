@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify, abort
 import logging
+import json
 
 from models.board import Board
 from models.device import Device
 from models.device_reading import Device_reading
 import helper
+import global_vars
+import global_handler as gh
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +25,7 @@ def bad_request(code = 400, msg = "An error occured"):
     response.status_code = code
     return response
 
-#BOARD
+# BOARD
 @app.route('/board')
 def get_board_all():
     boards = Board.get_all()
@@ -44,7 +47,7 @@ def get_devices_by_board_id(id):
     except Board.DoesNotExist:
         return bad_request(404, "Board not found")
 
-#DEVICE
+# DEVICE
 @app.route('/device/<int:id>')
 def get_device(id):
     try:
@@ -53,7 +56,7 @@ def get_device(id):
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
 
-#DEVICE_READING
+# DEVICE_READING
 @app.route('/device/<int:id>/reading')
 def get_all_device_readings(id):
     try:
@@ -107,13 +110,26 @@ def get_readings_from_devices_list(start_datetime, end_datetime):
         res.append(dr)
     return jsonify(res)
 
+# SETTINGS
+@app.route('/settings', methods = ["POST"])
+def save_settings():
+    try:
+        data = request.get_json(force = True)
+        global_vars.SETTINGS = data
+
+        gh.save_settings_to_file()
+        
+        return("OK")
+    except Exception:
+        logger.exception("Failed to write settings to a file")
+        return bad_request(400, "An error occured while trying to write settings to a file")
+
+
 def run():
     app.run(host='0.0.0.0', use_reloader=False)
 
 if __name__ == '__main__':
     run()
-
-
 
 
 

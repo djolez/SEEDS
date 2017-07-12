@@ -71,48 +71,6 @@ def analyze_db_values():
         elif(avg > device["max_value"]):
             db_device.value_out_of_range(1)
 
-# SETTINGS
-
-def load_settings(path = "settings.json"):
-    res = config.DEFAULT_SETTINGS
-    try:
-        logger.debug("Trying to open '{}'".format(path))
-
-        with open(path, "r") as file:
-            res = json.load(file)
-    except IOError:
-        logger.warning("Settings file not found in path, using default settings".format(path))
-    except ValueError:
-        logger.error("Failed to parse as JSON, using default settings".format(file))
-    finally:
-        return res
-
-actions = {}
-settings = {}
-def apply_settings():
-    try:
-        if(global_vars.SETTINGS["poll_interval_minutes"]):
-            pass
-            
-            actions["data_polling"] = Action(
-                "data_poll_all",
-                repeat=Time(minute=global_vars.SETTINGS["poll_interval"]),
-                callbacks=[gh.retrieve_data_all_boards]
-                )
-            actions["data_polling"].schedule()
-                    
-        if(global_vars.SETTINGS["check_interval_minutes"]):
-            pass
-
-            actions["analyze_values"] = Action(
-                "analyze_values",
-                repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
-                callbacks=[analyze_db_values],
-                force_execute=True
-                )
-            actions["analyze_values"].schedule()
-    except KeyError:
-        pass
 
 active_threads = {}
 def data_polling_thread(time):
@@ -123,8 +81,7 @@ def data_polling_thread(time):
 server_thread = None
 def app_start(argv):
     db_initialized = False
-    global settings
-    global_vars.SETTINGS = load_settings()
+    gh.load_settings()
     
     #Parse arguments
     opts, args = getopt.getopt(argv, "i:")
@@ -143,12 +100,12 @@ def app_start(argv):
             logger.debug("DB init finished")
         
         elif(arg == "run_server"):
-            active_threads["server"] = Thread(target = server.run)
+            active_threads["server"] = Thread(target = server.run, daemon = True)
             active_threads["server"].start()
         
         elif(arg == "run_console_app"):
             from simple_interface import SimpleInterface
-            active_threads["console_app"] = Thread(target = SimpleInterface().cmdloop)
+            active_threads["console_app"] = Thread(target = SimpleInterface().cmdloop, daemon = True)
             active_threads["console_app"].start()
             global_vars.CONSOLE_MODE = True
 
@@ -167,16 +124,19 @@ def app_start(argv):
         console.setLevel(logging.DEBUG)
     logging.getLogger('').addHandler(console)
     '''
-    apply_settings()
+
+    gh.apply_settings()
     
 def cleanup():
-    pass
-    '''logger.debug("Exit by user request, performing cleanup...")
-    for t_name in active_threads:
-        active_threads[t_name].stop()
+    logger.debug("Exit by user request, performing cleanup...")
+    
+    gh.stop_running_actions()
+    
+    '''for t_name in active_threads:
+        print(active_threads[t_name].isDaemon())
+    '''
 
     logger.debug("Done")
-    '''
 
 app_start(sys.argv[1:])
 
@@ -195,7 +155,6 @@ d.read()
 
 #comm.handle_msg("reading$2_2850")
 
-#Fix cleaning up of scheduled Actions and Threads(if possible)
 atexit.register(cleanup)
 
 while True:
