@@ -114,20 +114,25 @@ void manager_update_data_specific(Port_t* entity) {
 void manager_write_data(uint16_t id, uint8_t value) {
 	Port_t* entity = find_device_by_id(id);
 
+	//Workaround to check if result is NULL
+	if(entity->db_id != id) {
+		comm_send_error_msg("Device not found");
+	}
+
 	switch (entity->Type) {
-	case DS18B20:
-	case DHT11:
-	case SWITCH:
-		comm_send_msg("Error: Device does not support writing");
-		break;
-	case RELAY:
-		if(value == 0)
-			RELAY_OFF(entity);
-		else if(value == 1)
-			RELAY_ON(entity);
-		break;
-	default:
-		break;
+		case DS18B20:
+		case DHT11:
+		case SWITCH:
+			comm_send_error_msg("Device does not support writing");
+			break;
+		case RELAY:
+			if(value == 0)
+				RELAY_OFF(entity);
+			else if(value == 1)
+				RELAY_ON(entity);
+			break;
+		default:
+			break;
 	}
 }
 

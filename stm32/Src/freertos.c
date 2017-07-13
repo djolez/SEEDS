@@ -113,8 +113,8 @@ void MX_FREERTOS_Init(void) {
   commHandle = osThreadCreate(osThread(comm), NULL);
 
   /* definition and creation of dummy */
-//  osThreadDef(dummy, StartDummyTask, osPriorityNormal, 0, 128);
-//  dummyHandle = osThreadCreate(osThread(dummy), NULL);
+  osThreadDef(dummy, StartDummyTask, osPriorityNormal, 0, 128);
+  dummyHandle = osThreadCreate(osThread(dummy), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
 	/* add threads, ... */
@@ -137,7 +137,7 @@ void StartCommTask(void const * argument)
 		if (xQueueReceive(comm_handle, &rx_buffer, portMAX_DELAY)) {
 			handle_msg(rx_buffer);
 			//link to the rx_data from communication
-			HAL_UART_Receive_IT(&huart2, rx_data, 1);//activate UART receive interrupt every time
+//			HAL_UART_Receive_IT(&huart2, rx_data, 1);//activate UART receive interrupt every time
 		}
 //		if (xQueueReceive(comm_handle_tx, &tx_buffer, MAX_COMMS_DELAY)) {
 //			comm_send_msg(tx_buffer);
@@ -159,11 +159,6 @@ void StartDummyTask(void const * argument)
 }
 
 /* USER CODE BEGIN Application */
-void transmit_msg(char* msg) {
-	HAL_UART_Transmit(&huart2,(uint8_t*) msg, strlen(msg), 100);
-	HAL_UART_Transmit(&huart2, (uint8_t*)"\r\n", strlen("\r\n"), 100);
-}
-
 
 void handle_msg(char* msg) {
 	char* action;
@@ -173,7 +168,7 @@ void handle_msg(char* msg) {
 	payload = strsep(&msg, MSG_DELIMITER);
 
 	if (strcmp(action, "read") == 0) {
-		//transmit_msg("READ");
+		comm_send_msg("READ");
 		int device_id = string_to_int(payload);
 
 		if (device_id < 0) {
@@ -187,14 +182,14 @@ void handle_msg(char* msg) {
 		}
 
 	} else if (strcmp(action, "write") == 0) {
-		transmit_msg("WRITE");
+		comm_send_msg("WRITE");
 		uint16_t id = string_to_int(strsep(&payload, "_"));
 		uint8_t value = string_to_int(strsep(&payload, "_"));
 
 		manager_write_data(id, value);
 
 	} else if (strcmp(action, "sync") == 0) {
-		transmit_msg("SYNC");
+		comm_send_msg("SYNC");
 
 //		manager_print_all_devices();
 
@@ -233,11 +228,11 @@ void handle_msg(char* msg) {
 			}
 			full_device = strsep(&payload, "|");
 		}
-		manager_print_all_devices();
+//		manager_print_all_devices();
 
 	} else {
 //		ERROR
-		transmit_msg("unknown command");
+		comm_send_error_msg("Unknown command");
 	}
 	//transmit_msg(payload);
 
