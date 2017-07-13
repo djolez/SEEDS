@@ -14,12 +14,6 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 app.config.update({"DEBUG": True})
 
-def list_to_dict(data):
-    res = []
-    for d in data:
-        res.append(d.to_dict())
-    return res
-
 def bad_request(code = 400, msg = "An error occured"):
     response = jsonify({"message": msg})
     response.status_code = code
@@ -29,7 +23,7 @@ def bad_request(code = 400, msg = "An error occured"):
 @app.route('/board')
 def get_board_all():
     boards = Board.get_all()
-    return jsonify(list_to_dict(boards))
+    return jsonify(helper.list_to_dict(boards))
 
 @app.route('/board/<int:id>')
 def get_board(id):
@@ -43,7 +37,7 @@ def get_board(id):
 def get_devices_by_board_id(id):
     try:
         board = Board.get_by_id(id)
-        return jsonify(list_to_dict(board.devices))
+        return jsonify(helper.list_to_dict(board.devices))
     except Board.DoesNotExist:
         return bad_request(404, "Board not found")
 
@@ -61,7 +55,7 @@ def get_device(id):
 def get_all_device_readings(id):
     try:
         device = Device.get_by_id(id)
-        return jsonify(list_to_dict(device.readings))
+        return jsonify(helper.list_to_dict(device.readings))
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
 
@@ -109,6 +103,19 @@ def get_readings_from_devices_list(start_datetime, end_datetime):
         dr = get_full_device_with_readings(int(id), start_datetime, end_datetime)
         res.append(dr)
     return jsonify(res)
+
+@app.route('/device/<int:id>/last-reading')
+def get_device_last_reading(id):
+    try:
+        logger.debug("Fetching device last reading, id: {}".format(id))
+        device = Device.get_last_reading(id)        
+        return jsonify(device.to_dict())
+
+    except Device.DoesNotExist:
+        return bad_request(404, "Device not found")
+    except Exception as e:
+        logger.exception(e)
+        return bad_request()
 
 # SETTINGS
 @app.route('/settings', methods = ["POST"])

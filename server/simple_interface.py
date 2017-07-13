@@ -72,19 +72,24 @@ class SimpleInterface(cmd.Cmd):
         for d in board.devices:
             print("{}\t{}\t\t{}".format(d.id, d.name, global_vars.Device_type[d.type]))
 
+
+    # NOT WORKING
     def do_device_get_last_reading(self, device_id):
         try:
-            result = Device.get_last_reading(device_id)
+            result = Device.get_last_reading(device_id).to_dict()
             
-            print(result.to_dict())
-            return
+            #print(result.to_dict()["sub_devices"][0].values[0].value)
 
-            if(len(result) == 0):
+            if(result is None):
                 print("No entries found")
 
-            for r in result:
-                print()
-                #print("{}\t\t{}\t{}".format(r["device"].name, r["reading"].value, r["reading"].timestamp))
+            for r in result.values:
+                print(r.value)
+
+            for sd in result.sub_devices:
+                for r in sd.values:
+                    print({"{} - {}"}.format(sd.name, r.value))
+        
         except Exception:
             pass
 

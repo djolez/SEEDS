@@ -4,6 +4,7 @@ import json
 from .base import *
 from .board import *
 import comm_implementation as comm
+import helper
 
 class Device(BaseModel):
     board = ForeignKeyField(Board, related_name = "devices", null = False)
@@ -19,9 +20,9 @@ class Device(BaseModel):
     def to_dict(self):
         res = self.__dict__['_data']
         if(hasattr(self, "values")):
-            res["values"] = self.values
+            res["values"] = helper.list_to_dict(self.values)
         if(hasattr(self, "sub_devices")):
-            res["sub_devices"] = self.sub_devices
+            res["sub_devices"] = helper.list_to_dict(self.sub_devices)
             
         return res
         #return self.__dict__['_data']
@@ -157,12 +158,12 @@ class Device(BaseModel):
         from .device_reading import Device_reading
         
         device = Device.get_by_id(id = id)
-        #res = []
+        device.values = []
+        device.sub_devices = []
 
         try:
             # Get values for all subdevices
             if(device.is_complex()):
-                device.sub_devices = []
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
@@ -179,7 +180,6 @@ class Device(BaseModel):
                     res.append({"device": s_dev, "reading": dr})
                     '''
             else:
-                device.values = []
                 dr = device.readings\
                     .order_by(
                         Device_reading.timestamp.desc())\
