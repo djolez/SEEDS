@@ -23,6 +23,8 @@ class Device(BaseModel):
             res["values"] = helper.list_to_dict(self.values)
         if(hasattr(self, "sub_devices")):
             res["sub_devices"] = helper.list_to_dict(self.sub_devices)
+        if(hasattr(self, "board_full")):
+            res["board_full"] = self.board_full.to_dict()
             
         return res
         #return self.__dict__['_data']
@@ -73,30 +75,31 @@ class Device(BaseModel):
             device = Device.get(id = id)
             board = Board.get(id = device.board_id)
             
+            device.board_full = board
             device.values = []
             device.sub_devices = []
             if(device.is_complex()):
                 sub_devices = device.get_sub_devices()
 
                 for s_dev in sub_devices:
-                    print(sub_devices)
                     s_dev.values = []
                     readings = s_dev.readings.select().where(
                             Device_reading.timestamp.between(
                                 start, end)) 
                     
                     for r in readings:
-                        s_dev.values.append(
-                                r.to_dict())
+                        s_dev.values.append(r)
+                        #s_dev.values.append(r.to_dict())
 
-                    device.sub_devices.append(s_dev.to_dict())
+                    device.sub_devices.append(s_dev)
             else:
                 readings = device.readings.select().where(
                         Device_reading.timestamp.between(
                             start, end))
 
                 for r in readings:
-                    device.values.append(r.to_dict())
+                    device.values.append(r)
+                    #device.values.append(r.to_dict())
                 
             return device
             
