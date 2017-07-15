@@ -76,10 +76,15 @@ def process_comm_data(data):
         tmp = payload.split("_")
 
         device_id = tmp[0]
-        value = tmp[1]
+        try:
+            value = int(tmp[1])
+            # Values are passed without decimal point because of
+            # problems with floating point arithmetics on the board
+            float_val = (value / 100) if value > 1000 else value / 10
+            models.device_reading.Device_reading.add(device_id, float_val)
+        except ValueError:
+            logger.error("Failed to parse '{}' as int".format(tmp[1]))
 
-        models.device_reading.Device_reading.add(device_id, value)
-        
         '''for d in data["data"]:
             try:
                 #loop through all the values for a device

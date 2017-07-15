@@ -123,6 +123,8 @@ d.write(1)
 d.read()
 '''
 
+comm.handle_msg("reading$2_283")
+
 #comm.handle_msg("board_init$STM32:dht11.1-humidity,temperature|ds18b20.0")
 
 #comm.handle_msg("reading$2_2850")
