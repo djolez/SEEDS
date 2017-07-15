@@ -121,27 +121,51 @@ actions = {}
 settings = {}
 def apply_settings():
     stop_running_actions()
+    print(global_vars.SETTINGS) 
+    if("poll_interval_minutes1" in global_vars.SETTINGS):
+         
+        actions["data_polling"] = Action(
+            "data_poll_all",
+            repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+            callbacks=[gh.retrieve_data_all_boards]
+            )
+        actions["data_polling"].schedule()
+                
+    if("check_interval_minutes1" in global_vars.SETTINGS):
+        
+        actions["analyze_values"] = Action(
+            "analyze_values",
+            repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+            callbacks=[analyze_db_values],
+            )
+        actions["analyze_values"].schedule()
     
-    try:
-        if(global_vars.SETTINGS["poll_interval_minutes"]):
-            
-            actions["data_polling"] = Action(
-                "data_poll_all",
-                repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
-                callbacks=[gh.retrieve_data_all_boards]
-                )
-            actions["data_polling"].schedule()
-                    
-        if(global_vars.SETTINGS["check_interval_minutes"]):
+    if("device_schedule" in global_vars.SETTINGS):
+        for d in global_vars.SETTINGS["device_schedule"]:
+            device = models.device.Device.get_by_id(d["id"])
 
-            actions["analyze_values"] = Action(
-                "analyze_values",
-                repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
-                callbacks=[analyze_db_values],
-                )
-            actions["analyze_values"].schedule()
-    except KeyError:
-        pass
+            for time in d["schedule"]:
+                on_time = Time(time["on"]["hour"], time["on"]["minute"], time["on"]["second"])
+                off_time = Time(time["off"]["hour"], time["off"]["minute"], time["off"]["second"])
+
+                action_on = "device-{}-on".format(d["id"])
+                action_off = "device-{}-off".format(d["id"])
+                
+                #action_on = "device-{}-on-{}".format(d["id"], on_time)
+                #action_off = "device-{}-off-{}".format(d["id"], off_time)
+
+            actions[action_on] = Action(
+                    action_on,
+                    time = on_time,
+                    callbacks = [device.on])
+            actions[action_on].schedule()
+
+            actions[action_off] = Action(
+                    action_off,
+                    time = off_time,
+                    callbacks = [device.off])
+            actions[action_off].schedule()
+
 
 def save_settings_to_file(reload_actions = True):
     logger.debug("Writing settings to a file")

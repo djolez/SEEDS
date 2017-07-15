@@ -70,6 +70,12 @@ class Device(BaseModel):
             "value": value
         }
         self.get_parent_board().send_data(msg)
+
+    def on(self):
+        self.write(1)
+
+    def off(self):
+        self.write(0)
     
     def get_with_readings(id, start, end):
         try:
