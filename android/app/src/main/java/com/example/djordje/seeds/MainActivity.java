@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         int[] selected_devices = {1, 2};
         Device.showSelected(this, selected_devices, start_date, end_date);
 
-        new HttpRequestTask().execute();
+//        new HttpRequestTask().execute();
     }
 
 

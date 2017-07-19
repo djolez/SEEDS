@@ -2,6 +2,7 @@ package com.example.djordje.seeds;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -16,5 +17,13 @@ public class Helper {
 
         DateFormat df = new SimpleDateFormat(format);
         return df.format(value);
+    }
+
+    public static String formatCalendar(Calendar value, String format) {
+        if(format == null)
+            format = "dd-MM-YYYY HH:mm:ss";
+
+        DateFormat df = new SimpleDateFormat(format);
+        return df.format(value.getTime());
     }
 }
