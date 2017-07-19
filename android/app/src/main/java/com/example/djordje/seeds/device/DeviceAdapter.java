@@ -33,11 +33,11 @@ import java.util.Random;
  * Created by Djordje on 01-Jul-17.
  */
 
-public class DeviceAdapter extends ArrayAdapter<DeviceReadingWrapper> {
+public class DeviceAdapter extends ArrayAdapter<Device> {
     private final Context context;
-    private final DeviceReadingWrapper[] readings;
+    private final Device[] readings;
 
-    public DeviceAdapter(Context context, DeviceReadingWrapper[] readings) {
+    public DeviceAdapter(Context context, Device[] readings) {
         super(context, -1, readings);
         this.context = context;
         this.readings = readings;
@@ -53,46 +53,73 @@ public class DeviceAdapter extends ArrayAdapter<DeviceReadingWrapper> {
 
         TextView device_name_view = (TextView) convertView.findViewById(R.id.device_name);
         TextView last_value_view = (TextView) convertView.findViewById(R.id.last_value);
-        device_name_view.setText(this.readings[position].getDevice().getName());
-        last_value_view.setText(this.readings[position].getDevice().getLast_value() + "");
+        device_name_view.setText(this.readings[position].getName());
+        last_value_view.setText(this.readings[position].getLast_value() + "");
 
-        LineChart mChart = (LineChart) convertView.findViewById(R.id.chart);;
+        LineChart mChart = (LineChart) convertView.findViewById(R.id.chart);
         List<List<Entry>> chart_entries = new ArrayList<>();
         List<ILineDataSet> chart_iline_datasets = new ArrayList<>();
 
-        int sub_device_counter = 0;
         Date[] xAxisDates = new Date[0];
         boolean xAxisInitialized = false;
 
-        for(String sub_device_name: this.readings[position].getDevice().getValues().keySet()) {
-            List<DeviceReading> sub_device_readings = this.readings[position].getDevice().getValues().get(sub_device_name);
-            chart_entries.add(new ArrayList<Entry>());
-            if(!xAxisInitialized)
-                xAxisDates = new Date[sub_device_readings.size()];
+        if(this.readings[position].getSub_devices().size() > 0) {
+            int sub_device_counter = 0;
 
-
-            int i = 0;
-            for(DeviceReading dr: sub_device_readings) {
+            for(Device sub_device: this.readings[position].getSub_devices()) {
+                chart_entries.add(new ArrayList<Entry>());
                 if(!xAxisInitialized)
-                    xAxisDates[i] = dr.getTimestamp();
+                    xAxisDates = new Date[sub_device.getValues().size()];
 
-                Entry tmp_entry = new Entry(i, (float)dr.getValue());
-                chart_entries.get(sub_device_counter).add(tmp_entry);
-                i++;
+                int i = 0;
+                for(DeviceReading dr: sub_device.getValues()) {
+                    if(!xAxisInitialized)
+                        xAxisDates[i] = dr.getTimestamp();
 
-                if(i == sub_device_readings.size())
+                    Entry tmp_entry = new Entry(i, dr.getValue());
+                    chart_entries.get(sub_device_counter).add(tmp_entry);
+                    i++;
+
+                    if(i == sub_device.getValues().size())
+                        xAxisInitialized = true;
+                }
+
+                LineDataSet sub_device_line = new LineDataSet(chart_entries.get(sub_device_counter), sub_device.getName());
+                Random rnd = new Random();
+                int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+
+                sub_device_line.setColors(color);
+                sub_device_line.setDrawValues(false);
+                sub_device_line.setDrawCircles(false);
+
+                chart_iline_datasets.add(sub_device_line);
+                sub_device_counter++;
+            }
+        }
+
+        if(this.readings[position].getValues().size() > 0) {
+            int i = 0;
+            xAxisDates = new Date[this.readings[position].getValues().size()];
+            List<LineDataSet> lineData = new ArrayList<>();
+
+            for(DeviceReading reading: this.readings[position].getValues()) {
+                chart_entries.add(new ArrayList<Entry>());
+
+                if(!xAxisInitialized)
+                    xAxisDates[i] = reading.getTimestamp();
+
+                Entry tmp_entry = new Entry(i, reading.getValue());
+                chart_entries.get(0).add(tmp_entry);
+
+                if(++i == this.readings[position].getValues().size())
                     xAxisInitialized = true;
             }
-            LineDataSet sub_device_line = new LineDataSet(chart_entries.get(sub_device_counter), sub_device_name);
-            Random rnd = new Random();
-            int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-            sub_device_line.setColors(color);
-            sub_device_line.setDrawValues(false);
-            sub_device_line.setDrawCircles(false);
+            LineDataSet line = new LineDataSet(chart_entries.get(0), this.readings[position].getName());
+            line.setDrawValues(false);
+            line.setDrawCircles(false);
 
-            chart_iline_datasets.add(sub_device_line);
-            sub_device_counter++;
+            chart_iline_datasets.add(line);
         }
 
         LineData chart_data = new LineData(chart_iline_datasets);
@@ -106,6 +133,7 @@ public class DeviceAdapter extends ArrayAdapter<DeviceReadingWrapper> {
         mChart.invalidate();
 
         return convertView;
+
     }
 
     public class DateValueFormatter implements IAxisValueFormatter{

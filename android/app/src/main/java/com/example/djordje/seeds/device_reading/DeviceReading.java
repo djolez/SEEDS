@@ -10,9 +10,9 @@ import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceReading {
-    int id;
-    private String name;
-    private int value;
+    private int id;
+    private int device;
+    private float value;
     private Date timestamp;
 
     public int getId() {
@@ -23,19 +23,19 @@ public class DeviceReading {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getDevice() {
+        return device;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDevice(int device) {
+        this.device = device;
     }
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
     }
 

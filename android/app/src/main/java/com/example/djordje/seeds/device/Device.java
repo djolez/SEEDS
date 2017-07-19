@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 
+import com.example.djordje.seeds.Helper;
 import com.example.djordje.seeds.MainActivity;
 import com.example.djordje.seeds.R;
 import com.example.djordje.seeds.device_reading.DeviceReading;
@@ -18,6 +19,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -34,11 +36,14 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Device {
     private int id;
+    private int parent_id;
     private String name;
     private int type;
     private String display_name;
-    private int last_value;
-    private HashMap<String, List<DeviceReading>> values;
+    private float last_value;
+    private float avg_value;
+    private List<Device> sub_devices;
+    private List<DeviceReading> values;
     private static Context context;
 
     public int getId() {
@@ -73,19 +78,43 @@ public class Device {
         this.display_name = display_name;
     }
 
-    public int getLast_value() {
+    public int getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(int parent_id) {
+        this.parent_id = parent_id;
+    }
+
+    public float getAvg_value() {
+        return avg_value;
+    }
+
+    public void setAvg_value(float avg_value) {
+        this.avg_value = avg_value;
+    }
+
+    public List<Device> getSub_devices() {
+        return sub_devices;
+    }
+
+    public void setSub_devices(List<Device> sub_devices) {
+        this.sub_devices = sub_devices;
+    }
+
+    public float getLast_value() {
         return last_value;
     }
 
-    public void setLast_value(int last_value) {
+    public void setLast_value(float last_value) {
         this.last_value = last_value;
     }
 
-    public HashMap<String, List<DeviceReading>> getValues() {
+    public List<DeviceReading> getValues() {
         return values;
     }
 
-    public void setValues(HashMap<String, List<DeviceReading>> values) {
+    public void setValues(List<DeviceReading> values) {
         this.values = values;
     }
 
@@ -93,25 +122,33 @@ public class Device {
         if(context == null)
             context = ctx;
 
-
+        new HttpRequestTask().execute();
     }
 
-
+    public void getAll() {
+        new HttpRequestTask().execute();
+    }
     //HTTP
-    private class HttpRequestTask extends AsyncTask<Void, Void, List<DeviceReadingWrapper>> {
+    private static class HttpRequestTask extends AsyncTask<Void, Void, List<Device>> {
         @Override
-        protected List<DeviceReadingWrapper> doInBackground(Void... params) {
+        protected List<Device> doInBackground(Void... params) {
             try {
-                final String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
-                url += "/device/from/"
+                String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
+                url += "/device/from/";
+                Calendar endDate = Calendar.getInstance();
+                Calendar startDate = Calendar.getInstance();
+                startDate.add(Calendar.DATE, -18);
+                url += Helper.formatCalendar(startDate, null);
+                url += "/to/";
+                url += Helper.formatCalendar(endDate, null);
 
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 MultiValueMap<String,Integer> map = new LinkedMultiValueMap<>();
                 map.add("ids",1);
                 map.add("ids",2);
-                List<DeviceReadingWrapper> readings = restTemplate.postForObject(url, map, List.class);
-                return readings;
+                List<Device> devices = restTemplate.postForObject(url, map, List.class);
+                return devices;
             } catch (Exception e) {
                 Log.e("MainActivity", e.getMessage(), e);
             }
@@ -120,20 +157,20 @@ public class Device {
         }
 
         @Override
-        protected void onPostExecute(List<DeviceReadingWrapper> result) {
-            System.out.println(result.toString());
+        protected void onPostExecute(List<Device> result) {
+//            System.out.println(result.toString());
 
             ObjectMapper mapper = new ObjectMapper();
-            DeviceReadingWrapper dr;
-            DeviceReadingWrapper[] readings_array = new DeviceReadingWrapper[result.size()];
+            Device d;
+            Device[] devices_array = new Device[result.size()];
 
             for(int i = 0; i < result.size(); i++) {
-                dr = mapper.convertValue(result.get(i), DeviceReadingWrapper.class);
-                readings_array[i] = dr;
+                d = mapper.convertValue(result.get(i), Device.class);
+                devices_array[i] = d;
             }
 
             final ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
-            DeviceAdapter dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), readings_array);
+            DeviceAdapter dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), devices_array);
 
             listview.setAdapter(dAdapter);
         }
