@@ -28,7 +28,7 @@ void manager_init_all() {
 	entities[0]->GPIOx = GPIOA;
 	entities[0]->GPIO_Pin = GPIO_PIN_9;
 	entities[0]->Type = DHT11;
-//	entities[0]->db_id = 1;
+	entities[0]->db_id = 1;
 
 	//Stopped working for no reason
 	entities[1] = malloc(sizeof(Port_t));
@@ -36,7 +36,7 @@ void manager_init_all() {
 	entities[1]->GPIOx = GPIOC;
 	entities[1]->GPIO_Pin = GPIO_PIN_7;
 	entities[1]->Type = DS18B20;
-//	entities[1]->db_id = 2;
+	entities[1]->db_id = 2;
 	/*
 	 * This worked normally the first time it was tested,
 	 * now the callback (located in main) is called twice and not always
@@ -49,7 +49,7 @@ void manager_init_all() {
 	entities[2]->GPIO_Pin = GPIO_PIN_7;
 	entities[2]->Type = SWITCH;
 	entities[2]->Num_Sub_devices = 0;
-//	entities[2]->db_id = 3;
+	entities[2]->db_id = 3;
 
 	entities[3] = malloc(sizeof(Port_t));
 	entities[3]->Name = "relay-light-PB6";
@@ -57,6 +57,7 @@ void manager_init_all() {
 	entities[3]->GPIO_Pin = GPIO_PIN_6;
 	entities[3]->Type = RELAY;
 	entities[3]->Num_Sub_devices = 0;
+	entities[3]->db_id = 4;
 
 	uint8_t i;
 //	entities_length = sizeof(entities) / sizeof(Port_t*);
@@ -105,6 +106,10 @@ void manager_update_data_specific(Port_t* entity) {
 		dht11_update(entity);
 		break;
 	case RELAY:
+		RELAY_READ_VALUE(entity);
+		break;
+	case SWITCH:
+		SWITCH_READ_VALUE(entity);
 		break;
 	default:
 		break;
@@ -114,7 +119,7 @@ void manager_update_data_specific(Port_t* entity) {
 void manager_write_data(uint16_t id, uint8_t value) {
 	Port_t* entity = find_device_by_id(id);
 
-	//Workaround to check if result is NULL
+	//Workaround to check if entity is NULL
 	if(entity->db_id != id) {
 		comm_send_error_msg("Device not found");
 	}
@@ -148,14 +153,15 @@ void manager_send_data_specific(Port_t* port) {
 	char msg[MAX_COMM_MSG_LENGTH];
 	int i = 0;
 
-	for (i = 0; i < port->Num_Sub_devices; i++) {
-		if(port->Type != RELAY && port->Type != SWITCH) {
-//			sprintf(msg, "reading$%d_%s_%d\n\r", port->db_id, port->Last_Values[i].Name, port->Last_Values[i].Value);
+	if(port->Num_Sub_devices > 0) {
+		for (i = 0; i < port->Num_Sub_devices; i++) {
 			sprintf(msg, "reading$%d_%d", port->db_id, port->Sub_devices[i].Last_Value);
-//			xQueueSend(comm_handle_tx, msg, 100);
-			comm_send_msg(msg);
+			//xQueueSend(comm_handle_tx, msg, 100);
 		}
+	} else {
+		sprintf(msg, "reading$%d_%d", port->db_id, port->Last_Value);
 	}
+	comm_send_msg(msg);
 }
 
 void manager_update_device_id(char* name, char* parent_name, int id) {
@@ -212,7 +218,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			//Send a notification to the server
 			GPIO_PinState current_value = HAL_GPIO_ReadPin(entities[i]->GPIOx, entities[i]->GPIO_Pin);
 			char* msg[MAX_COMM_MSG_LENGTH];
-			sprintf(msg, "interrupt$%d_%d\r", entities[i]->db_id, current_value);
+			sprintf(msg, "interrupt$%d_%d\r", entities[i]->db_id, state);
 //			xQueueSendFromISR(comm_handle_tx, msg, NULL);
 			comm_send_msg(msg);
 
