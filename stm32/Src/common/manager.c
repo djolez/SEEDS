@@ -162,6 +162,7 @@ void manager_send_data_specific(Port_t* port) {
 		sprintf(msg, "reading$%d_%d", port->db_id, port->Last_Value);
 	}
 	comm_send_msg(msg);
+
 }
 
 void manager_update_device_id(char* name, char* parent_name, int id) {
