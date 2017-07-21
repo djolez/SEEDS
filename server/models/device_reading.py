@@ -7,13 +7,14 @@ from .device import *
 class Device_reading(BaseModel):
     device = ForeignKeyField(Device, related_name = "readings")
     #name = CharField()
-    value = IntegerField()
+    value = FloatField()
     timestamp = DateTimeField()
 
     class Meta:
         database = db_proxy
 
     def add(device_id, value):
+        logger.debug("Adding reading: device_id {}, value {}".format(device_id, value))
         dr = Device_reading.create(device_id = device_id, value = value, timestamp = datetime.now()) 
         dr.save()
 

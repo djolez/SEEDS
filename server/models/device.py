@@ -23,12 +23,18 @@ class Device(BaseModel):
             res["values"] = helper.list_to_dict(self.values)
         if(hasattr(self, "sub_devices")):
             res["sub_devices"] = helper.list_to_dict(self.sub_devices)
-            
+        if(hasattr(self, "board_full")):
+            res["board_full"] = self.board_full.to_dict()
+        if(hasattr(self, "last_value")):
+            res["last_value"] = self.last_value
+        if(hasattr(self, "avg_value")):
+            res["avg_value"] = self.avg_value
+        
         return res
         #return self.__dict__['_data']
 
     def to_string(self):
-        res = "ID: {}, Name: {}, Type: {}, Num_Values: {}, Num_sub_devices".format(self.id, self.name, self.type)
+        res = "ID: {}, Name: {}, Type: {}".format(self.id, self.name, self.type)
 
         if(hasattr(self, "values")):
             res += ", Num_Values: {}".format(len(self.values))
@@ -64,6 +70,12 @@ class Device(BaseModel):
             "value": value
         }
         self.get_parent_board().send_data(msg)
+
+    def on(self):
+        self.write(1)
+
+    def off(self):
+        self.write(0)
     
     def get_with_readings(id, start, end):
         try:
@@ -73,55 +85,40 @@ class Device(BaseModel):
             device = Device.get(id = id)
             board = Board.get(id = device.board_id)
             
+            device.board_full = board
             device.values = []
             device.sub_devices = []
+
             if(device.is_complex()):
                 sub_devices = device.get_sub_devices()
 
                 for s_dev in sub_devices:
-                    print(sub_devices)
+                    s_dev.last_value = s_dev.readings.order_by(Device_reading.timestamp.desc()).get().value
+                    tmp, s_dev.avg_value = Device.get_avg_for_subdevice(s_dev.id, start, end)
+
                     s_dev.values = []
                     readings = s_dev.readings.select().where(
                             Device_reading.timestamp.between(
                                 start, end)) 
                     
                     for r in readings:
-                        s_dev.values.append(
-                                r.to_dict())
+                        s_dev.values.append(r)
+                        #s_dev.values.append(r.to_dict())
 
-                    device.sub_devices.append(s_dev.to_dict())
+                    device.sub_devices.append(s_dev)
             else:
+                device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
+                tmp, device.avg_value = Device.get_avg_for_subdevice(device.id, start, end)
+                
                 readings = device.readings.select().where(
                         Device_reading.timestamp.between(
                             start, end))
 
                 for r in readings:
-                    device.values.append(r.to_dict())
+                    device.values.append(r)
+                    #device.values.append(r.to_dict())
                 
             return device
-            
-            '''device.sub_devices = {}
-            if(device.is_complex()):
-                sub_devices = device.get_sub_devices()
-
-                for s_dev in sub_devices:
-                    device.sub_devices[s_dev.name] = []
-                    readings = s_dev.readings.select().where(
-                            Device_reading.timestamp.between(
-                                start, end)) 
-                    for r in readings:
-                        device.sub_devices[s_dev.name].append(
-                                r.to_dict())
-            else:
-                readings = device.readings.select().where(
-                        Device_reading.timestamp.between(
-                            start, end))
-
-                for r in readings:
-                    device.values.append(r.to_dict())
-                
-            return device
-            '''
         except Device.DoesNotExist:
             logger.error("Device with id {} not found".format(id))
 
@@ -137,7 +134,7 @@ class Device(BaseModel):
             for r in readings:
                 sum_all += r.value
 
-            return device, (sum_all / len(readings))
+            return device, round(sum_all / len(readings), 2)
         except ZeroDivisionError:
             logger.warning("No records found for device {}".format(device_id))
             return device, None
