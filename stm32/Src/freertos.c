@@ -64,6 +64,8 @@
 
 /* Variables -----------------------------------------------------------------*/
 osThreadId commHandle;
+osTimerId myTimer01Handle;
+osTimerId timer_handle;
 
 /* USER CODE BEGIN Variables */
 extern char rx_data[2];
@@ -75,10 +77,13 @@ char tx_buffer[MAX_COMM_MSG_LENGTH];
 
 /* Function prototypes -------------------------------------------------------*/
 void StartCommTask(void const * argument);
+//void Callback01(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* USER CODE BEGIN FunctionPrototypes */
+TimerCallbackFunction_t Callback01(TimerHandle_t xTimer);
+
 void transmit_msg(char* msg);
 void handle_msg(char* msg);
 void manager_print_all_devices();
@@ -102,13 +107,19 @@ void MX_FREERTOS_Init(void) {
 	/* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
 
+  /* Create the timer(s) */
+  /* definition and creation of myTimer01 */
+//  osTimerDef(myTimer01, Callback01);
+//  myTimer01Handle = osTimerCreate(osTimer(myTimer01), osTimerOnce, NULL);
+
   /* USER CODE BEGIN RTOS_TIMERS */
 	/* start timers, add new ones, ... */
+  timer_handle = xTimerCreate("timer", 10, pdFALSE, ( void * ) 0, Callback01);
   /* USER CODE END RTOS_TIMERS */
 
   /* Create the thread(s) */
   /* definition and creation of comm */
-  osThreadDef(comm, StartCommTask, osPriorityNormal, 0, 1024);
+  osThreadDef(comm, StartCommTask, osPriorityNormal, 0, 128);
   commHandle = osThreadCreate(osThread(comm), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -127,6 +138,8 @@ void StartCommTask(void const * argument)
 {
 
   /* USER CODE BEGIN StartCommTask */
+
+//	xTimerStart(timer_handle, 200);
 	/* Infinite loop */
 	for (;;) {
 //		comm_send_msg("HERE");
@@ -143,7 +156,26 @@ void StartCommTask(void const * argument)
   /* USER CODE END StartCommTask */
 }
 
+/* Callback01 function */
+//void Callback01(void const * argument)
+//{
+//  /* USER CODE BEGIN Callback01 */
+//	NVIC_EnableIRQ(EXTI9_5_IRQn);
+//  /* USER CODE END Callback01 */
+//}
+
 /* USER CODE BEGIN Application */
+
+uint16_t interrupt_pin;
+TimerCallbackFunction_t Callback01(TimerHandle_t xTimer)
+{
+  /* USER CODE BEGIN Callback01 */
+    __HAL_GPIO_EXTI_CLEAR_IT(interrupt_pin);
+	NVIC_EnableIRQ(EXTI9_5_IRQn);
+	return 0;
+  /* USER CODE END Callback01 */
+//	return Callback01;
+}
 
 void handle_msg(char* msg) {
 	char* action;
@@ -218,7 +250,7 @@ void handle_msg(char* msg) {
 			}
 			full_device = strsep(&payload, "|");
 		}
-//		manager_print_all_devices();
+		manager_print_all_devices();
 
 	} else {
 //		ERROR

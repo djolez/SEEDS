@@ -1,11 +1,13 @@
 #MicroXplorer Configuration settings - do not modify
 FREERTOS.FootprintOK=true
 FREERTOS.INCLUDE_vTaskDelayUntil=1
-FREERTOS.IPParameters=configUSE_ALTERNATIVE_API,Tasks01,INCLUDE_vTaskDelayUntil,FootprintOK,configTOTAL_HEAP_SIZE,configENABLE_BACKWARD_COMPATIBILITY
+FREERTOS.IPParameters=configUSE_ALTERNATIVE_API,Tasks01,INCLUDE_vTaskDelayUntil,FootprintOK,configTOTAL_HEAP_SIZE,configENABLE_BACKWARD_COMPATIBILITY,configUSE_TIMERS,Timers01
 FREERTOS.Tasks01=comm,0,128,StartCommTask,Default,NULL,Dynamic,NULL,NULL
+FREERTOS.Timers01=myTimer01,Callback01,osTimerOnce,Default,NULL,Dynamic,NULL
 FREERTOS.configENABLE_BACKWARD_COMPATIBILITY=1
 FREERTOS.configTOTAL_HEAP_SIZE=80000
 FREERTOS.configUSE_ALTERNATIVE_API=0
+FREERTOS.configUSE_TIMERS=1
 File.Version=6
 KeepUserPlacement=false
 Mcu.Family=STM32L4

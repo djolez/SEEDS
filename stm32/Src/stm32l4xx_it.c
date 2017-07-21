@@ -47,31 +47,6 @@ extern UART_HandleTypeDef huart2;
 /*            Cortex-M4 Processor Interruption and Exception Handlers         */ 
 /******************************************************************************/
 
-void	NMI_Handler(void)
-{
-while(1);
-}
-void	HardFault_Handler(void)
-{
-	while(1);
-
-}
-void	MemManage_Handler(void)
-{
-	while(1);
-
-}
-void	BusFault_Handler(void)
-{
-	while(1);
-
-}
-void	UsageFault_Handler(void)
-{
-	while(1);
-
-}
-
 /**
 * @brief This function handles System tick timer.
 */

@@ -43,6 +43,7 @@ void comm_send_error_msg(char* msg) {
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
 	uint8_t i;
 	if (huart->Instance == USART2)	//current UART
 	{

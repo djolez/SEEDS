@@ -1,3 +1,5 @@
+#include "cmsis_os.h"
+
 #include "manager.h"
 #include <stdlib.h>
 #include <string.h>
@@ -155,14 +157,13 @@ void manager_send_data_specific(Port_t* port) {
 
 	if(port->Num_Sub_devices > 0) {
 		for (i = 0; i < port->Num_Sub_devices; i++) {
-			sprintf(msg, "reading$%d_%d", port->db_id, port->Sub_devices[i].Last_Value);
+			sprintf(msg, "reading$%d_%d", port->Sub_devices[i].db_id, port->Sub_devices[i].Last_Value);
 			//xQueueSend(comm_handle_tx, msg, 100);
 		}
 	} else {
 		sprintf(msg, "reading$%d_%d", port->db_id, port->Last_Value);
 	}
 	comm_send_msg(msg);
-
 }
 
 void manager_update_device_id(char* name, char* parent_name, int id) {
@@ -204,14 +205,13 @@ void manager_print_all_devices() {
 	}
 }
 
+extern osTimerId timer_handle;
+extern uint16_t interrupt_pin;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
-	// TODO: disable interrupt while working and pass message to
-	// rtos task to prevent locking up
 	NVIC_DisableIRQ(EXTI9_5_IRQn);
-
-	GPIO_PinState state = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7);
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, state);
+	interrupt_pin = GPIO_Pin;
+	xTimerStartFromISR(timer_handle, pdFALSE);
 
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
 //		Change this to somehow check GPIO port, TYPE is just a temp solution
@@ -219,12 +219,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			//Send a notification to the server
 			GPIO_PinState current_value = HAL_GPIO_ReadPin(entities[i]->GPIOx, entities[i]->GPIO_Pin);
 			char* msg[MAX_COMM_MSG_LENGTH];
-			sprintf(msg, "interrupt$%d_%d\r", entities[i]->db_id, state);
+			sprintf(msg, "interrupt$%d_%d\r", entities[i]->db_id, current_value);
 //			xQueueSendFromISR(comm_handle_tx, msg, NULL);
 			comm_send_msg(msg);
 
 			break;
 		}
 	}
-	NVIC_EnableIRQ(EXTI9_5_IRQn);
+
 }
