@@ -48,6 +48,7 @@ public class Device {
     private float avg_value;
     private List<Device> sub_devices;
     private List<DeviceReading> values;
+    private boolean checked = false;
     private static Context context;
 
     public int getId() {
@@ -120,6 +121,22 @@ public class Device {
 
     public void setValues(List<DeviceReading> values) {
         this.values = values;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static void setContext(Context context) {
+        Device.context = context;
     }
 
     public static void showSelected(Context ctx, int[] ids, Date start, Date end) {
@@ -221,5 +238,50 @@ public class Device {
     }
 
 
+    public static class RetrieveDeviceListTask extends AsyncTask<Void, Void, List<Device>> {
+        private Context context;
+
+        public RetrieveDeviceListTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected List<Device> doInBackground(Void... params) {
+            try {
+                String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
+                url += "/board/1/device";
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                List<Device> devices = restTemplate.getForObject(url, List.class);
+                return devices;
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<Device> result) {
+            ObjectMapper mapper = new ObjectMapper();
+            Device d;
+            Device[] devices_array = new Device[result.size()];
+
+            for (int i = 0; i < result.size(); i++) {
+                d = mapper.convertValue(result.get(i), Device.class);
+                devices_array[i] = d;
+            }
+
+
+            final ListView view = (ListView) ((MainActivity) this.context).findViewById(R.id.device_list);
+            DeviceListAdapter dAdapter = new DeviceListAdapter(this.context, devices_array);
+
+            view.setAdapter(dAdapter);
+
+            new Settings().getAllDevices();
+        }
+
+    }
 
 }

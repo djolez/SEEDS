@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showDevicePicker();
             }
         });
 
@@ -90,12 +89,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void showDevicePicker() {
+        final View dialogView = View.inflate(this, R.layout.device_picker_dialog, null);
+        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+
+        alertDialog.setView(dialogView);
+        alertDialog.show();
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
         //TODO: read settings from local storage
         int[] selected_devices = {1, 2};
         Device.showSelected(this, selected_devices, start_date, end_date);
+        new Device.RetrieveDeviceListTask(MainActivity.this).execute();
 
 //        new HttpRequestTask().execute();
     }
