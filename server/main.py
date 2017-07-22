@@ -97,7 +97,7 @@ def app_start(argv):
     logging.getLogger('').addHandler(console)
     '''
 
-    #gh.apply_settings()
+    gh.apply_settings()
     
 def cleanup():
     logger.debug("Exit by user request, performing cleanup...")
@@ -122,6 +122,8 @@ d.write(1)
 
 d.read()
 '''
+
+#comm.handle_msg("reading$2_283")
 
 #comm.handle_msg("board_init$STM32:dht11.1-humidity,temperature|ds18b20.0")
 

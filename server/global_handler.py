@@ -76,10 +76,15 @@ def process_comm_data(data):
         tmp = payload.split("_")
 
         device_id = tmp[0]
-        value = tmp[1]
+        try:
+            value = int(tmp[1])
+            # Values are passed without decimal point because of
+            # problems with floating point arithmetics on the board
+            float_val = (value / 100) if value > 1000 else value / 10
+            models.device_reading.Device_reading.add(device_id, float_val)
+        except ValueError:
+            logger.error("Failed to parse '{}' as int".format(tmp[1]))
 
-        models.device_reading.Device_reading.add(device_id, value)
-        
         '''for d in data["data"]:
             try:
                 #loop through all the values for a device
@@ -116,27 +121,51 @@ actions = {}
 settings = {}
 def apply_settings():
     stop_running_actions()
+    print(global_vars.SETTINGS) 
+    if("poll_interval_minutes1" in global_vars.SETTINGS):
+         
+        actions["data_polling"] = Action(
+            "data_poll_all",
+            repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+            callbacks=[gh.retrieve_data_all_boards]
+            )
+        actions["data_polling"].schedule()
+                
+    if("check_interval_minutes1" in global_vars.SETTINGS):
+        
+        actions["analyze_values"] = Action(
+            "analyze_values",
+            repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+            callbacks=[analyze_db_values],
+            )
+        actions["analyze_values"].schedule()
     
-    try:
-        if(global_vars.SETTINGS["poll_interval_minutes"]):
-            
-            actions["data_polling"] = Action(
-                "data_poll_all",
-                repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
-                callbacks=[gh.retrieve_data_all_boards]
-                )
-            actions["data_polling"].schedule()
-                    
-        if(global_vars.SETTINGS["check_interval_minutes"]):
+    if("device_schedule" in global_vars.SETTINGS):
+        for d in global_vars.SETTINGS["device_schedule"]:
+            device = models.device.Device.get_by_id(d["id"])
 
-            actions["analyze_values"] = Action(
-                "analyze_values",
-                repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
-                callbacks=[analyze_db_values],
-                )
-            actions["analyze_values"].schedule()
-    except KeyError:
-        pass
+            for time in d["schedule"]:
+                on_time = Time(time["on"]["hour"], time["on"]["minute"], time["on"]["second"])
+                off_time = Time(time["off"]["hour"], time["off"]["minute"], time["off"]["second"])
+
+                action_on = "device-{}-on".format(d["id"])
+                action_off = "device-{}-off".format(d["id"])
+                
+                #action_on = "device-{}-on-{}".format(d["id"], on_time)
+                #action_off = "device-{}-off-{}".format(d["id"], off_time)
+
+            actions[action_on] = Action(
+                    action_on,
+                    time = on_time,
+                    callbacks = [device.on])
+            actions[action_on].schedule()
+
+            actions[action_off] = Action(
+                    action_off,
+                    time = off_time,
+                    callbacks = [device.off])
+            actions[action_off].schedule()
+
 
 def save_settings_to_file(reload_actions = True):
     logger.debug("Writing settings to a file")

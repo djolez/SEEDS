@@ -18,4 +18,5 @@ int string_to_int(char* s) {
 	return strtol(s, NULL, 10);
 }
 
+
 #endif /* HELPER_H_ */

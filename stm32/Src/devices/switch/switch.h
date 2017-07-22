@@ -16,6 +16,14 @@
 #define RELAY_ON(structure) PORT_LOW(structure)
 #define RELAY_OFF(structure) PORT_HIGH(structure)
 
+#define SWITCH_READ_VALUE(structure) do{\
+	(structure)->Last_Value = HAL_GPIO_ReadPin((structure)->GPIOx, (structure)->GPIO_Pin);\
+}while(0);
+
+#define RELAY_READ_VALUE(structure) do{\
+	(structure)->Last_Value = (uint16_t)!HAL_GPIO_ReadPin((structure)->GPIOx, (structure)->GPIO_Pin);\
+}while(0);
+
 //typedef struct {
 //	GPIO_TypeDef* GPIOx;
 //	uint16_t GPIO_Pin;

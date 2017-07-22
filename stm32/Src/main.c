@@ -99,13 +99,13 @@ int main(void)
   MX_TIM2_Init();
 
   /* USER CODE BEGIN 2 */
-
 	comm_start();
+	comm_send_msg("\nApplication starting...");
 	manager_init_all();
-	manager_update_data_all();
-	manager_send_data_all();
+//	manager_update_data_all();
+//	manager_send_data_all();
 
-	manager_print_all_devices();
+//	manager_print_all_devices();
 
 //	HAL_Delay(1000);
 //	manager_update_data_all();

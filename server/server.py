@@ -62,18 +62,8 @@ def get_all_device_readings(id):
 def get_full_device_with_readings(id, start, end):
     try:
         device = Device.get_with_readings(id, start, end)
-        board = Board.get_by_id(device.board_id)
-        
-        print(len(device.values))
 
-        res = {
-            "board": board.to_dict(),
-            "device": device.to_dict(),
-            }
-        res["device"]["values"] = device.values
-        res["device"]["sub_devices"] = device.sub_devices
-
-        return res
+        return device
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
 
@@ -85,7 +75,7 @@ def get_device_with_readings(id, start_datetime, end_datetime):
         end = helper.string_to_datetime(end_datetime)
         res = get_full_device_with_readings(id, start, end)        
 
-        return jsonify(res)
+        return jsonify(res.to_dict())
     except Device.DoesNotExist:
         return bad_request(404, "Device not found")
     except Exception as e:
@@ -100,8 +90,8 @@ def get_readings_from_devices_list(start_datetime, end_datetime):
 
     res = []
     for id in ids:
-        dr = get_full_device_with_readings(int(id), start_datetime, end_datetime)
-        res.append(dr)
+        dr = get_full_device_with_readings(int(id), start, end)
+        res.append(dr.to_dict())
     return jsonify(res)
 
 @app.route('/device/<int:id>/last-reading')
@@ -118,6 +108,10 @@ def get_device_last_reading(id):
         return bad_request()
 
 # SETTINGS
+@app.route('/settings')
+def get_settings():
+    return jsonify(global_vars.SETTINGS)
+
 @app.route('/settings', methods = ["POST"])
 def save_settings():
     try:

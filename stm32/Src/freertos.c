@@ -64,10 +64,12 @@
 
 /* Variables -----------------------------------------------------------------*/
 osThreadId commHandle;
-osThreadId dummyHandle;
+osTimerId myTimer01Handle;
+osTimerId timer_handle;
 
 /* USER CODE BEGIN Variables */
 extern char rx_data[2];
+extern Port_t* entities[NUMBER_OF_ENTITIES];
 char rx_buffer[MAX_COMM_MSG_LENGTH];
 char tx_buffer[MAX_COMM_MSG_LENGTH];
 
@@ -75,11 +77,13 @@ char tx_buffer[MAX_COMM_MSG_LENGTH];
 
 /* Function prototypes -------------------------------------------------------*/
 void StartCommTask(void const * argument);
-void StartDummyTask(void const * argument);
+//void Callback01(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* USER CODE BEGIN FunctionPrototypes */
+TimerCallbackFunction_t Callback01(TimerHandle_t xTimer);
+
 void transmit_msg(char* msg);
 void handle_msg(char* msg);
 void manager_print_all_devices();
@@ -103,18 +107,20 @@ void MX_FREERTOS_Init(void) {
 	/* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
 
+  /* Create the timer(s) */
+  /* definition and creation of myTimer01 */
+//  osTimerDef(myTimer01, Callback01);
+//  myTimer01Handle = osTimerCreate(osTimer(myTimer01), osTimerOnce, NULL);
+
   /* USER CODE BEGIN RTOS_TIMERS */
 	/* start timers, add new ones, ... */
+  timer_handle = xTimerCreate("timer", 10, pdFALSE, ( void * ) 0, Callback01);
   /* USER CODE END RTOS_TIMERS */
 
   /* Create the thread(s) */
   /* definition and creation of comm */
   osThreadDef(comm, StartCommTask, osPriorityNormal, 0, 128);
   commHandle = osThreadCreate(osThread(comm), NULL);
-
-  /* definition and creation of dummy */
-  osThreadDef(dummy, StartDummyTask, osPriorityNormal, 0, 128);
-  dummyHandle = osThreadCreate(osThread(dummy), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
 	/* add threads, ... */
@@ -132,10 +138,14 @@ void StartCommTask(void const * argument)
 {
 
   /* USER CODE BEGIN StartCommTask */
+
+//	xTimerStart(timer_handle, 200);
 	/* Infinite loop */
 	for (;;) {
+//		comm_send_msg("HERE");
 		if (xQueueReceive(comm_handle, &rx_buffer, portMAX_DELAY)) {
 			handle_msg(rx_buffer);
+
 			//link to the rx_data from communication
 //			HAL_UART_Receive_IT(&huart2, rx_data, 1);//activate UART receive interrupt every time
 		}
@@ -146,19 +156,26 @@ void StartCommTask(void const * argument)
   /* USER CODE END StartCommTask */
 }
 
-/* StartDummyTask function */
-void StartDummyTask(void const * argument)
-{
-  /* USER CODE BEGIN StartDummyTask */
-	/* Infinite loop */
-	for (;;) {
-//		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-//		osDelay(500);
-	}
-  /* USER CODE END StartDummyTask */
-}
+/* Callback01 function */
+//void Callback01(void const * argument)
+//{
+//  /* USER CODE BEGIN Callback01 */
+//	NVIC_EnableIRQ(EXTI9_5_IRQn);
+//  /* USER CODE END Callback01 */
+//}
 
 /* USER CODE BEGIN Application */
+
+uint16_t interrupt_pin;
+TimerCallbackFunction_t Callback01(TimerHandle_t xTimer)
+{
+  /* USER CODE BEGIN Callback01 */
+    __HAL_GPIO_EXTI_CLEAR_IT(interrupt_pin);
+	NVIC_EnableIRQ(EXTI9_5_IRQn);
+	return 0;
+  /* USER CODE END Callback01 */
+//	return Callback01;
+}
 
 void handle_msg(char* msg) {
 	char* action;
@@ -166,6 +183,11 @@ void handle_msg(char* msg) {
 
 	action = strsep(&msg, MSG_DELIMITER);
 	payload = strsep(&msg, MSG_DELIMITER);
+
+//	Port_t* device = find_device_by_id(1);
+//
+//	manager_update_data_specific(device);
+//	manager_send_data_specific(device);
 
 	if (strcmp(action, "read") == 0) {
 		comm_send_msg("READ");
@@ -228,7 +250,7 @@ void handle_msg(char* msg) {
 			}
 			full_device = strsep(&payload, "|");
 		}
-//		manager_print_all_devices();
+		manager_print_all_devices();
 
 	} else {
 //		ERROR
