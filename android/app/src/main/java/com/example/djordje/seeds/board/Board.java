@@ -1,8 +1,24 @@
 package com.example.djordje.seeds.board;
 
-import com.example.djordje.seeds.device.Device;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.ListView;
 
+import com.example.djordje.seeds.Helper;
+import com.example.djordje.seeds.MainActivity;
+import com.example.djordje.seeds.R;
+import com.example.djordje.seeds.device.Device;
+import com.example.djordje.seeds.device.DeviceAdapter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,12 +54,6 @@ public class Board {
     public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
-
-//    public Board(int id, String name, List<Device> devices) {
-//        this.id = id;
-//        this.name = name;
-//        this.devices = devices;
-//    }
 
 
 }
