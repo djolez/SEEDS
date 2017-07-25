@@ -103,10 +103,9 @@ def process_comm_data(data):
         tmp = tmp[1].split("_")
         id = int(tmp[0])
         value = int(tmp[1])
-        logger.debug("Interrupt: {} {}".format(id, value))
-        device = modes.device.Device.get_by_id(id)
+        
+        device = models.device.Device.get_by_id(id)
         device.interrupt(value)
-        #TODO: Send notification to the user
     elif(action_name == "error"):
         logger.warning("Board error: '{}'".format(tmp[1]))
         #TODO: Send notification to the user?

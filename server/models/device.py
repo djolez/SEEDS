@@ -1,10 +1,13 @@
 from peewee import *
 import json
+import logging
 
 from .base import *
 from .board import *
 import comm_implementation as comm
 import helper
+
+logger = logging.getLogger(__name__)
 
 class Device(BaseModel):
     board = ForeignKeyField(Board, related_name = "devices", null = False)
@@ -78,8 +81,8 @@ class Device(BaseModel):
         self.write(0)
 
     def interrupt(self, value):
-        pass 
-
+        from .notification import Notification
+        Notification.add("Interrupt triggered, value: {}".format(value), self.id, 3) 
         #TODO: Send notification to the user
 
     def get_with_readings(id, start, end):
@@ -145,10 +148,12 @@ class Device(BaseModel):
             return device, None
 
     def value_out_of_range(self, direction):
+        from .notification import Notification
+        
         if(direction < 0):
-            logger.warning("Device '{}' - value LOW".format(self.name))
+            Notification.add("Value LOW", self.id, 3)
         else:
-            logger.warning("Device '{}' - value HIGH".format(self.name))
+            Notification.add("Value HIGH", self.id, 3)
 
     def is_complex(self):
         return (self.parent_id is None) and (self.type is not None)
