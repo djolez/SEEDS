@@ -64,20 +64,18 @@
 
 /* Variables -----------------------------------------------------------------*/
 osThreadId commHandle;
-osTimerId myTimer01Handle;
-osTimerId timer_handle;
 
 /* USER CODE BEGIN Variables */
 extern char rx_data[2];
-extern Port_t* entities[NUMBER_OF_ENTITIES];
+extern Port_t* devices[NUMBER_OF_ENTITIES];
 char rx_buffer[MAX_COMM_MSG_LENGTH];
 char tx_buffer[MAX_COMM_MSG_LENGTH];
+osTimerId timer_handle;
 
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
 void StartCommTask(void const * argument);
-//void Callback01(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -106,11 +104,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_SEMAPHORES */
 	/* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
-
-  /* Create the timer(s) */
-  /* definition and creation of myTimer01 */
-//  osTimerDef(myTimer01, Callback01);
-//  myTimer01Handle = osTimerCreate(osTimer(myTimer01), osTimerOnce, NULL);
 
   /* USER CODE BEGIN RTOS_TIMERS */
 	/* start timers, add new ones, ... */
@@ -155,14 +148,6 @@ void StartCommTask(void const * argument)
 	}
   /* USER CODE END StartCommTask */
 }
-
-/* Callback01 function */
-//void Callback01(void const * argument)
-//{
-//  /* USER CODE BEGIN Callback01 */
-//	NVIC_EnableIRQ(EXTI9_5_IRQn);
-//  /* USER CODE END Callback01 */
-//}
 
 /* USER CODE BEGIN Application */
 

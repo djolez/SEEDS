@@ -9,7 +9,8 @@ enum EntityType {
 	DS18B20 = 0,
 	DHT11 = 1,
 	RELAY = 2,
-	SWITCH = 3
+	SWITCH = 3,
+	ANALOG = 4
 };
 
 xQueueHandle comm_handle;

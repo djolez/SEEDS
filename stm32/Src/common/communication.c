@@ -29,12 +29,12 @@ void comm_send_msg(char* msg) {
 	HAL_UART_Transmit(&huart2, (uint8_t*) "\n", strlen("\n"), HAL_MAX_DELAY);
 }
 
-char* error_msg = "Error:";
+char* error_msg = "error$";
 void comm_send_error_msg(char* msg) {
 //	char* buff[MAX_COMM_MSG_LENGTH];
 //	sprintf(buff, "%s %s", error_msg, msg);
 //	comm_send_msg(buff);
-	char * s = malloc(snprintf(NULL, 0, "%s %s", error_msg, msg) + 1);
+	char * s = malloc(snprintf(NULL, 0, "%s%s", error_msg, msg) + 1);
 	sprintf(s, "%s %s", error_msg, msg);
 	comm_send_msg(s);
 }
