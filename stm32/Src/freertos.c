@@ -184,11 +184,6 @@ void handle_msg(char* msg) {
 	action = strsep(&msg, MSG_DELIMITER);
 	payload = strsep(&msg, MSG_DELIMITER);
 
-//	Port_t* device = find_device_by_id(1);
-//
-//	manager_update_data_specific(device);
-//	manager_send_data_specific(device);
-
 	if (strcmp(action, "read") == 0) {
 		comm_send_msg("READ");
 		int device_id = string_to_int(payload);

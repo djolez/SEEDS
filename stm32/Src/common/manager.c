@@ -155,13 +155,22 @@ void manager_send_data_specific(Port_t* port) {
 	char msg[MAX_COMM_MSG_LENGTH];
 	int i = 0;
 
+	sprintf(msg, "device_reading$%d", port->db_id);
+
 	if(port->Num_Sub_devices > 0) {
+		sprintf(msg, "%s|", msg);
+
 		for (i = 0; i < port->Num_Sub_devices; i++) {
-			sprintf(msg, "reading$%d_%d", port->Sub_devices[i].db_id, port->Sub_devices[i].Last_Value);
+			sprintf(msg, "%s%d_%d", msg, port->Sub_devices[i].db_id, port->Sub_devices[i].Last_Value);
+			if(i < port->Num_Sub_devices - 1)
+				sprintf(msg, "%s,", msg);
+
+//			sprintf(msg, "reading$%d_%d", port->Sub_devices[i].db_id, port->Sub_devices[i].Last_Value);
 			//xQueueSend(comm_handle_tx, msg, 100);
 		}
 	} else {
-		sprintf(msg, "reading$%d_%d", port->db_id, port->Last_Value);
+		sprintf(msg, "%s_%d", msg, port->Last_Value);
+//		sprintf(msg, "reading$%d_%d", port->db_id, port->Last_Value);
 	}
 	comm_send_msg(msg);
 }
@@ -181,7 +190,6 @@ void manager_update_device_id(char* name, char* parent_name, int id) {
 
 Port_t* find_device_by_id(uint16_t id) {
 	uint8_t i;
-//	uint8_t entities_length = sizeof(entities) / sizeof(Port_t*);
 
 	for (i = 0; i < NUMBER_OF_ENTITIES; i++) {
 		if(entities[i]->db_id == id)
