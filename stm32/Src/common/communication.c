@@ -25,8 +25,9 @@ void comm_start() {
 }
 
 void comm_send_msg(char* msg) {
-	HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), 1000);
-	HAL_UART_Transmit(&huart2, (uint8_t*) "\n", strlen("\n"), 1000);
+	HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
+	HAL_UART_Transmit(&huart2, (uint8_t*) "\n", strlen("\n"), HAL_MAX_DELAY);
+
 }
 
 char* error_msg = "Error:";
@@ -39,7 +40,10 @@ void comm_send_error_msg(char* msg) {
 	comm_send_msg(s);
 }
 
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+
 	uint8_t i;
 	if (huart->Instance == USART2)	//current UART
 	{
@@ -58,6 +62,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			else //if received data == "\n"
 			{
 				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
+
 				rx_indx = 0;
 			}
 		}

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Date end_date = new Date();
     TextView start_date_text;
     TextView end_date_text;
+    Button search_button;
 
     //ON_SYSTEM_EVENTS
     @Override
@@ -48,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showDevicePicker();
             }
         });
 
@@ -76,6 +77,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //SEARCH BUTTON
+        search_button = (Button) findViewById(R.id.button_search);
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO: read settings from local storage
+                int[] selected_devices = {1, 2};
+                Device.showSelected(getApplicationContext(), selected_devices, start_date, end_date);
+            }
+        });
+    }
+
+    private void showDevicePicker() {
+        final View dialogView = View.inflate(this, R.layout.device_picker_dialog, null);
+        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+
+        alertDialog.setView(dialogView);
+        alertDialog.show();
     }
 
     @Override
@@ -84,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO: read settings from local storage
         int[] selected_devices = {1, 2};
         Device.showSelected(this, selected_devices, start_date, end_date);
+        new Device.RetrieveDeviceListTask(MainActivity.this).execute();
 
 //        new HttpRequestTask().execute();
     }

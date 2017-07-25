@@ -3,6 +3,8 @@ package com.example.djordje.seeds.device;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.djordje.seeds.Helper;
@@ -10,6 +12,7 @@ import com.example.djordje.seeds.MainActivity;
 import com.example.djordje.seeds.R;
 import com.example.djordje.seeds.device_reading.DeviceReading;
 import com.example.djordje.seeds.device_reading.DeviceReadingWrapper;
+import com.example.djordje.seeds.settings.Settings;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,6 +21,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +48,7 @@ public class Device {
     private float avg_value;
     private List<Device> sub_devices;
     private List<DeviceReading> values;
+    private boolean checked = false;
     private static Context context;
 
     public int getId() {
@@ -118,35 +123,65 @@ public class Device {
         this.values = values;
     }
 
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public static Context getContext() {
+        return context;
+    }
+
+    public static void setContext(Context context) {
+        Device.context = context;
+    }
+
     public static void showSelected(Context ctx, int[] ids, Date start, Date end) {
         if(context == null)
             context = ctx;
 
-        new HttpRequestTask().execute();
+        RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end);
+        r.execute();
     }
 
-    public void getAll() {
-        new HttpRequestTask().execute();
-    }
     //HTTP
-    private static class HttpRequestTask extends AsyncTask<Void, Void, List<Device>> {
+    public static class RetrieveWithValuesTask extends AsyncTask<Void, Void, List<Device>> {
+        private int[] ids;
+        private Date start_date;
+        private Date end_date;
+
+        public RetrieveWithValuesTask (int[] ids, Date start, Date end){
+            this.ids = ids;
+            this.start_date = start;
+            this.end_date = end;
+        }
+
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
                 String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
                 url += "/device/from/";
-                Calendar endDate = Calendar.getInstance();
-                Calendar startDate = Calendar.getInstance();
-                startDate.add(Calendar.DATE, -18);
-                url += Helper.formatCalendar(startDate, null);
+                // TODO: Change with the values that the user selected
+//                Calendar endDate = Calendar.getInstance();
+//                Calendar startDate = Calendar.getInstance();
+//                startDate.add(Calendar.DATE, -18);
+                url += Helper.formatDate(this.getStart_date(), null);
                 url += "/to/";
-                url += Helper.formatCalendar(endDate, null);
+                url += Helper.formatDate(this.getEnd_date(), null);
 
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 MultiValueMap<String,Integer> map = new LinkedMultiValueMap<>();
-                map.add("ids",1);
-                map.add("ids",2);
+
+                for (int id: this.ids) {
+                    map.add("ids", id);
+                }
+
+//                map.add("ids",1);
+//                map.add("ids",2);
                 List<Device> devices = restTemplate.postForObject(url, map, List.class);
                 return devices;
             } catch (Exception e) {
@@ -158,8 +193,6 @@ public class Device {
 
         @Override
         protected void onPostExecute(List<Device> result) {
-//            System.out.println(result.toString());
-
             ObjectMapper mapper = new ObjectMapper();
             Device d;
             Device[] devices_array = new Device[result.size()];
@@ -169,10 +202,84 @@ public class Device {
                 devices_array[i] = d;
             }
 
+
             final ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
             DeviceAdapter dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), devices_array);
 
             listview.setAdapter(dAdapter);
+
+            new Settings().getAllDevices();
+        }
+
+        public int[] getIds() {
+            return ids;
+        }
+
+        public void setIds(int[] ids) {
+            this.ids = ids;
+        }
+
+        public Date getStart_date() {
+            return start_date;
+        }
+
+        public void setStart_date(Date start_date) {
+            this.start_date = start_date;
+        }
+
+        public Date getEnd_date() {
+            return end_date;
+        }
+
+        public void setEnd_date(Date end_date) {
+            this.end_date = end_date;
+        }
+
+    }
+
+
+    public static class RetrieveDeviceListTask extends AsyncTask<Void, Void, List<Device>> {
+        private Context context;
+
+        public RetrieveDeviceListTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected List<Device> doInBackground(Void... params) {
+            try {
+                String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
+                url += "/board/1/device";
+
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                List<Device> devices = restTemplate.getForObject(url, List.class);
+                return devices;
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(List<Device> result) {
+            ObjectMapper mapper = new ObjectMapper();
+            Device d;
+            Device[] devices_array = new Device[result.size()];
+
+            for (int i = 0; i < result.size(); i++) {
+                d = mapper.convertValue(result.get(i), Device.class);
+                devices_array[i] = d;
+            }
+
+
+            final ListView view = (ListView) ((MainActivity) this.context).findViewById(R.id.device_list);
+            DeviceListAdapter dAdapter = new DeviceListAdapter(this.context, devices_array);
+
+            view.setAdapter(dAdapter);
+
+            new Settings().getAllDevices();
         }
 
     }

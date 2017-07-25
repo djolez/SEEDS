@@ -33,7 +33,7 @@ typedef struct {
 	uint8_t Type;
 	uint16_t db_id;
 //	sensor_val lv;
-	Value_t Last_Value;
+	uint16_t Last_Value;
 	uint8_t Num_Sub_devices;
 	Sub_device_t Sub_devices[10];
 } Port_t;
