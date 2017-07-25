@@ -123,11 +123,13 @@ d.write(1)
 d.read()
 '''
 
-#comm.handle_msg("reading$2_283")
-
 #comm.handle_msg("board_init$STM32:dht11.1-humidity,temperature|ds18b20.0")
+#comm.handle_msg("device_reading$1|2_2820,3_3500")
+#comm.handle_msg("device_reading$3_0")
+comm.handle_msg("interrupt$3_0")
+#comm.handle_msg("error$Overflow")
+#comm.handle_msg("some_cmd")
 
-#comm.handle_msg("reading$2_2850")
 
 atexit.register(cleanup)
 

@@ -71,28 +71,47 @@ def process_comm_data(data):
             board.sync()
         except Exception:
             logger.exception("An error occured while initializing board DB")
-    elif(action_name == "reading"):
+    elif(action_name == "device_reading"):
+        # Values are passed without decimal point because of
+        # problems with floating point arithmetics on the board
+        # so they need to be cast back into float
         payload = tmp[1]
-        tmp = payload.split("_")
+        tmp = payload.split("|")
 
-        device_id = tmp[0]
         try:
-            value = int(tmp[1])
-            # Values are passed without decimal point because of
-            # problems with floating point arithmetics on the board
-            float_val = (value / 100) if value > 1000 else value / 10
-            models.device_reading.Device_reading.add(device_id, float_val)
-        except ValueError:
-            logger.error("Failed to parse '{}' as int".format(tmp[1]))
+            # Has subdevices
+            if(len(tmp) > 1):
+                device_id = int(tmp[0])
 
-        '''for d in data["data"]:
-            try:
-                #loop through all the values for a device
-                for r in d["values"]:
-                    models.device_reading.Device_reading.add_from_json(r, d)
-            except Exception:
-                logger.exception("An error occured while entering device data to DB")
-        '''
+                tmp = tmp[1].split(",")
+                for s_d in tmp:
+                    id = int(s_d.split("_")[0])
+                    value = int(s_d.split("_")[1])
+                    float_val = (value / 100) if value > 1000 else value / 10
+                
+                    models.device_reading.Device_reading.add(id, float_val)
+            else:
+                tmp = tmp[0].split("_")
+                id = int(tmp[0])
+                value = int(tmp[1])
+                float_val = (value / 100) if value > 1000 else value / 10
+                models.device_reading.Device_reading.add(id, float_val)
+        
+        except ValueError:
+            logger.error("Failed to parse as int")
+    elif(action_name == "interrupt"):
+        tmp = tmp[1].split("_")
+        id = int(tmp[0])
+        value = int(tmp[1])
+        logger.debug("Interrupt: {} {}".format(id, value))
+        device = modes.device.Device.get_by_id(id)
+        device.interrupt(value)
+        #TODO: Send notification to the user
+    elif(action_name == "error"):
+        logger.warning("Board error: '{}'".format(tmp[1]))
+        #TODO: Send notification to the user?
+    else:
+        logger.warning("Unknown serial command '{}'".format(data))
 
 # SETTINGS
 

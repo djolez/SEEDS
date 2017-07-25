@@ -76,7 +76,12 @@ class Device(BaseModel):
 
     def off(self):
         self.write(0)
-    
+
+    def interrupt(self, value):
+        pass 
+
+        #TODO: Send notification to the user
+
     def get_with_readings(id, start, end):
         try:
             # This is to solve the circular dependency problem
@@ -91,7 +96,7 @@ class Device(BaseModel):
 
             if(device.is_complex()):
                 sub_devices = device.get_sub_devices()
-
+                
                 for s_dev in sub_devices:
                     s_dev.last_value = s_dev.readings.order_by(Device_reading.timestamp.desc()).get().value
                     tmp, s_dev.avg_value = Device.get_avg_for_subdevice(s_dev.id, start, end)
