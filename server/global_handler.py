@@ -138,9 +138,12 @@ def stop_running_actions():
 actions = {}
 settings = {}
 def apply_settings():
+    #TODO: Remove this
+    return
+    
     stop_running_actions()
     print(global_vars.SETTINGS) 
-    if("poll_interval_minutes1" in global_vars.SETTINGS):
+    if("poll_interval_minutes" in global_vars.SETTINGS):
          
         actions["data_polling"] = Action(
             "data_poll_all",
@@ -149,7 +152,7 @@ def apply_settings():
             )
         actions["data_polling"].schedule()
                 
-    if("check_interval_minutes1" in global_vars.SETTINGS):
+    if("check_interval_minutes" in global_vars.SETTINGS):
         
         actions["analyze_values"] = Action(
             "analyze_values",
@@ -191,9 +194,9 @@ def save_settings_to_file(reload_actions = True):
     try:
         with open("settings.json", "w") as file:
             file.write(json.dumps(global_vars.SETTINGS))
-
-        if(reload_actions):
-            apply_settings()
+        #TODO: uncomment
+        #if(reload_actions):
+        #    apply_settings()
     except Exception as e:
         logger.exception(e)
 
@@ -274,20 +277,26 @@ def add_test_values():
     if c:
         temp.save()
 
-    for v in randomize_values(50, 20, 70):
+    now = datetime.now()
+
+    for v in randomize_values(60, 20, 70):
         models.device_reading.Device_reading.create(
                 device_id = dht_hum.id,
                 value = v,
-                timestamp = datetime.now()
+                timestamp = now
                 )
+        now = now + timedelta(minutes = 1)
     
-    for v in randomize_values(50, 20, 40):
+    now = datetime.now()
+
+    for v in randomize_values(60, 20, 40):
         models.device_reading.Device_reading.create(
                 device_id = dht_temp.id,
                 value = v,
-                timestamp = datetime.now()
+                timestamp = now
                 )
-
+        now = now + timedelta(minutes = 1)
+    
     '''for v in randomize_values(50, 20, 40):
         models.device_reading.Device_reading.create(
                 device_id = temp.id,
