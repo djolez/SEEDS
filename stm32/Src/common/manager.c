@@ -21,67 +21,72 @@
 //Port_t* entities[3];
 //uint8_t entities_length;
 
-Port_t* entities[NUMBER_OF_ENTITIES];
+Port_t* devices[NUMBER_OF_ENTITIES];
 
 void manager_init_all() {
 
-	entities[0] = malloc(sizeof(Port_t));
-	entities[0]->Name = "dht11-PA9";
-	entities[0]->GPIOx = GPIOA;
-	entities[0]->GPIO_Pin = GPIO_PIN_9;
-	entities[0]->Type = DHT11;
-	entities[0]->db_id = 1;
+	devices[0] = malloc(sizeof(Port_t));
+	devices[0]->Name = "dht11-PA9";
+	devices[0]->GPIOx = GPIOA;
+	devices[0]->GPIO_Pin = GPIO_PIN_9;
+	devices[0]->Type = DHT11;
+	devices[0]->db_id = 1;
 
 	//Stopped working for no reason
-	entities[1] = malloc(sizeof(Port_t));
-	entities[1]->Name = "ds18b20-PC7";
-	entities[1]->GPIOx = GPIOC;
-	entities[1]->GPIO_Pin = GPIO_PIN_7;
-	entities[1]->Type = DS18B20;
-	entities[1]->db_id = 2;
-	/*
-	 * This worked normally the first time it was tested,
-	 * now the callback (located in main) is called twice and not always
-	 *
-	 * Solved with pull down??
-	 */
-	entities[2] = malloc(sizeof(Port_t));
-	entities[2]->Name = "float-switch-PA7";
-	entities[2]->GPIOx = GPIOA;
-	entities[2]->GPIO_Pin = GPIO_PIN_7;
-	entities[2]->Type = SWITCH;
-	entities[2]->Num_Sub_devices = 0;
-	entities[2]->db_id = 3;
+	devices[1] = malloc(sizeof(Port_t));
+	devices[1]->Name = "ds18b20-PC7";
+	devices[1]->GPIOx = GPIOC;
+	devices[1]->GPIO_Pin = GPIO_PIN_7;
+	devices[1]->Type = DS18B20;
+	devices[1]->db_id = 2;
 
-	entities[3] = malloc(sizeof(Port_t));
-	entities[3]->Name = "relay-light-PB6";
-	entities[3]->GPIOx = GPIOB;
-	entities[3]->GPIO_Pin = GPIO_PIN_6;
-	entities[3]->Type = RELAY;
-	entities[3]->Num_Sub_devices = 0;
-	entities[3]->db_id = 4;
+	devices[2] = malloc(sizeof(Port_t));
+	devices[2]->Name = "float-switch-PA7";
+	devices[2]->GPIOx = GPIOA;
+	devices[2]->GPIO_Pin = GPIO_PIN_7;
+	devices[2]->Type = SWITCH;
+	devices[2]->Num_Sub_devices = 0;
+	devices[2]->db_id = 3;
+
+	devices[3] = malloc(sizeof(Port_t));
+	devices[3]->Name = "relay-light-PB6";
+	devices[3]->GPIOx = GPIOB;
+	devices[3]->GPIO_Pin = GPIO_PIN_6;
+	devices[3]->Type = RELAY;
+	devices[3]->Num_Sub_devices = 0;
+	devices[3]->db_id = 4;
+
+	devices[4] = malloc(sizeof(Port_t));
+	devices[4]->Name = "analog-light-PA6";
+	devices[4]->GPIOx = GPIOA;
+	devices[4]->GPIO_Pin = GPIO_PIN_6;
+	devices[4]->Type = ANALOG;
+	devices[4]->Num_Sub_devices = 0;
+	devices[4]->db_id = 5;
 
 	uint8_t i;
-//	entities_length = sizeof(entities) / sizeof(Port_t*);
 
 	for (i = 0; i < NUMBER_OF_ENTITIES; i++) {
-		manager_init_specific(entities[i]);
+		manager_init_specific(devices[i]);
 	}
 }
 
-void manager_init_specific(Port_t* entity) {
+void manager_init_specific(Port_t* device) {
 
-	switch (entity->Type) {
+	switch (device->Type) {
 	case DS18B20:
-		ds18b20_init_all(entity);
+		ds18b20_init_all(device);
 		break;
 	case DHT11:
-		dht11_init(entity);
+		dht11_init(device);
 		break;
 	case RELAY:
-		RELAY_INIT(entity);
+		RELAY_INIT(device);
 		break;
 	case SWITCH:
+
+		break;
+	case ANALOG:
 
 		break;
 	default:
@@ -93,25 +98,26 @@ void manager_update_data_all() {
 	uint8_t i;
 
 	for (i = 0; i < NUMBER_OF_ENTITIES; i++) {
-		manager_update_data_specific(entities[i]);
+		manager_update_data_specific(devices[i]);
 	}
-
-//	manager_update_data_specific(entities[0]);
 }
 
-void manager_update_data_specific(Port_t* entity) {
-	switch (entity->Type) {
+void manager_update_data_specific(Port_t* device) {
+	switch (device->Type) {
 	case DS18B20:
-		ds18b20_update_all(entity);
+		ds18b20_update_all(device);
 		break;
 	case DHT11:
-		dht11_update(entity);
+		dht11_update(device);
 		break;
 	case RELAY:
-		RELAY_READ_VALUE(entity);
+		RELAY_READ_VALUE(device);
 		break;
 	case SWITCH:
-		SWITCH_READ_VALUE(entity);
+		SWITCH_READ_VALUE(device);
+		break;
+	case ANALOG:
+		// TODO: implement
 		break;
 	default:
 		break;
@@ -119,24 +125,24 @@ void manager_update_data_specific(Port_t* entity) {
 }
 
 void manager_write_data(uint16_t id, uint8_t value) {
-	Port_t* entity = find_device_by_id(id);
+	Port_t* device = find_device_by_id(id);
 
-	//Workaround to check if entity is NULL
-	if(entity->db_id != id) {
+	//Workaround to check if returned device is NULL
+	if(device->db_id != id) {
 		comm_send_error_msg("Device not found");
 	}
 
-	switch (entity->Type) {
+	switch (device->Type) {
 		case DS18B20:
 		case DHT11:
 		case SWITCH:
 			comm_send_error_msg("Device does not support writing");
 			break;
 		case RELAY:
-			if(value == 0)
-				RELAY_OFF(entity);
-			else if(value == 1)
-				RELAY_ON(entity);
+			if(value <= 0)
+				RELAY_OFF(device);
+			else if(value >= 1)
+				RELAY_ON(device);
 			break;
 		default:
 			break;
@@ -147,7 +153,7 @@ void manager_send_data_all() {
 	uint8_t i;
 
 	for (i = 0; i < NUMBER_OF_ENTITIES; i++) {
-		manager_send_data_specific(entities[i]);
+		manager_send_data_specific(devices[i]);
 	}
 }
 
@@ -177,13 +183,13 @@ void manager_send_data_specific(Port_t* port) {
 
 void manager_update_device_id(char* name, char* parent_name, int id) {
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
-		if(parent_name && strcmp(entities[i]->Name, parent_name) == 0) {
-			for(int j = 0; j < entities[i]->Num_Sub_devices; j++) {
-				if(strcmp(entities[i]->Sub_devices[j].Name, name) == 0)
-					entities[i]->Sub_devices[j].db_id = id;
+		if(parent_name && strcmp(devices[i]->Name, parent_name) == 0) {
+			for(int j = 0; j < devices[i]->Num_Sub_devices; j++) {
+				if(strcmp(devices[i]->Sub_devices[j].Name, name) == 0)
+					devices[i]->Sub_devices[j].db_id = id;
 			}
-		} else if(strcmp(entities[i]->Name, name) == 0) {
-			entities[i]->db_id = id;
+		} else if(strcmp(devices[i]->Name, name) == 0) {
+			devices[i]->db_id = id;
 		}
 	}
 }
@@ -192,8 +198,8 @@ Port_t* find_device_by_id(uint16_t id) {
 	uint8_t i;
 
 	for (i = 0; i < NUMBER_OF_ENTITIES; i++) {
-		if(entities[i]->db_id == id)
-			return entities[i];
+		if(devices[i]->db_id == id)
+			return devices[i];
 	}
 	return NULL;
 }
@@ -202,11 +208,11 @@ void manager_print_all_devices() {
 	char buff[50];
 
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
-		sprintf(&buff, "%s, id: %d", entities[i]->Name, entities[i]->db_id);
+		sprintf(&buff, "%s, id: %d", devices[i]->Name, devices[i]->db_id);
 		comm_send_msg(buff);
 
-		for (int j = 0; j < entities[i]->Num_Sub_devices; j++) {
-			sprintf(&buff, "\t%s, id: %d", entities[i]->Sub_devices[j].Name, entities[i]->Sub_devices[j].db_id);
+		for (int j = 0; j < devices[i]->Num_Sub_devices; j++) {
+			sprintf(&buff, "\t%s, id: %d", devices[i]->Sub_devices[j].Name, devices[i]->Sub_devices[j].db_id);
 			comm_send_msg(buff);
 		}
 //		comm_send_msg("\n");
@@ -223,11 +229,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
 //		Change this to somehow check GPIO port, TYPE is just a temp solution
-		if (entities[i]->GPIO_Pin == GPIO_Pin && entities[i]->Type == SWITCH) {
+		if (devices[i]->GPIO_Pin == GPIO_Pin && devices[i]->Type == SWITCH) {
 			//Send a notification to the server
-			GPIO_PinState current_value = HAL_GPIO_ReadPin(entities[i]->GPIOx, entities[i]->GPIO_Pin);
+			GPIO_PinState current_value = HAL_GPIO_ReadPin(devices[i]->GPIOx, devices[i]->GPIO_Pin);
 			char* msg[MAX_COMM_MSG_LENGTH];
-			sprintf(msg, "interrupt$%d_%d\r", entities[i]->db_id, current_value);
+			sprintf(msg, "interrupt$%d_%d\r", devices[i]->db_id, current_value);
 //			xQueueSendFromISR(comm_handle_tx, msg, NULL);
 			comm_send_msg(msg);
 
