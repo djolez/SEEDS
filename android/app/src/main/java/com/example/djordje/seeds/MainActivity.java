@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     public static int[] available_devices_ids;
     public static String[] available_devices_names;
     private int[] selectedDevicesIds;
-    private boolean firstStart=true;
 
     //ON_SYSTEM_EVENTS
     @Override

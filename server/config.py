@@ -3,8 +3,8 @@ SERIAL_PORT = "/dev/ttyAMA0"
 SERIAL_BAUD_RATE = 9600
 
 DEFAULT_SETTINGS = {
-    "poll_interval_minutes": 10,
-    "check_interval_minutes": 5,
+    "poll_interval_minutes": 1,
+    "check_interval_minutes": 60,
     "value_ranges": [
         {
             "device_id": 2,
@@ -18,14 +18,14 @@ DEFAULT_SETTINGS = {
             "schedule": [
                 {
                     "on": {
-                        "hour": 16,
-                        "minute": 22,
-                        "second": 0
+                        "hour": 18,
+                        "minute": 2,
+                        "second": 30
                     },
                     "off": {
-                        "hour": 16,
-                        "minute": 22,
-                        "second": 15
+                        "hour": 18,
+                        "minute": 2,
+                        "second": 35
                     }
                 }
             ]
@@ -33,3 +33,5 @@ DEFAULT_SETTINGS = {
     ]
 }
 
+
+#DEFAULT_SETTINGS = {}

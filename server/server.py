@@ -37,7 +37,14 @@ def get_board(id):
 def get_devices_by_board_id(id):
     try:
         board = Board.get_by_id(id)
-        return jsonify(helper.list_to_dict(board.devices))
+        res = []
+
+        for d in board.devices:
+            if(d.parent_id is None):
+                d.sub_devices = d.get_sub_devices()
+                res.append(d)
+
+        return jsonify(helper.list_to_dict(res))
     except Board.DoesNotExist:
         return bad_request(404, "Board not found")
 

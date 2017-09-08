@@ -12,6 +12,8 @@ from models.base import *
 from models.board import *
 from models.device import *
 from models.device_reading import *
+from models.notification import *
+
 from scheduler.action import * 
 from scheduler.time_module import *
 import server
@@ -48,7 +50,7 @@ pw.disabled = True
 
 def init_db(file_path = "db/db.sqlite"):
     db_proxy.initialize(SqliteDatabase(file_path))
-    db_proxy.create_tables([Board, Device, Device_reading], safe=True)
+    db_proxy.create_tables([Board, Device, Device_reading, Notification], safe=True)
 
 active_threads = {}
 def app_start(argv):
@@ -123,11 +125,13 @@ d.write(1)
 d.read()
 '''
 
-#comm.handle_msg("reading$2_283")
-
 #comm.handle_msg("board_init$STM32:dht11.1-humidity,temperature|ds18b20.0")
+#comm.handle_msg("device_reading$1|2_2820,3_3500")
+#comm.handle_msg("device_reading$3_0")
+comm.handle_msg("interrupt$3_0")
+#comm.handle_msg("error$Overflow")
+#comm.handle_msg("some_cmd")
 
-#comm.handle_msg("reading$2_2850")
 
 atexit.register(cleanup)
 

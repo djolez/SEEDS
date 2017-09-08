@@ -300,7 +300,7 @@ public class Device {
 
             }
 
-
+            Device.showSelected(cont, MainActivity.available_devices_ids, MainActivity.start_date, MainActivity.end_date);
             new Settings(cont).getAllDevices();
         }
 

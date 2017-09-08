@@ -71,28 +71,46 @@ def process_comm_data(data):
             board.sync()
         except Exception:
             logger.exception("An error occured while initializing board DB")
-    elif(action_name == "reading"):
+    elif(action_name == "device_reading"):
+        # Values are passed without decimal point because of
+        # problems with floating point arithmetics on the board
+        # so they need to be cast back into float
         payload = tmp[1]
-        tmp = payload.split("_")
+        tmp = payload.split("|")
 
-        device_id = tmp[0]
         try:
-            value = int(tmp[1])
-            # Values are passed without decimal point because of
-            # problems with floating point arithmetics on the board
-            float_val = (value / 100) if value > 1000 else value / 10
-            models.device_reading.Device_reading.add(device_id, float_val)
-        except ValueError:
-            logger.error("Failed to parse '{}' as int".format(tmp[1]))
+            # Has subdevices
+            if(len(tmp) > 1):
+                device_id = int(tmp[0])
 
-        '''for d in data["data"]:
-            try:
-                #loop through all the values for a device
-                for r in d["values"]:
-                    models.device_reading.Device_reading.add_from_json(r, d)
-            except Exception:
-                logger.exception("An error occured while entering device data to DB")
-        '''
+                tmp = tmp[1].split(",")
+                for s_d in tmp:
+                    id = int(s_d.split("_")[0])
+                    value = int(s_d.split("_")[1])
+                    float_val = (value / 100) if value > 1000 else value / 10
+                
+                    models.device_reading.Device_reading.add(id, float_val)
+            else:
+                tmp = tmp[0].split("_")
+                id = int(tmp[0])
+                value = int(tmp[1])
+                float_val = (value / 100) if value > 1000 else value / 10
+                models.device_reading.Device_reading.add(id, float_val)
+        
+        except ValueError:
+            logger.error("Failed to parse as int")
+    elif(action_name == "interrupt"):
+        tmp = tmp[1].split("_")
+        id = int(tmp[0])
+        value = int(tmp[1])
+        
+        device = models.device.Device.get_by_id(id)
+        device.interrupt(value)
+    elif(action_name == "error"):
+        logger.warning("Board error: '{}'".format(tmp[1]))
+        #TODO: Send notification to the user?
+    else:
+        logger.warning("Unknown serial command '{}'".format(data))
 
 # SETTINGS
 
@@ -120,9 +138,12 @@ def stop_running_actions():
 actions = {}
 settings = {}
 def apply_settings():
+    #TODO: Remove this
+    return
+    
     stop_running_actions()
     print(global_vars.SETTINGS) 
-    if("poll_interval_minutes1" in global_vars.SETTINGS):
+    if("poll_interval_minutes" in global_vars.SETTINGS):
          
         actions["data_polling"] = Action(
             "data_poll_all",
@@ -131,7 +152,7 @@ def apply_settings():
             )
         actions["data_polling"].schedule()
                 
-    if("check_interval_minutes1" in global_vars.SETTINGS):
+    if("check_interval_minutes" in global_vars.SETTINGS):
         
         actions["analyze_values"] = Action(
             "analyze_values",
@@ -173,9 +194,9 @@ def save_settings_to_file(reload_actions = True):
     try:
         with open("settings.json", "w") as file:
             file.write(json.dumps(global_vars.SETTINGS))
-
-        if(reload_actions):
-            apply_settings()
+        #TODO: uncomment
+        #if(reload_actions):
+        #    apply_settings()
     except Exception as e:
         logger.exception(e)
 
@@ -256,20 +277,26 @@ def add_test_values():
     if c:
         temp.save()
 
-    for v in randomize_values(50, 20, 70):
+    now = datetime.now()
+
+    for v in randomize_values(60, 20, 70):
         models.device_reading.Device_reading.create(
                 device_id = dht_hum.id,
                 value = v,
-                timestamp = datetime.now()
+                timestamp = now
                 )
+        now = now + timedelta(minutes = 1)
     
-    for v in randomize_values(50, 20, 40):
+    now = datetime.now()
+
+    for v in randomize_values(60, 20, 40):
         models.device_reading.Device_reading.create(
                 device_id = dht_temp.id,
                 value = v,
-                timestamp = datetime.now()
+                timestamp = now
                 )
-
+        now = now + timedelta(minutes = 1)
+    
     '''for v in randomize_values(50, 20, 40):
         models.device_reading.Device_reading.create(
                 device_id = temp.id,

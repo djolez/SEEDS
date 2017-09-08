@@ -1,10 +1,13 @@
 from peewee import *
 import json
+import logging
 
 from .base import *
 from .board import *
 import comm_implementation as comm
 import helper
+
+logger = logging.getLogger(__name__)
 
 class Device(BaseModel):
     board = ForeignKeyField(Board, related_name = "devices", null = False)
@@ -76,7 +79,12 @@ class Device(BaseModel):
 
     def off(self):
         self.write(0)
-    
+
+    def interrupt(self, value):
+        from .notification import Notification
+        Notification.add("Interrupt triggered, value: {}".format(value), self.id, 3) 
+        #TODO: Send notification to the user
+
     def get_with_readings(id, start, end):
         try:
             # This is to solve the circular dependency problem
@@ -91,7 +99,7 @@ class Device(BaseModel):
 
             if(device.is_complex()):
                 sub_devices = device.get_sub_devices()
-
+                
                 for s_dev in sub_devices:
                     s_dev.last_value = s_dev.readings.order_by(Device_reading.timestamp.desc()).get().value
                     tmp, s_dev.avg_value = Device.get_avg_for_subdevice(s_dev.id, start, end)
@@ -140,10 +148,12 @@ class Device(BaseModel):
             return device, None
 
     def value_out_of_range(self, direction):
+        from .notification import Notification
+        
         if(direction < 0):
-            logger.warning("Device '{}' - value LOW".format(self.name))
+            Notification.add("Value LOW", self.id, 3)
         else:
-            logger.warning("Device '{}' - value HIGH".format(self.name))
+            Notification.add("Value HIGH", self.id, 3)
 
     def is_complex(self):
         return (self.parent_id is None) and (self.type is not None)
