@@ -3,15 +3,14 @@ package com.example.djordje.seeds.device;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.djordje.seeds.Helper;
 import com.example.djordje.seeds.MainActivity;
 import com.example.djordje.seeds.R;
+import com.example.djordje.seeds.SettingsActivity;
 import com.example.djordje.seeds.device_reading.DeviceReading;
-import com.example.djordje.seeds.device_reading.DeviceReadingWrapper;
 import com.example.djordje.seeds.settings.Settings;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,11 +20,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -149,12 +145,12 @@ public class Device {
 
     //HTTP
     public static class RetrieveWithValuesTask extends AsyncTask<Void, Void, List<Device>> {
-        private int[] ids;
+        private int[] devs;
         private Date start_date;
         private Date end_date;
 
-        public RetrieveWithValuesTask (int[] ids, Date start, Date end){
-            this.ids = ids;
+        public RetrieveWithValuesTask (int[] devs, Date start, Date end){
+            this.devs = devs;
             this.start_date = start;
             this.end_date = end;
         }
@@ -162,6 +158,7 @@ public class Device {
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
+
                 String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
                 url += "/device/from/";
                 // TODO: Change with the values that the user selected
@@ -171,17 +168,17 @@ public class Device {
                 url += Helper.formatDate(this.getStart_date(), null);
                 url += "/to/";
                 url += Helper.formatDate(this.getEnd_date(), null);
-
                 RestTemplate restTemplate = new RestTemplate();
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 MultiValueMap<String,Integer> map = new LinkedMultiValueMap<>();
 
-                for (int id: this.ids) {
+                if(devs == null || devs.length == 0)
+                    return null;
+
+                for (int id : this.devs) {
                     map.add("ids", id);
                 }
 
-//                map.add("ids",1);
-//                map.add("ids",2);
                 List<Device> devices = restTemplate.postForObject(url, map, List.class);
                 return devices;
             } catch (Exception e) {
@@ -191,10 +188,15 @@ public class Device {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(List<Device> result) {
             ObjectMapper mapper = new ObjectMapper();
             Device d;
+
+            if(result == null || result.isEmpty())
+                return;
+
             Device[] devices_array = new Device[result.size()];
 
             for(int i = 0; i < result.size(); i++) {
@@ -203,20 +205,12 @@ public class Device {
             }
 
 
-            final ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
+            ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
             DeviceAdapter dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), devices_array);
 
             listview.setAdapter(dAdapter);
 
-            new Settings().getAllDevices();
-        }
-
-        public int[] getIds() {
-            return ids;
-        }
-
-        public void setIds(int[] ids) {
-            this.ids = ids;
+            new Settings(context).getAllDevices();
         }
 
         public Date getStart_date() {
@@ -239,12 +233,18 @@ public class Device {
 
 
     public static class RetrieveDeviceListTask extends AsyncTask<Void, Void, List<Device>> {
-        private Context context;
 
-        public RetrieveDeviceListTask(Context context) {
-            this.context = context;
+        private String activity;
+        private Context cont;
+
+        public RetrieveDeviceListTask(String activity){
+            cont = context;
+            this.activity = activity;
         }
-
+        public RetrieveDeviceListTask(Context context, String activity){
+            this.cont = context;
+            this.activity = activity;
+        }
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
@@ -266,6 +266,10 @@ public class Device {
         protected void onPostExecute(List<Device> result) {
             ObjectMapper mapper = new ObjectMapper();
             Device d;
+
+            if(result == null || result.isEmpty())
+                return;
+
             Device[] devices_array = new Device[result.size()];
 
             for (int i = 0; i < result.size(); i++) {
@@ -273,13 +277,31 @@ public class Device {
                 devices_array[i] = d;
             }
 
+            ListView view = null;
+            ArrayAdapter dAdapter = null;
+            if(activity.equals("MainActivity")) {
+                /*view = (ListView) ((MainActivity) cont).findViewById(R.id.charts_wrapper);
+                dAdapter = new DeviceListAdapter(cont, devices_array);*/
+                MainActivity.available_devices_names = new String[devices_array.length];
+                MainActivity.available_devices_ids = new int[devices_array.length];
+                int i = 0;
+                for (Device dv :devices_array) {
+                    MainActivity.available_devices_ids[i] = dv.getId();
+                    MainActivity.available_devices_names[i] = dv.getName();
+                    i++;
+                }
 
-            final ListView view = (ListView) ((MainActivity) this.context).findViewById(R.id.device_list);
-            DeviceListAdapter dAdapter = new DeviceListAdapter(this.context, devices_array);
+                //TODO do we need to add stuff here?
 
-            view.setAdapter(dAdapter);
+            }else if(activity.equals("SettingsActivity")){
+                view = (ListView) ((SettingsActivity) cont).findViewById(R.id.device_schedule_list);
+                dAdapter = new DeviceSettingsAdapter(cont,devices_array);
+                view.setAdapter(dAdapter);
 
-            new Settings().getAllDevices();
+            }
+
+
+            new Settings(cont).getAllDevices();
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.djordje.seeds.settings;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
@@ -28,12 +29,16 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Settings {
+    private static  Context context;
     private int check_interval_minutes;
     private int poll_interval_minutes;
     private List<SensorRange> sensor_ranges;
     private List<DeviceSchedule> device_schedules;
     private List<Device> devices;
 
+    public Settings(Context context){
+        this.context = context;
+    }
     private class SensorRange {
         private int device_id;
         private List<HashMap<Integer, Integer>> range;
@@ -45,7 +50,7 @@ public class Settings {
     }
 
     public void getAllDevices() {
-        new RetrieveDevicesTask(this).execute();
+        //new RetrieveDevicesTask(this).execute();
 //        new Device.HttpRequestTask().execute();
     }
 
@@ -64,8 +69,8 @@ public class Settings {
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
-//                String url = context.getString(R.string.server_address);
-                String url = "http://192.168.1.8:5000/board/1/device";
+                //String url = context.getString(R.string.server_address);
+                String url = context.getString(R.string.server_address)+"/board/1/device";
 
                 RestTemplate restTemplate = new RestTemplate();
                 List<Device> devices = restTemplate.getForObject(url, List.class);

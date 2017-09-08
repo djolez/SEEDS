@@ -37,12 +37,13 @@ import java.util.Random;
 
 public class DeviceAdapter extends ArrayAdapter<Device> {
     private final Context context;
-    private final Device[] readings;
+    private Device[] readings;
 
     public DeviceAdapter(Context context, Device[] readings) {
         super(context, -1, readings);
         this.context = context;
         this.readings = readings;
+
     }
 
     @Override
@@ -58,6 +59,12 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
 
         TextView device_name_view = (TextView) convertView.findViewById(R.id.device_name);
         TextView last_value_view = (TextView) convertView.findViewById(R.id.last_value);
+
+        if(readings == null || readings.length == 0) {
+            mChart.removeAllViews();
+            return null;
+        }
+
         device_name_view.setText(this.readings[position].getName());
         last_value_view.setText(this.readings[position].getLast_value() + "");
 
@@ -147,6 +154,11 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
 
         return convertView;
 
+    }
+
+    @Override
+    public void clear() {
+        this.readings = new Device[0];
     }
 
     private boolean isDeviceReadingEmpty(Device device) {

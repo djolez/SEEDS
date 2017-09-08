@@ -24,13 +24,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                tools:targetApi="o" />
+                />
             <TextView
                 android:id="@+id/datepicker_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                tools:targetApi="o" />
+                 />
         </LinearLayout>
 
         <LinearLayout

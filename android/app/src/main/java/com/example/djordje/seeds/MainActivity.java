@@ -1,42 +1,37 @@
 package com.example.djordje.seeds;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.djordje.seeds.device.Device;
-import com.example.djordje.seeds.device.DeviceAdapter;
-import com.example.djordje.seeds.device_reading.DeviceReadingWrapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Date start_date = new Date();
-    Date end_date = new Date();
+    public static Date start_date = new Date();
+    public static Date end_date = new Date();
     TextView start_date_text;
     TextView end_date_text;
     Button search_button;
+    public static int[] available_devices_ids;
+    public static String[] available_devices_names;
+    private int[] selectedDevicesIds;
+    private boolean firstStart=true;
 
     //ON_SYSTEM_EVENTS
     @Override
@@ -83,10 +78,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: read settings from local storage
-                int[] selected_devices = {1, 2};
-                Device.showSelected(getApplicationContext(), selected_devices, start_date, end_date);
+
+                Device.showSelected(getApplicationContext(), available_devices_ids, start_date, end_date);
             }
         });
+
+        new Device.RetrieveDeviceListTask("MainActivity").execute();
+        Device.showSelected(this, available_devices_ids, start_date, end_date);
     }
 
     private void showDevicePicker() {
@@ -101,9 +99,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //TODO: read settings from local storage
-        int[] selected_devices = {1, 2};
-        Device.showSelected(this, selected_devices, start_date, end_date);
-        new Device.RetrieveDeviceListTask(MainActivity.this).execute();
+
 
 //        new HttpRequestTask().execute();
     }
@@ -125,10 +121,30 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent startSettingsActivityIntent = new Intent(MainActivity.this, SettingsActivity.class);
+
+            startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
+            startSettingsActivityIntent.putExtra("AvailableDevices",available_devices_names);
+            startSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivityForResult(startSettingsActivityIntent,1);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (1) : {
+                if (resultCode == RESULT_OK) {
+                    selectedDevicesIds = data.getIntArrayExtra("SelectedDevicesIds");
+                    for(int i=0;i<selectedDevicesIds.length;i++) System.out.println("DEV"+selectedDevicesIds[i]);
+                    Device.showSelected(MainActivity.this,selectedDevicesIds,start_date,end_date);
+                }
+                break;
+            }
+        }
     }
 
     //DATEPICKER
