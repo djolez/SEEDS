@@ -46,19 +46,29 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         if(d.getType() == 1000)
             scheduleLinearLayout.setVisibility(View.GONE);
 
+        System.out.println("IS IT CHECKED? "+d.getName()+ " "+d.isChecked());
+        if(d.isChecked())
+            selected.setChecked(true);
+        else
+            selected.setChecked(false);
+
         //...is this possible, Android?
         selected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(selected.isChecked())
+                if(selected.isChecked()) {
                     SettingsActivity.addSelectedDevicesList(new Integer(d.getId()));
-                else
+                    d.setChecked(true);
+                }
+                else {
                     SettingsActivity.removeSelectedDevicesList(new Integer(d.getId()));
+                    d.setChecked(false);
+                }
 
             }
         });
+
         deviceName.setText(d.getName());
-        selected.setChecked(true);
 
 
 

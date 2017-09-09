@@ -59,7 +59,6 @@ public class SettingsActivity extends AppCompatActivity {
         goback.putExtra("SelectedDevicesIds",buildIntArray(available_devices_ids));
         goback.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
         setResult(RESULT_OK,goback);
-        //startActivity(goback);
         finish();
         super.onBackPressed();
 
@@ -72,5 +71,8 @@ public class SettingsActivity extends AppCompatActivity {
             ints[i++] = n;
         }
         return ints;
+    }
+    public static ArrayList<Integer> getSelectedDevices(){
+        return available_devices_ids;
     }
 }

@@ -21,6 +21,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -210,7 +211,7 @@ public class Device {
 
             listview.setAdapter(dAdapter);
 
-            new Settings(context).getAllDevices();
+            //new Settings(context).getAllDevices();
         }
 
         public Date getStart_date() {
@@ -291,13 +292,20 @@ public class Device {
 
             }else if(activity.equals("SettingsActivity")){
                 view = (ListView) ((SettingsActivity) cont).findViewById(R.id.device_schedule_list);
+
+                for (Device dv : devices_array){
+                    if (!SettingsActivity.getSelectedDevices().contains(dv.getId()))
+                        dv.setChecked(false);
+                    else
+                        dv.setChecked(true);
+                }
                 dAdapter = new DeviceSettingsAdapter(cont,devices_array);
                 view.setAdapter(dAdapter);
 
             }
 
             Device.showSelected(cont, MainActivity.available_devices_ids, MainActivity.start_date, MainActivity.end_date);
-            new Settings(cont).getAllDevices();
+            //new Settings(cont).getAllDevices();
         }
 
     }

@@ -121,8 +121,12 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent startSettingsActivityIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            //if you previously selected some device, then call the activity showing them selected
+            if(selectedDevicesIds!= null && selectedDevicesIds.length != 0)
+                startSettingsActivityIntent.putExtra("AvailableDevicesIDs", selectedDevicesIds);
+            else
+                startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
 
-            startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
             startSettingsActivityIntent.putExtra("AvailableDevices",available_devices_names);
             startSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivityForResult(startSettingsActivityIntent,SETTINGS_ACTIVITY_REQUEST_CODE);
@@ -135,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch(requestCode) {
-            case (1) : {
+            case (SETTINGS_ACTIVITY_REQUEST_CODE) : {
                 if (resultCode == RESULT_OK) {
                     selectedDevicesIds = data.getIntArrayExtra("SelectedDevicesIds");
                     for(int i=0;i<selectedDevicesIds.length;i++) System.out.println("DEV"+selectedDevicesIds[i]);
