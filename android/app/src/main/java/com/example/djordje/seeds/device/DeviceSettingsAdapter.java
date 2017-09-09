@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.djordje.seeds.R;
@@ -37,8 +38,13 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         convertView = inflater.inflate(R.layout.device_settings, null);
         EditText deviceName = (EditText) convertView.findViewById(R.id.device_settings_name);
         final CheckBox selected = (CheckBox) convertView.findViewById(R.id.device_selected_checkbox);
+        LinearLayout scheduleLinearLayout = (LinearLayout) convertView.findViewById(R.id.device_schedule_linearlayout);
 
         final Device d = this.devices[position];
+
+        //TODO fix me with the right code for relay devices
+        if(d.getType() == 1000)
+            scheduleLinearLayout.setVisibility(View.GONE);
 
         //...is this possible, Android?
         selected.setOnClickListener(new View.OnClickListener() {
