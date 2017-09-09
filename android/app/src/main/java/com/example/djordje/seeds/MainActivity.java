@@ -23,6 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int SETTINGS_ACTIVITY_REQUEST_CODE = 1;
     public static Date start_date = new Date();
     public static Date end_date = new Date();
     TextView start_date_text;
@@ -77,13 +78,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: read settings from local storage
-
-                Device.showSelected(getApplicationContext(), available_devices_ids, start_date, end_date);
+                
+                Device.showSelected(getApplicationContext(), selectedDevicesIds, start_date, end_date);
             }
         });
 
-        new Device.RetrieveDeviceListTask("MainActivity").execute();
-        Device.showSelected(this, available_devices_ids, start_date, end_date);
+        new Device.RetrieveDeviceListTask(MainActivity.this,"MainActivity").execute();
     }
 
     private void showDevicePicker() {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
             startSettingsActivityIntent.putExtra("AvailableDevices",available_devices_names);
             startSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivityForResult(startSettingsActivityIntent,1);
+            startActivityForResult(startSettingsActivityIntent,SETTINGS_ACTIVITY_REQUEST_CODE);
             return true;
         }
 
@@ -179,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Date value = new Date(datePicker.getYear() - 1900, datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
                 datetimeSelected(datetime_model, datetime_view, value);
+
 
                 alertDialog.dismiss();
             }});

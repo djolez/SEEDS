@@ -237,10 +237,6 @@ public class Device {
         private String activity;
         private Context cont;
 
-        public RetrieveDeviceListTask(String activity){
-            cont = context;
-            this.activity = activity;
-        }
         public RetrieveDeviceListTask(Context context, String activity){
             this.cont = context;
             this.activity = activity;
@@ -248,7 +244,7 @@ public class Device {
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
-                String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
+                String url = cont.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
                 url += "/board/1/device";
 
                 RestTemplate restTemplate = new RestTemplate();
