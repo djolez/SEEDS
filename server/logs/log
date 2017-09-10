@@ -21,3 +21,26 @@ Adding notification 'Interrupt triggered, value: 0' for device 3
 192.168.1.7 - - [10/Sep/2017 18:26:36] "GET /device/1/write/1 HTTP/1.1" 404 -
 Exit by user request, performing cleanup...
 Done
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Received msg: 'interrupt$3_0'
+Device with id 3 not found
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Writing to a device, id: 1, value: 1
+Device with id 1 not found
+'NoneType' object has no attribute 'write'
+Traceback (most recent call last):
+  File "/home/djolez/git-projects/SEEDS/server/server.py", line 122, in device_write_value
+    device.write(value)
+AttributeError: 'NoneType' object has no attribute 'write'
+192.168.1.7 - - [10/Sep/2017 18:42:12] "GET /device/1/write/1 HTTP/1.1" 400 -
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Exit by user request, performing cleanup...
+Done
