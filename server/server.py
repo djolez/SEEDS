@@ -114,6 +114,22 @@ def get_device_last_reading(id):
         logger.exception(e)
         return bad_request()
 
+@app.route('/device/<int:id>/write/<int:value>')
+def device_write_value(id, value):
+    try:
+        logger.debug("Writing to a device, id: {}, value: {}".format(id, value))
+        device = Device.get_by_id(id)
+        device.write(value)
+
+        return ("OK")
+
+    except Device.DoesNotExist:
+        return bad_request(404, "Device not found")
+    except Exception as e:
+        logger.exception(e)
+        return bad_request()
+
+
 # SETTINGS
 @app.route('/settings')
 def get_settings():
