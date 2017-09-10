@@ -1,0 +1,23 @@
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Received msg: 'interrupt$3_0'
+Adding notification 'Interrupt triggered, value: 0' for device 3
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Received msg: 'interrupt$3_0'
+Adding notification 'Interrupt triggered, value: 0' for device 3
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+192.168.1.7 - - [10/Sep/2017 18:24:57] "GET /device/1/write/1 HTTP/1.1" 404 -
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Received msg: 'interrupt$3_0'
+Adding notification 'Interrupt triggered, value: 0' for device 3
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+192.168.1.7 - - [10/Sep/2017 18:26:36] "GET /device/1/write/1 HTTP/1.1" 404 -
+Exit by user request, performing cleanup...
+Done
