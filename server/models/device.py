@@ -4,6 +4,7 @@ import logging
 
 from .base import *
 from .board import *
+
 import comm_implementation as comm
 import helper
 
@@ -73,6 +74,9 @@ class Device(BaseModel):
             "value": value
         }
         self.get_parent_board().send_data(msg)
+        
+        from .device_reading import Device_reading
+        Device_reading.add(self.id, value)
 
     def on(self):
         self.write(1)
