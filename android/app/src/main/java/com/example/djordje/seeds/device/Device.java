@@ -20,6 +20,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -279,6 +280,7 @@ public class Device {
             if(activity.equals("MainActivity")) {
                 /*view = (ListView) ((MainActivity) cont).findViewById(R.id.charts_wrapper);
                 dAdapter = new DeviceListAdapter(cont, devices_array);*/
+                MainActivity.setAvailable_devices(devices_array);
                 MainActivity.available_devices_names = new String[devices_array.length];
                 MainActivity.available_devices_ids = new int[devices_array.length];
                 int i = 0;
@@ -291,7 +293,6 @@ public class Device {
                 //TODO do we need to add stuff here?
 
             }else if(activity.equals("SettingsActivity")){
-                view = (ListView) ((SettingsActivity) cont).findViewById(R.id.device_schedule_list);
 
                 for (Device dv : devices_array){
                     if (!SettingsActivity.getSelectedDevices().contains(dv.getId()))
@@ -299,8 +300,7 @@ public class Device {
                     else
                         dv.setChecked(true);
                 }
-                dAdapter = new DeviceSettingsAdapter(cont,devices_array);
-                view.setAdapter(dAdapter);
+                //dAdapter = new DeviceSettingsAdapter(cont,devices_array);
 
             }
 

@@ -11,15 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.djordje.seeds.device.Device;
 
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +30,16 @@ public class MainActivity extends AppCompatActivity {
     public static String[] available_devices_names;
     private int[] selectedDevicesIds;
 
+
+    private static Device[] available_devices;
+
+    public static Device[] getAvailable_devices() {
+        return available_devices;
+    }
+
+    public static void setAvailable_devices(Device[] available_devices) {
+        MainActivity.available_devices = available_devices;
+    }
     //ON_SYSTEM_EVENTS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             else
                 startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
 
-            startSettingsActivityIntent.putExtra("AvailableDevices",available_devices_names);
+            //startSettingsActivityIntent.putExtra("AvailableDevices",available_devices_names);
             startSettingsActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivityForResult(startSettingsActivityIntent,SETTINGS_ACTIVITY_REQUEST_CODE);
             return true;
@@ -142,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             case (SETTINGS_ACTIVITY_REQUEST_CODE) : {
                 if (resultCode == RESULT_OK) {
                     selectedDevicesIds = data.getIntArrayExtra("SelectedDevicesIds");
-                    for(int i=0;i<selectedDevicesIds.length;i++) System.out.println("DEV"+selectedDevicesIds[i]);
+
                     Device.showSelected(MainActivity.this,selectedDevicesIds,start_date,end_date);
                 }
                 break;

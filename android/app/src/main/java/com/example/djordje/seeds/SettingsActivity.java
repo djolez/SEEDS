@@ -2,11 +2,16 @@ package com.example.djordje.seeds;
 
 import android.bluetooth.BluetoothClass;
 import android.content.Intent;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.EditText;
 
 import com.example.djordje.seeds.device.Device;
+import com.example.djordje.seeds.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,17 +19,35 @@ import java.util.Arrays;
 public class SettingsActivity extends AppCompatActivity {
     private String[] available_devices;
     private static ArrayList<Integer> available_devices_ids;
+    private static Settings toSave;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        getSupportActionBar().setTitle("Settings");
+        //getSupportActionBar().setTitle("Settings");
         available_devices_ids = new ArrayList();
-        getAvailableDeviceNames();
+        //getAvailableDeviceNames();
+        final EditText polling_interval = (EditText) findViewById(R.id.polling_interval);
+        final EditText checking_interval = (EditText) findViewById(R.id.check_interval);
+        FloatingActionButton done = (FloatingActionButton) findViewById(R.id.settings_done_button);
+        CoordinatorLayout.LayoutParams p = (CoordinatorLayout.LayoutParams) done.getLayoutParams();
+        done.setLayoutParams(p);
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toSave.setCheck_interval_minutes(Integer.parseInt(checking_interval.getText().toString()+""));
+                toSave.setCheck_interval_minutes(Integer.parseInt(polling_interval.getText().toString()+""));
+                toSave.setContext(SettingsActivity.this);
+                toSave.saveSettings();
+            }
+        });
+
         getAvailableDeviceIds();
-        new Device.RetrieveDeviceListTask(SettingsActivity.this, "SettingsActivity").execute();
+        //new Device.RetrieveDeviceListTask(SettingsActivity.this, "SettingsActivity").execute();
+        toSave = new Settings(SettingsActivity.this);
+        toSave.getAllDevices();
     }
 
     private void getAvailableDeviceIds() {
@@ -34,7 +57,6 @@ public class SettingsActivity extends AppCompatActivity {
             return;
 
         for(int i =0 ;i<devs.length;i++){
-            System.out.println(devs[i]);
             available_devices_ids.add(devs[i]);
         }
         //available_devices_ids.addAll(Arrays.asList(this.getIntent().getIntArrayExtra("AvailableDevicesIDs")));
@@ -43,6 +65,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void getAvailableDeviceNames() {
         available_devices =this.getIntent().getStringArrayExtra("AvailableDevices");
+    }
+
+    public static Settings getSettingsToSave(){
+        return toSave;
+    }
+
+    public static void setSettingsToSave(Settings s){
+        toSave = s;
     }
 
     public static void addSelectedDevicesList(Integer id){

@@ -3,79 +3,206 @@ package com.example.djordje.seeds.settings;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.example.djordje.seeds.Helper;
 import com.example.djordje.seeds.MainActivity;
 import com.example.djordje.seeds.R;
+import com.example.djordje.seeds.SettingsActivity;
 import com.example.djordje.seeds.device.Device;
-import com.example.djordje.seeds.device.DeviceAdapter;
+import com.example.djordje.seeds.device.DeviceScheduleAdapter;
+import com.example.djordje.seeds.device.DeviceSettingsAdapter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Calendar;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Djordje on 19-Jul-17.
  */
 
-
-@JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties({"context","devices"})
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Settings {
-    private static  Context context;
+    @JsonIgnore
+    private Context context;
+    @JsonIgnore
+    private DeviceSettingsAdapter dAdapter;
+
     private int check_interval_minutes;
     private int poll_interval_minutes;
-    private List<SensorRange> sensor_ranges;
-    private List<DeviceSchedule> device_schedules;
+    private List<SensorRange> value_ranges;
+    private List<DeviceSchedule> device_schedule;
+    @JsonIgnore
     private List<Device> devices;
 
+    public Settings(){}
+    @JsonIgnore
     public Settings(Context context){
         this.context = context;
     }
-    private class SensorRange {
-        private int device_id;
-        private List<HashMap<Integer, Integer>> range;
-    }
 
-    private class DeviceSchedule {
-        private int device_id;
-        private List<HashMap<Calendar, Calendar>> periods;
-    }
 
+    @JsonIgnore
     public void getAllDevices() {
-        //new RetrieveDevicesTask(this).execute();
-//        new Device.HttpRequestTask().execute();
+        new RetrieveDevicesTask(context).execute();
     }
 
-    public void initData() {
+    @JsonIgnore
+    public void saveSettings(){
 
+        new SendSettingsTask(context,this).execute();
+    }
+
+    @JsonIgnore
+    private View getViewByPosition(int pos, ListView listView) {
+        final int firstListItemPosition = listView.getFirstVisiblePosition();
+        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
+
+        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
+            return dAdapter.getView(pos, null, listView);
+        } else {
+            final int childIndex = pos - firstListItemPosition;
+            return listView.getChildAt(childIndex);
+        }
+    }
+
+    @JsonIgnore
+    public Context getContext() {
+        return context;
+    }
+    @JsonIgnore
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public int getCheck_interval_minutes() {
+        return check_interval_minutes;
+    }
+
+    public void setCheck_interval_minutes(int check_interval_minutes) {
+        this.check_interval_minutes = check_interval_minutes;
+    }
+
+    public int getPoll_interval_minutes() {
+        return poll_interval_minutes;
+    }
+
+    public void setPoll_interval_minutes(int poll_interval_minutes) {
+        this.poll_interval_minutes = poll_interval_minutes;
+    }
+
+    public List<SensorRange> getValue_ranges() {
+        return value_ranges;
+    }
+
+    public void setValue_ranges(List<SensorRange> value_ranges) {
+        this.value_ranges = value_ranges;
+    }
+
+    public List<DeviceSchedule> getDevice_schedule() {
+        return device_schedule;
+    }
+
+    public void setDevice_schedule(List<DeviceSchedule> device_schedule) {
+        this.device_schedule = device_schedule;
+    }
+    @JsonIgnore
+    public List<Device> getDevices() {
+        return devices;
+    }
+    @JsonIgnore
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     //HTTP
-    private static class RetrieveDevicesTask extends AsyncTask<Void, Void, List<Device>> {
-        Settings parent;
 
-        public RetrieveDevicesTask(Settings parent) {
-            this.parent = parent;
+    class SendSettingsTask extends AsyncTask<Void, Void, String> {
+        Context ctx;
+        Settings toSend;
+        public SendSettingsTask(Context context,Settings toSend) {
+            this.ctx = context;
+            this.toSend = toSend;
         }
 
         @Override
-        protected List<Device> doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
             try {
                 //String url = context.getString(R.string.server_address);
-                String url = context.getString(R.string.server_address)+"/board/1/device";
+                String url = ctx.getString(R.string.server_address)+"/settings";
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                //ObjectMapper mapper = new ObjectMapper();
+                //String jsonInString = mapper.writeValueAsString(toSend);
+
+                HttpEntity<Settings> requestEntity = new HttpEntity<Settings>(toSend,headers);
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+
+                String res = restTemplate.postForObject(url,requestEntity,String.class);
+                return res;
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(String a) {
+            System.out.println("RESULT! "+ a);
+            return;
+        }
+
+    }
+    //HTTP
+    class RetrieveDevicesTask extends AsyncTask<Void, Settings, Settings> {
+        Context ctx;
+
+        public RetrieveDevicesTask(Context context) {
+            this.ctx = context;
+        }
+
+        @Override
+        protected Settings doInBackground(Void... params) {
+            try {
+                //String url = context.getString(R.string.server_address);
+                String url = ctx.getString(R.string.server_address)+"/settings";
+
+
 
                 RestTemplate restTemplate = new RestTemplate();
-                List<Device> devices = restTemplate.getForObject(url, List.class);
-                this.parent.devices = devices;
-                return devices;
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
+
+                Settings s = restTemplate.getForObject(url, Settings.class);
+                return s;
             } catch (Exception e) {
                 Log.e("MainActivity", e.getMessage(), e);
             }
@@ -84,23 +211,24 @@ public class Settings {
         }
 
         @Override
-        protected void onPostExecute(List<Device> result) {
-//            System.out.println(result.toString());
+        protected void onPostExecute(Settings result) {
+            ListView view = (ListView) ((SettingsActivity) ctx).findViewById(R.id.device_schedule_list);
+            view.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
+            view.setStackFromBottom(true);
 
-//            ObjectMapper mapper = new ObjectMapper();
-//            Device d;
-//            Device[] devices_array = new Device[result.size()];
-//
-//            for(int i = 0; i < result.size(); i++) {
-//                d = mapper.convertValue(result.get(i), Device.class);
-//                devices_array[i] = d;
-//            }
-//
-//            final ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
-//            DeviceAdapter dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), devices_array);
-//
-//            listview.setAdapter(dAdapter);
+            dAdapter = new DeviceSettingsAdapter(ctx, MainActivity.getAvailable_devices(),result);
+            view.setAdapter(dAdapter);
+
+            EditText poll  = (EditText) ((SettingsActivity) ctx).findViewById(R.id.polling_interval);
+            EditText check = (EditText) ((SettingsActivity) ctx).findViewById(R.id.check_interval);
+            poll.setText(Integer.toString(result.getPoll_interval_minutes()));
+            check.setText(Integer.toString(result.getCheck_interval_minutes()));
+
+            SettingsActivity.setSettingsToSave(result);
         }
 
     }
+
+
 }
+
