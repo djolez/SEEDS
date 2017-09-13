@@ -2,6 +2,7 @@ package com.example.djordje.seeds.device;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -150,11 +151,19 @@ public class Device {
         private int[] devs;
         private Date start_date;
         private Date end_date;
+        private SwipeRefreshLayout refreshLayout;
 
         public RetrieveWithValuesTask (int[] devs, Date start, Date end){
             this.devs = devs;
             this.start_date = start;
             this.end_date = end;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            refreshLayout = (SwipeRefreshLayout) ((MainActivity)context).findViewById(R.id.swiperefresh);
+            if(!refreshLayout.isRefreshing())
+                refreshLayout.setRefreshing(true);
         }
 
         @Override
@@ -195,23 +204,27 @@ public class Device {
         protected void onPostExecute(List<Device> result) {
             ObjectMapper mapper = new ObjectMapper();
             Device d;
+            ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
+            DeviceAdapter dAdapter;
 
-            if(result == null || result.isEmpty())
-                return;
+            if(result == null || result.isEmpty()) {
+                dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), new Device[0]);
+            }else {
+                Device[] devices_array = new Device[result.size()];
 
-            Device[] devices_array = new Device[result.size()];
+                for (int i = 0; i < result.size(); i++) {
+                    d = mapper.convertValue(result.get(i), Device.class);
+                    devices_array[i] = d;
+                }
 
-            for(int i = 0; i < result.size(); i++) {
-                d = mapper.convertValue(result.get(i), Device.class);
-                devices_array[i] = d;
+
+                dAdapter = new DeviceAdapter(((MainActivity) context).getApplicationContext(), devices_array);
             }
 
 
-            ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
-            DeviceAdapter dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), devices_array);
-
+            if(refreshLayout.isRefreshing())
+                refreshLayout.setRefreshing(false);
             listview.setAdapter(dAdapter);
-
             //new Settings(context).getAllDevices();
         }
 
@@ -238,11 +251,19 @@ public class Device {
 
         private String activity;
         private Context cont;
-
+        SwipeRefreshLayout swipeRefreshLayout;
         public RetrieveDeviceListTask(Context context, String activity){
             this.cont = context;
             this.activity = activity;
         }
+
+        @Override
+        protected void onPreExecute() {
+            swipeRefreshLayout = (SwipeRefreshLayout) (((MainActivity)cont).findViewById(R.id.swiperefresh));
+            if(!swipeRefreshLayout.isRefreshing())
+                swipeRefreshLayout.setRefreshing(true);
+        }
+
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
@@ -273,6 +294,7 @@ public class Device {
             for (int i = 0; i < result.size(); i++) {
                 d = mapper.convertValue(result.get(i), Device.class);
                 devices_array[i] = d;
+                devices_array[i].setChecked(true);
             }
 
             ListView view = null;
@@ -280,6 +302,7 @@ public class Device {
             if(activity.equals("MainActivity")) {
                 /*view = (ListView) ((MainActivity) cont).findViewById(R.id.charts_wrapper);
                 dAdapter = new DeviceListAdapter(cont, devices_array);*/
+
                 MainActivity.setAvailable_devices(devices_array);
                 MainActivity.available_devices_names = new String[devices_array.length];
                 MainActivity.available_devices_ids = new int[devices_array.length];

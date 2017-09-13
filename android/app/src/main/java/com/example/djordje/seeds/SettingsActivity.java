@@ -26,7 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        //getSupportActionBar().setTitle("Settings");
         available_devices_ids = new ArrayList();
         //getAvailableDeviceNames();
         final EditText polling_interval = (EditText) findViewById(R.id.polling_interval);
@@ -41,6 +40,7 @@ public class SettingsActivity extends AppCompatActivity {
                 toSave.setCheck_interval_minutes(Integer.parseInt(polling_interval.getText().toString()+""));
                 toSave.setContext(SettingsActivity.this);
                 toSave.saveSettings();
+
             }
         });
 
@@ -76,7 +76,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public static void addSelectedDevicesList(Integer id){
-        available_devices_ids.add(id);
+        if(!available_devices_ids.contains(id))
+            available_devices_ids.add(id);
     }
     public static void removeSelectedDevicesList(Integer id){
         available_devices_ids.remove(id);
