@@ -3,39 +3,25 @@ package com.example.djordje.seeds.settings;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.djordje.seeds.MainActivity;
 import com.example.djordje.seeds.R;
 import com.example.djordje.seeds.SettingsActivity;
 import com.example.djordje.seeds.device.Device;
-import com.example.djordje.seeds.device.DeviceScheduleAdapter;
 import com.example.djordje.seeds.device.DeviceSettingsAdapter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
 
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,26 +53,13 @@ public class Settings {
 
     @JsonIgnore
     public void getAllDevices() {
-        new RetrieveDevicesTask(context).execute();
+        new RetrieveSettingsTask(context).execute();
     }
 
     @JsonIgnore
     public void saveSettings(){
 
         new SendSettingsTask(context,this).execute();
-    }
-
-    @JsonIgnore
-    private View getViewByPosition(int pos, ListView listView) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
-            return dAdapter.getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
-        }
     }
 
     @JsonIgnore
@@ -182,10 +155,10 @@ public class Settings {
 
     }
     //HTTP
-    class RetrieveDevicesTask extends AsyncTask<Void, Settings, Settings> {
+    class RetrieveSettingsTask extends AsyncTask<Void, Settings, Settings> {
         Context ctx;
 
-        public RetrieveDevicesTask(Context context) {
+        public RetrieveSettingsTask(Context context) {
             this.ctx = context;
         }
 
@@ -213,8 +186,6 @@ public class Settings {
         @Override
         protected void onPostExecute(Settings result) {
             ListView view = (ListView) ((SettingsActivity) ctx).findViewById(R.id.device_schedule_list);
-            view.setTranscriptMode(ListView.TRANSCRIPT_MODE_NORMAL);
-            view.setStackFromBottom(true);
 
             dAdapter = new DeviceSettingsAdapter(ctx, MainActivity.getAvailable_devices(),result);
             view.setAdapter(dAdapter);

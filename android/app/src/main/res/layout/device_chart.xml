@@ -8,10 +8,22 @@
         android:layout_height="wrap_content"
         android:weightSum="1">
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Device: "
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold"/>
+        <TextView
             android:id="@+id/device_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last value: "
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/last_value"
             android:layout_width="wrap_content"

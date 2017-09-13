@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.djordje.seeds.MainActivity"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:showIn="@layout/activity_main">
 
     <RelativeLayout
@@ -14,47 +19,113 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
+
         <LinearLayout
             android:id="@+id/datepicker_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="1">
-            <TextView
-                android:id="@+id/datepicker_start"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:background="@drawable/border"
                 android:layout_weight="0.5"
-                />
-            <TextView
-                android:id="@+id/datepicker_end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                 />
-        </LinearLayout>
+                android:layout_marginRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/date_picker_title_from"
+                    android:text="From"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:textColor="@color/textColorSecondary"
+                    android:id="@+id/datepicker_start"
+                    android:layout_below="@id/date_picker_title_from"
+                    android:text="ciao"
+                    android:textSize="15sp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
-        <LinearLayout
-            android:id="@+id/button_layout"
-            android:layout_below="@id/datepicker_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
-            <Button
-                android:id="@+id/button_search"
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Search"/>
+                android:background="@drawable/border"
+                android:layout_weight="0.5"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/date_picker_title_to"
+                    android:text="To"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:layout_below="@id/date_picker_title_to"
+                    android:textColor="@color/textColorSecondary"
+                    android:id="@+id/datepicker_end"
+                    android:text="ciao"
+                    android:textSize="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/separator"
+            android:layout_below="@id/datepicker_linear_layout"
+            android:backgroundTint="@color/colorPrimary"
+            android:background="@android:color/darker_gray"/>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:layout_below="@id/separator"
+            android:id="@+id/swiperefresh"
+            
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/charts_wrapper"
+                android:layout_width="wrap_content"
+                android:divider="@color/colorPrimary"
+                android:dividerHeight="1dp"
+                android:layout_height="match_parent">
+            </ListView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/charts_wrapper"
-        android:layout_below="@id/search_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-    </ListView>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchorGravity="bottom|right|end"
+        android:src="@drawable/ic_search"
+        android:elevation="0dp"
+        app:layout_anchor="@id/charts_wrapper"
+        tools:targetApi="lollipop" />
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
@@ -64,4 +135,4 @@
         <!--app:layout_constraintRight_toRightOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent" />-->
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

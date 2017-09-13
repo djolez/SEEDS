@@ -18,6 +18,11 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="SETTINGS"
             app:titleTextColor="@color/mdtp_white"
+            app:logo="@drawable/ic_seeds_icon"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:logoDescription="SETTINGS"
+            app:titleMarginStart="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -40,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="18sp"
                     android:text="Polling interval (minutes): "/>
                 <EditText
@@ -58,11 +64,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="18sp"
                     android:text="Check Interval (minutes): "/>
                 <EditText
                     android:layout_width="80sp"
                     android:id="@+id/check_interval"
+                    android:gravity="center"
                     android:textAlignment="center"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -70,11 +78,14 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:backgroundTint="@color/colorPrimary"
             android:background="@android:color/darker_gray"/>
 
         <ListView
             android:id="@+id/device_schedule_list"
             android:layout_width="match_parent"
+            android:divider="@color/colorPrimary"
+            android:dividerHeight="1dip"
             android:descendantFocusability="afterDescendants"
             android:layout_height="wrap_content">
         </ListView>

@@ -3,6 +3,7 @@ package com.example.djordje.seeds;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,11 +12,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.djordje.seeds.device.Device;
+import com.example.djordje.seeds.device.DeviceAdapter;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,13 +29,13 @@ public class MainActivity extends AppCompatActivity {
     public static Date end_date = new Date();
     TextView start_date_text;
     TextView end_date_text;
-    Button search_button;
     public static int[] available_devices_ids;
     public static String[] available_devices_names;
     private int[] selectedDevicesIds;
 
 
     private static Device[] available_devices;
+    private SwipeRefreshLayout refreshLayout;
 
     public static Device[] getAvailable_devices() {
         return available_devices;
@@ -48,13 +52,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDevicePicker();
-            }
-        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_search);
 
         //CONFIGURE DATE FIELDS
         start_date_text = (TextView) findViewById(R.id.datepicker_start);
@@ -79,37 +77,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //SEARCH BUTTON
-        search_button = (Button) findViewById(R.id.button_search);
-        search_button.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO: read settings from local storage
-                
+
                 Device.showSelected(getApplicationContext(), selectedDevicesIds, start_date, end_date);
             }
         });
 
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        refreshLayout.setColorSchemeResources(
+                R.color.colorAccent,
+                R.color.colorPrimaryDark,
+                R.color.colorPrimary);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if(selectedDevicesIds==null) //this is the first time you call this, it means you never selected devices to show
+                    Device.showSelected(getApplicationContext(), available_devices_ids, start_date, end_date);
+                else
+                    Device.showSelected(getApplicationContext(), selectedDevicesIds, start_date, end_date);
+
+            }
+        });
         new Device.RetrieveDeviceListTask(MainActivity.this,"MainActivity").execute();
     }
 
-    private void showDevicePicker() {
-        final View dialogView = View.inflate(this, R.layout.device_picker_dialog, null);
-        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-
-        alertDialog.setView(dialogView);
-        alertDialog.show();
-    }
-
     @Override
-    protected void onStart() {
-        super.onStart();
-        //TODO: read settings from local storage
-
-
-//        new HttpRequestTask().execute();
+    public void onBackPressed() {
+        if(refreshLayout.isRefreshing())
+            refreshLayout.setRefreshing(false);
+        this.finish();
+        super.onBackPressed();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             case (SETTINGS_ACTIVITY_REQUEST_CODE) : {
                 if (resultCode == RESULT_OK) {
                     selectedDevicesIds = data.getIntArrayExtra("SelectedDevicesIds");
-
+                    System.out.println(Arrays.toString(selectedDevicesIds));
                     Device.showSelected(MainActivity.this,selectedDevicesIds,start_date,end_date);
                 }
                 break;

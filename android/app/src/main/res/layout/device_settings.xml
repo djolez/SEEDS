@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="18sp"
+                android:textColor="@color/textColorPrimary"
                 android:text="Device: "/>
             <TextView
                 android:id="@+id/device_settings_name"
@@ -33,10 +34,12 @@
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:textAlignment="center"
+                android:textColor="@color/textColorSecondary"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textColorPrimary"
                 android:layout_marginLeft="50dp"
                 android:layout_gravity="center"
                 android:textStyle="bold"
@@ -47,6 +50,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
+                android:textColor="@color/textColorSecondary"
                 android:layout_height="wrap_content"/>
             <!-- Dummy view to move checkbox to the end -->
             <View
@@ -73,6 +77,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textColorPrimary"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:text="Value ranges: "/>
@@ -91,6 +96,7 @@
                 <TextView
                     android:id="@+id/value_range_max"
                     android:layout_width="80dp"
+                    android:textColor="@color/textColorSecondary"
                     android:layout_height="wrap_content"/>
              </LinearLayout>
             <LinearLayout
@@ -108,11 +114,13 @@
                 <TextView
                     android:layout_width="80dp"
                     android:id="@+id/value_range_min"
+                    android:textColor="@color/textColorSecondary"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textColorPrimary"
                 android:textStyle="bold"
                 android:layout_marginTop="15dp"
                 android:textSize="18sp"
@@ -135,12 +143,13 @@
                         android:layout_width="80dp"
                         android:textAlignment="center"
                         android:maxLength="2"
+                        android:textColor="@color/textColorSecondary"
                         android:layout_height="wrap_content"
-                        android:inputType="textNoSuggestions"
                         android:hint="hour"/>
                     <TextView
                         android:id="@+id/schedule_on_minute"
                         android:layout_width="80dp"
+                        android:textColor="@color/textColorSecondary"
                         android:textAlignment="center"
                         android:maxLength="2"
                         android:layout_height="wrap_content"
@@ -149,6 +158,7 @@
                     <TextView
                         android:id="@+id/schedule_on_sec"
                         android:layout_width="80dp"
+                        android:textColor="@color/textColorSecondary"
                         android:textAlignment="center"
                         android:maxLength="2"
                         android:layout_height="wrap_content"
@@ -171,6 +181,7 @@
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textColor="@color/textColorSecondary"
                     android:layout_height="wrap_content"
                     android:hint="hour"/>
                 <TextView
@@ -178,12 +189,14 @@
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textColor="@color/textColorSecondary"
                     android:layout_height="wrap_content"
                     android:hint="min"/>
                 <TextView
                     android:id="@+id/schedule_off_sec"
                     android:layout_width="80dp"
                     android:textAlignment="center"
+                    android:textColor="@color/textColorSecondary"
                     android:maxLength="2"
                     android:layout_height="wrap_content"
                     android:hint="sec"/>
@@ -192,11 +205,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/edit_button"
         android:layout_width="wrap_content"
-        android:text="EDIT"
         android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ic_action_name"
         android:layout_marginTop="15dp"
         android:layout_below="@id/device_settings_wrapper_layout"
         android:layout_alignParentRight="true"/>

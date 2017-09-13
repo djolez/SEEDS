@@ -2,6 +2,7 @@ package com.example.djordje.seeds.device;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,7 +43,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
     private String[] offSecondString;
     private String[] minValueString;
     private String[] maxValueString;
-    private int currentlyFocusedRow;
     List<SensorRange> value_ranges;
     List<DeviceSchedule> device_schedule;
 
@@ -105,7 +106,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 DeviceScheduleAdapter.setListViewHeightBasedOnChildren(scheduleList);
             }
         }*/
-        Button editButton = convertView.findViewById(R.id.edit_button);
+        ImageButton editButton = convertView.findViewById(R.id.edit_button);
         TextView deviceName = (TextView) convertView.findViewById(R.id.device_settings_name);
         final TextView deviceID = (TextView) convertView.findViewById(R.id.device_settings_id);
         final CheckBox selected = (CheckBox) convertView.findViewById(R.id.device_selected_checkbox);
@@ -132,8 +133,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         else
             selected.setChecked(false);
 
-        if(currentlyFocusedRow == position)
-            scheduleOnHour.requestFocus();
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,7 +209,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                     sensorRange.setMax_value(Integer.parseInt(maxValueString[position]!= null && !maxValueString[position].isEmpty()? maxValueString[position] : "0"));
                     sensorRange.setMin_value(Integer.parseInt(minValueString[position]!=null && !minValueString[position].isEmpty()? minValueString[position]: "0"));
                     sensorRange.setDevice_id(Integer.parseInt(deviceID.getText().toString()));
-                    value_ranges.add(position,sensorRange);
+                    value_ranges.add(sensorRange);
 
                     on.setHour(Integer.parseInt(onHourString[position]!=null && !onHourString[position].isEmpty()? onHourString[position]: "00"));
                     on.setMinute(Integer.parseInt(onMinuteString[position] != null && onMinuteString[position].isEmpty()? onMinuteString[position]: "00"));
@@ -223,7 +222,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                     schedule.add(s);
 
                     deviceSchedule.setId(Integer.parseInt(deviceID.getText().toString()));
-                    device_schedule.add(position,deviceSchedule);
+                    device_schedule.add(deviceSchedule);
 
 
                     settingsToSave.setValue_ranges(value_ranges);
