@@ -1,0 +1,1 @@
+{"poll_interval_minutes": 0, "device_schedule": [{"id": 1, "schedule": [{"on": {"minute": 6, "second": 9, "hour": 3}, "off": {"minute": 7, "second": 9, "hour": 5}}]}], "check_interval_minutes": 0, "value_ranges": [{"max_value": 6, "device_id": 1, "min_value": 5}]}

@@ -38,11 +38,12 @@ def get_devices_by_board_id(id):
     try:
         board = Board.get_by_id(id)
         res = []
-
-        for d in board.devices:
-            if(d.parent_id is None):
-                d.sub_devices = d.get_sub_devices()
-                res.append(d)
+        
+        if(board):
+            for d in board.devices:
+                if(d.parent_id is None):
+                    d.sub_devices = d.get_sub_devices()
+                    res.append(d)
 
         return jsonify(helper.list_to_dict(res))
     except Board.DoesNotExist:
@@ -139,6 +140,8 @@ def get_settings():
 def save_settings():
     try:
         data = request.get_json(force = True)
+        print(data)
+        
         global_vars.SETTINGS = data
 
         gh.save_settings_to_file()
