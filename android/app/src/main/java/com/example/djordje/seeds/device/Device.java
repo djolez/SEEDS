@@ -1,11 +1,14 @@
 package com.example.djordje.seeds.device;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.djordje.seeds.Helper;
 import com.example.djordje.seeds.MainActivity;
@@ -22,6 +25,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.lang.reflect.Array;
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -142,7 +146,7 @@ public class Device {
         if(context == null)
             context = ctx;
 
-        RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end);
+        RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end,ctx);
         r.execute();
     }
 
@@ -152,24 +156,29 @@ public class Device {
         private Date start_date;
         private Date end_date;
         private SwipeRefreshLayout refreshLayout;
+        private Context context;
 
-        public RetrieveWithValuesTask (int[] devs, Date start, Date end){
+        public RetrieveWithValuesTask (int[] devs, Date start, Date end, Context context){
             this.devs = devs;
             this.start_date = start;
             this.end_date = end;
+            this.context = context;
         }
 
         @Override
         protected void onPreExecute() {
-            refreshLayout = (SwipeRefreshLayout) ((MainActivity)context).findViewById(R.id.swiperefresh);
-            if(!refreshLayout.isRefreshing())
-                refreshLayout.setRefreshing(true);
+            refreshLayout = (SwipeRefreshLayout) ((MainActivity) context).findViewById(R.id.swiperefresh);
+            refreshLayout.setRefreshing(true);
+
         }
 
         @Override
         protected List<Device> doInBackground(Void... params) {
             try {
-
+                /*if(!isInternetAvailable() || !isNetworkConnected(context)){
+                    Log.d("Device class","doinbackground");
+                    return null;
+                }*/
                 String url = context.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
                 url += "/device/from/";
                 // TODO: Change with the values that the user selected
@@ -183,19 +192,17 @@ public class Device {
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 MultiValueMap<String,Integer> map = new LinkedMultiValueMap<>();
 
-                if(devs == null || devs.length == 0)
-                    return null;
 
                 for (int id : this.devs) {
                     map.add("ids", id);
                 }
+
 
                 List<Device> devices = restTemplate.postForObject(url, map, List.class);
                 return devices;
             } catch (Exception e) {
                 Log.e("MainActivity", e.getMessage(), e);
             }
-
             return null;
         }
 
@@ -206,9 +213,12 @@ public class Device {
             Device d;
             ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
             DeviceAdapter dAdapter;
+            TextView noDataText = (TextView) ((MainActivity)context).findViewById(R.id.no_data_available_mainactivity);
 
             if(result == null || result.isEmpty()) {
-                dAdapter = new DeviceAdapter(((MainActivity)context).getApplicationContext(), new Device[0]);
+                noDataText.setVisibility(View.VISIBLE);
+                listview.setVisibility(View.INVISIBLE);
+                Log.d("Device class","listview "+listview.getVisibility());
             }else {
                 Device[] devices_array = new Device[result.size()];
 
@@ -217,15 +227,14 @@ public class Device {
                     devices_array[i] = d;
                 }
 
+                dAdapter = new DeviceAdapter(((MainActivity) context), devices_array);
 
-                dAdapter = new DeviceAdapter(((MainActivity) context).getApplicationContext(), devices_array);
+                noDataText.setVisibility(View.INVISIBLE);
+                listview.setVisibility(View.VISIBLE);
+                listview.setAdapter(dAdapter);
             }
-
-
-            if(refreshLayout.isRefreshing())
-                refreshLayout.setRefreshing(false);
-            listview.setAdapter(dAdapter);
-            //new Settings(context).getAllDevices();
+            refreshLayout.setRefreshing(false);
+            //new Settings(context).getAllSettings();
         }
 
         public Date getStart_date() {
@@ -251,22 +260,17 @@ public class Device {
 
         private String activity;
         private Context cont;
-        SwipeRefreshLayout swipeRefreshLayout;
         public RetrieveDeviceListTask(Context context, String activity){
             this.cont = context;
             this.activity = activity;
         }
 
         @Override
-        protected void onPreExecute() {
-            swipeRefreshLayout = (SwipeRefreshLayout) (((MainActivity)cont).findViewById(R.id.swiperefresh));
-            if(!swipeRefreshLayout.isRefreshing())
-                swipeRefreshLayout.setRefreshing(true);
-        }
-
-        @Override
         protected List<Device> doInBackground(Void... params) {
             try {
+                /*if(!isNetworkConnected(cont) || !isInternetAvailable()) {
+                    return null;
+                }*/
                 String url = cont.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
                 url += "/board/1/device";
 
@@ -286,8 +290,11 @@ public class Device {
             ObjectMapper mapper = new ObjectMapper();
             Device d;
 
-            if(result == null || result.isEmpty())
+            if(result == null || result.isEmpty()) {
+                //dummy request.
+                Device.showSelected(cont, new int[0], MainActivity.start_date, MainActivity.end_date);
                 return;
+            }
 
             Device[] devices_array = new Device[result.size()];
 
@@ -297,40 +304,36 @@ public class Device {
                 devices_array[i].setChecked(true);
             }
 
-            ListView view = null;
-            ArrayAdapter dAdapter = null;
-            if(activity.equals("MainActivity")) {
-                /*view = (ListView) ((MainActivity) cont).findViewById(R.id.charts_wrapper);
-                dAdapter = new DeviceListAdapter(cont, devices_array);*/
-
-                MainActivity.setAvailable_devices(devices_array);
-                MainActivity.available_devices_names = new String[devices_array.length];
-                MainActivity.available_devices_ids = new int[devices_array.length];
-                int i = 0;
-                for (Device dv :devices_array) {
-                    MainActivity.available_devices_ids[i] = dv.getId();
-                    MainActivity.available_devices_names[i] = dv.getName();
-                    i++;
-                }
-
-                //TODO do we need to add stuff here?
-
-            }else if(activity.equals("SettingsActivity")){
-
-                for (Device dv : devices_array){
-                    if (!SettingsActivity.getSelectedDevices().contains(dv.getId()))
-                        dv.setChecked(false);
-                    else
-                        dv.setChecked(true);
-                }
-                //dAdapter = new DeviceSettingsAdapter(cont,devices_array);
-
+            MainActivity.setAvailable_devices(devices_array);
+            MainActivity.available_devices_names = new String[devices_array.length];
+            MainActivity.available_devices_ids = new int[devices_array.length];
+            int i = 0;
+            for (Device dv :devices_array) {
+                MainActivity.available_devices_ids[i] = dv.getId();
+                MainActivity.available_devices_names[i] = dv.getName();
+                i++;
             }
 
+            //TODO do we need to add stuff here?
             Device.showSelected(cont, MainActivity.available_devices_ids, MainActivity.start_date, MainActivity.end_date);
-            //new Settings(cont).getAllDevices();
         }
 
     }
 
+    public static boolean isNetworkConnected(Context c) {
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+    public static boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("google.com"); //You can replace it with your name
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            Log.d("Device class","internet not available");
+            return false;
+        }
+
+    }
 }

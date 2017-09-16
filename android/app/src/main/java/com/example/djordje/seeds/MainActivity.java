@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -83,8 +84,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: read settings from local storage
-
-                Device.showSelected(getApplicationContext(), selectedDevicesIds, start_date, end_date);
+                if(selectedDevicesIds==null) //this is the first time you call this, it means you never selected devices to show
+                    Device.showSelected(MainActivity.this, available_devices_ids, start_date, end_date);
+                else
+                    Device.showSelected(MainActivity.this, selectedDevicesIds, start_date, end_date);
             }
         });
 
@@ -97,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 if(selectedDevicesIds==null) //this is the first time you call this, it means you never selected devices to show
-                    Device.showSelected(getApplicationContext(), available_devices_ids, start_date, end_date);
+                    Device.showSelected(MainActivity.this, available_devices_ids, start_date, end_date);
                 else
-                    Device.showSelected(getApplicationContext(), selectedDevicesIds, start_date, end_date);
+                    Device.showSelected(MainActivity.this, selectedDevicesIds, start_date, end_date);
 
             }
         });

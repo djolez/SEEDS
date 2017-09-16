@@ -30,7 +30,13 @@
                 android:id="@+id/date_time_set"
                 android:layout_below="@id/time_picker"
                 android:layout_width="match_parent"
+                android:background="@color/colorAccent"
+                android:textColor="@color/mdtp_white"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:text="Set"
+
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </ScrollView>

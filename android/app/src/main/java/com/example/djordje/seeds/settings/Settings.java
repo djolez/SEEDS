@@ -2,7 +2,10 @@ package com.example.djordje.seeds.settings;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -52,7 +55,7 @@ public class Settings {
 
 
     @JsonIgnore
-    public void getAllDevices() {
+    public void getAllSettings() {
         new RetrieveSettingsTask(context).execute();
     }
 
@@ -141,6 +144,8 @@ public class Settings {
                 return res;
             } catch (Exception e) {
                 Log.e("MainActivity", e.getMessage(), e);
+                Snackbar.make(((SettingsActivity)context).findViewById(R.id.settings_main_linearlayout), "An error occured while saving settings on server", Snackbar.LENGTH_LONG)
+                        .show();
             }
 
             return null;
@@ -149,7 +154,12 @@ public class Settings {
 
         @Override
         protected void onPostExecute(String a) {
-            System.out.println("RESULT! "+ a);
+            if(a.equals("OK"))
+                Snackbar.make(((SettingsActivity)context).findViewById(R.id.settings_main_linearlayout), "Settings correctly saved on server", Snackbar.LENGTH_LONG)
+                    .show();
+            else
+                Snackbar.make(((SettingsActivity)context).findViewById(R.id.settings_main_linearlayout), "An error occured while saving settings on server", Snackbar.LENGTH_LONG)
+                        .show();
             return;
         }
 
@@ -192,8 +202,10 @@ public class Settings {
 
             EditText poll  = (EditText) ((SettingsActivity) ctx).findViewById(R.id.polling_interval);
             EditText check = (EditText) ((SettingsActivity) ctx).findViewById(R.id.check_interval);
-            poll.setText(Integer.toString(result.getPoll_interval_minutes()));
-            check.setText(Integer.toString(result.getCheck_interval_minutes()));
+            if(result!=null) {
+                poll.setText(Integer.toString(result.getPoll_interval_minutes()));
+                check.setText(Integer.toString(result.getCheck_interval_minutes()));
+            }
 
             SettingsActivity.setSettingsToSave(result);
         }
