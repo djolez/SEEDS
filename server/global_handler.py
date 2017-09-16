@@ -271,12 +271,28 @@ def add_test_values():
 
     temp, c = models.device.Device.get_or_create(
             name = "ds18b20",
-            type = 2,
+            type = 0,
             board_id = b.id
             )
     if c:
         temp.save()
+    
+    switch, c = models.device.Device.get_or_create(
+            name = "water level",
+            type = 3,
+            board_id = b.id
+            )
+    if c:
+        switch.save()
 
+    relay, c = models.device.Device.get_or_create(
+            name = "relay",
+            type = 2,
+            board_id = b.id
+            )
+    if c:
+        relay.save()
+    
     now = datetime.now()
 
     for v in randomize_values(60, 20, 70):

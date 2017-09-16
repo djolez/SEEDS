@@ -6,7 +6,7 @@ import logging
 import config
 import global_handler as gh
 
-serial_conn = serial.Serial(config.SERIAL_PORT, config.SERIAL_BAUD_RATE, write_timeout = 1)
+#serial_conn = serial.Serial(config.SERIAL_PORT, config.SERIAL_BAUD_RATE, write_timeout = 1)
 logger = logging.getLogger(__name__)
 
 def send_msg(msg):
