@@ -88,6 +88,7 @@
 
             </RelativeLayout>
         </LinearLayout>
+        
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -96,6 +97,7 @@
             android:layout_below="@id/datepicker_linear_layout"
             android:backgroundTint="@color/colorPrimary"
             android:background="@android:color/darker_gray"/>
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:layout_below="@id/separator"
             android:id="@+id/swiperefresh"
@@ -111,8 +113,21 @@
             </ListView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:id="@+id/no_data_available_mainactivity"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="No data available."
+            android:layout_below="@id/separator"/>
     </RelativeLayout>
+
 
 
     <android.support.design.widget.FloatingActionButton

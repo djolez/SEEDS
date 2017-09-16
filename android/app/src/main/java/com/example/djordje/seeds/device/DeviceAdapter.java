@@ -2,6 +2,7 @@ package com.example.djordje.seeds.device;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -162,15 +163,16 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
     }
 
     private boolean isDeviceReadingEmpty(Device device) {
+        if(device==null) return true;
 
-        if(device.getSub_devices().size() > 0) {
+        if( device.getSub_devices() != null && device.getSub_devices().size() > 0) {
             for(Device sd: device.getSub_devices()) {
                 if(!sd.getValues().isEmpty())
                     return false;
             }
         }
 
-        if(device.getValues().size() > 0)
+        if(device.getValues()!=null && device.getValues().size() > 0)
             return false;
         return true;
     }
