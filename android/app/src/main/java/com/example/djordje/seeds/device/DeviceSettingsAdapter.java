@@ -117,8 +117,8 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         final TextView scheduleOffHour = (TextView) convertView.findViewById(R.id.schedule_off_hour);
         final TextView scheduleOffMinute = (TextView) convertView.findViewById(R.id.schedule_off_minute);
         final TextView scheduleOffSecond = (TextView) convertView.findViewById(R.id.schedule_off_sec);
-        final TextView minValue = (TextView) convertView.findViewById(R.id.value_range_max);
-        final TextView maxValue= (TextView) convertView.findViewById(R.id.value_range_min);
+        final TextView minValue = (TextView) convertView.findViewById(R.id.value_range_min);
+        final TextView maxValue= (TextView) convertView.findViewById(R.id.value_range_max);
 
         final Device d = this.devices[position];
 
