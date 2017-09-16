@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,13 +68,12 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
         //Set the values in the settings layout to the ones retrieved from server, but do it only once(constructor)!
         for(int position=0 ;position<devices.length;position++) {
-            if (settings != null && settings.getDevice_schedule() != null && settings.getValue_ranges() != null && devices[position].getId() == settings.getValue_ranges().get(0).getDevice_id()) {
-                if (settings.getValue_ranges() != null && settings.getValue_ranges().get(position) != null) {
-                    SensorRange tmp = settings.getValue_ranges().get(position);
-                    minValueString[position] = tmp.getMin_value() + "";
-                    maxValueString[position] = tmp.getMax_value() + "";
-                }
-                if (settings.getDevice_schedule().get(position) != null && settings.getDevice_schedule().get(position).getSchedule() != null) {
+            if (settings != null && settings.getValue_ranges() != null && settings.getValue_ranges().get(0) != null && devices[position].getId() == settings.getValue_ranges().get(0).getDevice_id()) {
+                SensorRange tmp = settings.getValue_ranges().get(position);
+                minValueString[position] = tmp.getMin_value() + "";
+                maxValueString[position] = tmp.getMax_value() + "";
+
+                if (settings.getDevice_schedule() != null && settings.getDevice_schedule().get(position) != null && settings.getDevice_schedule().get(position).getSchedule() != null) {
                     Timing on = settings.getDevice_schedule().get(position).getSchedule().get(0).getOn();
                     Timing off = settings.getDevice_schedule().get(position).getSchedule().get(0).getOff();
                     onHourString[position] = "" + on.getHour();
@@ -119,8 +119,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         final TextView scheduleOffSecond = (TextView) convertView.findViewById(R.id.schedule_off_sec);
         final TextView minValue = (TextView) convertView.findViewById(R.id.value_range_max);
         final TextView maxValue= (TextView) convertView.findViewById(R.id.value_range_min);
-
-        settingsToSave = new Settings();
 
         final Device d = this.devices[position];
 
@@ -184,7 +182,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
                 // show it
                 alertDialog.show();
             }
@@ -196,6 +193,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
             @Override
             public void onClick(View view) {
                 if(selected.isChecked()) {
+                    settingsToSave = SettingsActivity.getSettingsToSave();
                     SettingsActivity.addSelectedDevicesList(new Integer(d.getId()));
                     d.setChecked(true);
 
@@ -209,10 +207,14 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                     sensorRange.setMax_value(Integer.parseInt(maxValueString[position]!= null && !maxValueString[position].isEmpty()? maxValueString[position] : "0"));
                     sensorRange.setMin_value(Integer.parseInt(minValueString[position]!=null && !minValueString[position].isEmpty()? minValueString[position]: "0"));
                     sensorRange.setDevice_id(Integer.parseInt(deviceID.getText().toString()));
-                    value_ranges.add(sensorRange);
+
+                    if(value_ranges.size()<=position)
+                        value_ranges.add(sensorRange);
+                    else
+                        value_ranges.set(position,sensorRange);
 
                     on.setHour(Integer.parseInt(onHourString[position]!=null && !onHourString[position].isEmpty()? onHourString[position]: "00"));
-                    on.setMinute(Integer.parseInt(onMinuteString[position] != null && onMinuteString[position].isEmpty()? onMinuteString[position]: "00"));
+                    on.setMinute(Integer.parseInt(onMinuteString[position] != null && !onMinuteString[position].isEmpty()? onMinuteString[position]: "00"));
                     on.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()?onSecondString[position] : "00"));
                     off.setHour(Integer.parseInt(offHourString[position]!=null && !offHourString[position].isEmpty()? offHourString[position]:"00"));
                     off.setMinute(Integer.parseInt(offMinuteString[position]!=null && !offMinuteString[position].isEmpty()? offMinuteString[position] : "00"));
@@ -222,8 +224,12 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                     schedule.add(s);
 
                     deviceSchedule.setId(Integer.parseInt(deviceID.getText().toString()));
-                    device_schedule.add(deviceSchedule);
+                    deviceSchedule.setSchedule(schedule);
 
+                    if(device_schedule.size()<=position)
+                        device_schedule.add(deviceSchedule);
+                    else
+                        device_schedule.set(position,deviceSchedule);
 
                     settingsToSave.setValue_ranges(value_ranges);
                     settingsToSave.setDevice_schedule(device_schedule);
@@ -242,8 +248,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         deviceID.setText(""+d.getId());
 
 
-
-
         scheduleOffSecond.setText(offSecondString[position]);
         scheduleOffMinute.setText(offMinuteString[position]);
         scheduleOffHour.setText(offHourString[position]);
@@ -255,7 +259,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
         return convertView;
     }
-
 
 
 }
