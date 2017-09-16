@@ -23,18 +23,19 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:text="Device: "/>
             <TextView
                 android:id="@+id/device_settings_name_dialog"
                 android:layout_width="100dp"
                 android:layout_gravity="center"
+                android:textSize="15sp"
+                android:text="ciao"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"/>
-
-
-
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,7 +46,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Value range: "/>
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorPrimary"
+                android:text="Value ranges "/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,10 +59,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorSecondary"
                     android:text="max: "/>
                 <EditText
                     android:id="@+id/value_range_max_dialog"
                     android:layout_width="80dp"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
@@ -70,15 +78,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorSecondary"
                     android:text="min : "/>
                 <EditText
                     android:layout_width="80dp"
+                    android:textSize="15sp"
                     android:id="@+id/value_range_min_dialog"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/textColorPrimary"
                 android:text="Schedule: "/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,6 +105,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorSecondary"
                     android:text="On: "/>
                 <EditText
                     android:id="@+id/schedule_on_hour_dialog"
@@ -98,12 +116,14 @@
                     android:maxLength="2"
                     android:layout_height="wrap_content"
                     android:inputType="textNoSuggestions"
+                    android:textSize="15sp"
                     android:hint="hour"/>
                 <EditText
                     android:id="@+id/schedule_on_minute_dialog"
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
                     android:hint="min"/>
                 <EditText
@@ -111,6 +131,7 @@
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
                     android:hint="sec"/>
             </LinearLayout>
@@ -123,12 +144,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColorSecondary"
                     android:text="Off: "/>
                 <EditText
                     android:id="@+id/schedule_off_hour_dialog"
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
                     android:hint="hour"/>
                 <EditText
@@ -136,6 +161,7 @@
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
                     android:hint="min"/>
                 <EditText
@@ -143,6 +169,7 @@
                     android:layout_width="80dp"
                     android:textAlignment="center"
                     android:maxLength="2"
+                    android:textSize="15sp"
                     android:layout_height="wrap_content"
                     android:hint="sec"/>
             </LinearLayout>
