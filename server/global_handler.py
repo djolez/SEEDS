@@ -147,7 +147,7 @@ def apply_settings():
          
         actions["data_polling"] = Action(
             "data_poll_all",
-            repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+            repeat=Time(minute=global_vars.SETTINGS["poll_interval_minutes"]),
             callbacks=[gh.retrieve_data_all_boards]
             )
         actions["data_polling"].schedule()
@@ -156,7 +156,7 @@ def apply_settings():
         
         actions["analyze_values"] = Action(
             "analyze_values",
-            repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+            repeat=Time(minute=global_vars.SETTINGS["check_interval_minutes"]),
             callbacks=[analyze_db_values],
             )
         actions["analyze_values"].schedule()
@@ -195,8 +195,8 @@ def save_settings_to_file(reload_actions = True):
         with open("settings.json", "w") as file:
             file.write(json.dumps(global_vars.SETTINGS))
         #TODO: uncomment
-        #if(reload_actions):
-        #    apply_settings()
+        if(reload_actions):
+            apply_settings()
     except Exception as e:
         logger.exception(e)
 
