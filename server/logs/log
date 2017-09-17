@@ -263,3 +263,117 @@ No records found for device 3
 No records found for device 2
 No records found for device 3
 192.168.1.20 - - [16/Sep/2017 16:59:09] "POST /device/from/16-09-2017%2015:34:05/to/16-09-2017%2016:34:05 HTTP/1.1" 200 -
+No records found for device 2
+No records found for device 3
+192.168.1.20 - - [16/Sep/2017 17:18:29] "POST /device/from/16-09-2017%2015:34:05/to/16-09-2017%2016:34:05 HTTP/1.1" 200 -
+No records found for device 2
+No records found for device 3
+192.168.1.20 - - [16/Sep/2017 17:18:32] "POST /device/from/16-09-2017%2015:34:05/to/16-09-2017%2016:34:05 HTTP/1.1" 200 -
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+DB init start
+DB init finished
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+No records found for device 2
+No records found for device 3
+192.168.1.20 - - [16/Sep/2017 17:21:06] "POST /device/from/16-09-2017%2015:34:05/to/16-09-2017%2016:34:05 HTTP/1.1" 200 -
+No records found for device 2
+No records found for device 3
+192.168.1.20 - - [16/Sep/2017 17:21:13] "POST /device/from/16-09-2017%2015:34:05/to/16-09-2017%2016:34:05 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:21:34] "GET /board/1/device HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:21:35] "POST /device/from/16-09-2017%2016:21:33/to/16-09-2017%2017:21:33 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:24:35] "POST /device/from/16-09-2017%2016:21:33/to/16-09-2017%2017:21:33 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:26:21] "POST /device/from/16-09-2017%2016:21:33/to/16-09-2017%2017:21:33 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:26:32] "GET /board/1/device HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:26:33] "POST /device/from/16-09-2017%2016:26:33/to/16-09-2017%2017:26:33 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:26:49] "POST /device/from/16-09-2017%2016:26:33/to/16-09-2017%2017:26:33 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:26:52] "POST /device/from/16-09-2017%2016:26:33/to/16-09-2017%2017:26:33 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:27:01] "GET /board/1/device HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:27:01] "POST /device/from/16-09-2017%2016:27:00/to/16-09-2017%2017:27:00 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:27:03] "POST /device/from/16-09-2017%2016:27:00/to/16-09-2017%2017:27:00 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:28:04] "GET /board/1/device HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:28:05] "POST /device/from/16-09-2017%2016:28:00/to/16-09-2017%2017:28:00 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:28:51] "GET /board/1/device HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:28:51] "POST /device/from/16-09-2017%2016:28:00/to/16-09-2017%2017:28:00 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:29:06] "GET /board/1/device HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:29:06] "POST /device/from/16-09-2017%2016:29:05/to/16-09-2017%2017:29:05 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:29:32] "POST /device/from/16-09-2017%2016:29:05/to/16-09-2017%2021:29:05 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:29:49] "POST /device/from/16-09-2017%2016:29:05/to/16-09-2017%2021:29:05 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:30:16] "GET /settings HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:31:18] "POST /device/from/16-09-2017%2016:29:05/to/16-09-2017%2021:29:05 HTTP/1.1" 200 -
+192.168.1.20 - - [16/Sep/2017 17:31:20] "GET /settings HTTP/1.1" 200 -
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Writing settings to a file
+192.168.1.20 - - [16/Sep/2017 18:31:20] "POST /settings HTTP/1.1" 200 -
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Cannot schedule call, specified date_time "2017-09-16 18:32:04.985676" is before current time
+[action: data_poll_all @ [00:00:00]] -- Scheduled
+[action: analyze_values @ [00:00:01]] -- Scheduled
+[action: device-1-on @ [00:00:00]] -- Scheduled
+[action: device-1-off @ [00:00:00]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+No records found for device 1
+[action: analyze_values @ [00:00:01]] -- Scheduled
+Exit by user request, performing cleanup...
+Stopping [name: data_poll_all, date_time: 2017-09-16 18:32:04.985676, args: []]
+Stopping [name: device-1-off, date_time: 2017-09-17 00:00:00.001648, args: []]
+Stopping [name: analyze_values, date_time: 2017-09-16 18:32:19.642684, args: []]
+Stopping [name: device-1-on, date_time: 2017-09-17 00:00:00.000281, args: []]
+Done
+Trying to open 'settings.json'
+Cannot schedule call, specified date_time "2017-09-16 18:32:53.991748" is before current time
+[action: data_poll_all @ [00:00:00]] -- Scheduled
+[action: analyze_values @ [00:01:00]] -- Scheduled
+[action: device-1-on @ [00:00:00]] -- Scheduled
+[action: device-1-off @ [00:00:00]] -- Scheduled
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Writing settings to a file
+Stopping [name: device-1-on, date_time: 2017-09-17 00:00:00.005726, args: []]
+Stopping [name: data_poll_all, date_time: 2017-09-16 18:32:53.991748, args: []]
+Stopping [name: analyze_values, date_time: 2017-09-16 18:33:53.994771, args: []]
+Stopping [name: device-1-off, date_time: 2017-09-17 00:00:00.022945, args: []]
+Cannot schedule call, specified date_time "2017-09-16 18:33:01.904734" is before current time
+[action: data_poll_all @ [00:00:00]] -- Scheduled
+[action: analyze_values @ [00:01:00]] -- Scheduled
+[action: device-1-on @ [00:00:00]] -- Scheduled
+[action: device-1-off @ [00:00:00]] -- Scheduled
+192.168.1.20 - - [16/Sep/2017 18:33:02] "POST /settings HTTP/1.1" 200 -
+Exit by user request, performing cleanup...
+Stopping [name: device-1-on, date_time: 2017-09-17 00:00:00.975102, args: []]
+Stopping [name: data_poll_all, date_time: 2017-09-16 18:33:01.904734, args: []]
+Stopping [name: analyze_values, date_time: 2017-09-16 18:34:01.928935, args: []]
+Stopping [name: device-1-off, date_time: 2017-09-17 00:00:00.006702, args: []]
+Done
