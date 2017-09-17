@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.djordje.seeds.MainActivity;
 import com.example.djordje.seeds.R;
 import com.example.djordje.seeds.SettingsActivity;
 import com.example.djordje.seeds.settings.DeviceSchedule;
@@ -46,8 +47,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
     private String[] maxValueString;
     List<SensorRange> value_ranges;
     List<DeviceSchedule> device_schedule;
-
-
+    private boolean relayOrSwithc;
 
     public DeviceSettingsAdapter(Context context, Device[] devices, Settings settings) {
         super(context, -1, devices);
@@ -68,21 +68,29 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
         //Set the values in the settings layout to the ones retrieved from server, but do it only once(constructor)!
         for(int position=0 ;position<devices.length;position++) {
-            if (settings != null && settings.getValue_ranges() != null && settings.getValue_ranges().get(0) != null && devices[position].getId() == settings.getValue_ranges().get(0).getDevice_id()) {
-                SensorRange tmp = settings.getValue_ranges().get(position);
-                minValueString[position] = tmp.getMin_value() + "";
-                maxValueString[position] = tmp.getMax_value() + "";
+            Device curr = devices[position];
+            int devType = curr.getType();
 
-                if (settings.getDevice_schedule() != null && settings.getDevice_schedule().get(position) != null && settings.getDevice_schedule().get(position).getSchedule() != null) {
-                    Timing on = settings.getDevice_schedule().get(position).getSchedule().get(0).getOn();
-                    Timing off = settings.getDevice_schedule().get(position).getSchedule().get(0).getOff();
-                    onHourString[position] = "" + on.getHour();
-                    onMinuteString[position] = "" + on.getMinute();
-                    onSecondString[position] = "" + on.getSecond();
-                    offHourString[position] = "" + off.getHour();
-                    offMinuteString[position] = "" + off.getMinute();
-                    offSecondString[position] = "" + off.getSecond();
-                }
+            if(devType == MainActivity.RELAY_type || devType == MainActivity.SWITCH_type)
+                relayOrSwithc = true;
+            else
+                relayOrSwithc = false;
+
+            if (!relayOrSwithc && settings != null && settings.getValue_ranges() != null && settings.getValue_ranges().get(0) != null && devices[position].getId() == settings.getValue_ranges().get(0).getDevice_id()) {
+            SensorRange tmp = settings.getValue_ranges().get(position);
+            minValueString[position] = tmp.getMin_value() + "";
+            maxValueString[position] = tmp.getMax_value() + "";
+
+            if (!relayOrSwithc && settings.getDevice_schedule() != null && settings.getDevice_schedule().get(position) != null && settings.getDevice_schedule().get(position).getSchedule() != null) {
+                Timing on = settings.getDevice_schedule().get(position).getSchedule().get(0).getOn();
+                Timing off = settings.getDevice_schedule().get(position).getSchedule().get(0).getOff();
+                onHourString[position] = "" + on.getHour();
+                onMinuteString[position] = "" + on.getMinute();
+                onSecondString[position] = "" + on.getSecond();
+                offHourString[position] = "" + off.getHour();
+                offMinuteString[position] = "" + off.getMinute();
+                offSecondString[position] = "" + off.getSecond();
+            }
             }
         }
 
@@ -110,7 +118,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         TextView deviceName = (TextView) convertView.findViewById(R.id.device_settings_name);
         final TextView deviceID = (TextView) convertView.findViewById(R.id.device_settings_id);
         final CheckBox selected = (CheckBox) convertView.findViewById(R.id.device_selected_checkbox);
-        LinearLayout scheduleLinearLayout = (LinearLayout) convertView.findViewById(R.id.device_schedule_linearlayout);
+        final LinearLayout scheduleLinearLayout = (LinearLayout) convertView.findViewById(R.id.value_range_and_schedule_layout);
         final TextView scheduleOnHour = (TextView) convertView.findViewById(R.id.schedule_on_hour);
         final TextView scheduleOnMinute = (TextView) convertView.findViewById(R.id.schedule_on_minute);
         final TextView scheduleOnSecond = (TextView) convertView.findViewById(R.id.schedule_on_sec);
@@ -121,6 +129,9 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         final TextView maxValue= (TextView) convertView.findViewById(R.id.value_range_max);
 
         final Device d = this.devices[position];
+
+        int currType = d.getType();
+        relayOrSwithc = (currType == MainActivity.RELAY_type || currType == MainActivity.SWITCH_type);
 
         //TODO fix me with the right code for relay devices
         if(d.getType() == 1000)
@@ -144,6 +155,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 alertDialogBuilder.setView(promptsView);
 
                 TextView deviceName = (TextView) promptsView.findViewById(R.id.device_settings_name_dialog);
+                LinearLayout scheduleAndRangeLinearLayoutDialog = (LinearLayout) promptsView.findViewById(R.id.value_range_and_schedule_dialog_layout);
                 final EditText scheduleOnHour = (EditText) promptsView.findViewById(R.id.schedule_on_hour_dialog);
                 final EditText scheduleOnMinute = (EditText) promptsView.findViewById(R.id.schedule_on_minute_dialog);
                 final EditText scheduleOnSecond = (EditText) promptsView.findViewById(R.id.schedule_on_sec_dialog);
@@ -154,13 +166,15 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 final EditText maxValue= (EditText) promptsView.findViewById(R.id.value_range_min_dialog);
                 deviceName.setText(d.getName());
 
+                scheduleAndRangeLinearLayoutDialog.setVisibility(View.VISIBLE);
                 alertDialogBuilder
                         .setCancelable(true)
                         .setPositiveButton("SAVE",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
+
                                         onHourString[position] = scheduleOnHour.getText().toString();
                                         onMinuteString[position] = scheduleOnMinute.getText().toString();
                                         onSecondString[position] = scheduleOnSecond.getText().toString();
@@ -175,7 +189,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                                 })
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog,int id) {
+                                    public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                     }
                                 });
@@ -247,15 +261,22 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         deviceName.setText(d.getName());
         deviceID.setText(""+d.getId());
 
-
-        scheduleOffSecond.setText(offSecondString[position]);
-        scheduleOffMinute.setText(offMinuteString[position]);
-        scheduleOffHour.setText(offHourString[position]);
-        scheduleOnSecond.setText(onSecondString[position]);
-        scheduleOnMinute.setText(onMinuteString[position]);
-        scheduleOnHour.setText(onHourString[position]);
-        minValue.setText(minValueString[position]);
-        maxValue.setText(maxValueString[position]);
+        if(!relayOrSwithc) {
+            scheduleLinearLayout.setVisibility(View.VISIBLE);
+            editButton.setVisibility(View.VISIBLE);
+            scheduleOffSecond.setText(offSecondString[position]);
+            scheduleOffMinute.setText(offMinuteString[position]);
+            scheduleOffHour.setText(offHourString[position]);
+            scheduleOnSecond.setText(onSecondString[position]);
+            scheduleOnMinute.setText(onMinuteString[position]);
+            scheduleOnHour.setText(onHourString[position]);
+            minValue.setText(minValueString[position]);
+            maxValue.setText(maxValueString[position]);
+        }
+        else{
+            scheduleLinearLayout.setVisibility(View.GONE);
+            editButton.setVisibility(View.GONE);
+        }
 
         return convertView;
     }
