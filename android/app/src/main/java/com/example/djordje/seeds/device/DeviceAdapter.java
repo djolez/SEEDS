@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.djordje.seeds.Helper;
@@ -55,6 +56,7 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
 
         convertView = inflater.inflate(R.layout.device_chart, null);
 
+
         final TextView noDataText = (TextView) convertView.findViewById(R.id.no_data_text);
         LineChart mChart = (LineChart) convertView.findViewById(R.id.chart);
 
@@ -65,6 +67,7 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
             mChart.removeAllViews();
             return null;
         }
+
 
         device_name_view.setText(this.readings[position].getName());
         last_value_view.setText(this.readings[position].getLast_value() + "");
