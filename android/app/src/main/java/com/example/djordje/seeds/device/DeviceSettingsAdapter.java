@@ -166,6 +166,15 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 final EditText maxValue= (EditText) promptsView.findViewById(R.id.value_range_min_dialog);
                 deviceName.setText(d.getName());
 
+                scheduleOffSecond.setText(offSecondString[position]);
+                scheduleOffMinute.setText(offMinuteString[position]);
+                scheduleOffHour.setText(offHourString[position]);
+                scheduleOnSecond.setText(onSecondString[position]);
+                scheduleOnMinute.setText(onMinuteString[position]);
+                scheduleOnHour.setText(onHourString[position]);
+                minValue.setText(minValueString[position]);
+                maxValue.setText(maxValueString[position]);
+
                 scheduleAndRangeLinearLayoutDialog.setVisibility(View.VISIBLE);
                 alertDialogBuilder
                         .setCancelable(true)
