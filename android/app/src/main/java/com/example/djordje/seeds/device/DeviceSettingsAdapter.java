@@ -77,20 +77,20 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 relayOrSwithc = false;
 
             if (!relayOrSwithc && settings != null && settings.getValue_ranges() != null && settings.getValue_ranges().get(0) != null && devices[position].getId() == settings.getValue_ranges().get(0).getDevice_id()) {
-            SensorRange tmp = settings.getValue_ranges().get(position);
-            minValueString[position] = tmp.getMin_value() + "";
-            maxValueString[position] = tmp.getMax_value() + "";
+                SensorRange tmp = settings.getValue_ranges().get(0);
+                minValueString[position] = tmp.getMin_value() + "";
+                maxValueString[position] = tmp.getMax_value() + "";
 
-            if (!relayOrSwithc && settings.getDevice_schedule() != null && settings.getDevice_schedule().get(position) != null && settings.getDevice_schedule().get(position).getSchedule() != null) {
-                Timing on = settings.getDevice_schedule().get(position).getSchedule().get(0).getOn();
-                Timing off = settings.getDevice_schedule().get(position).getSchedule().get(0).getOff();
-                onHourString[position] = "" + on.getHour();
-                onMinuteString[position] = "" + on.getMinute();
-                onSecondString[position] = "" + on.getSecond();
-                offHourString[position] = "" + off.getHour();
-                offMinuteString[position] = "" + off.getMinute();
-                offSecondString[position] = "" + off.getSecond();
-            }
+                if (!relayOrSwithc && settings.getDevice_schedule() != null && settings.getDevice_schedule().get(0) != null && settings.getDevice_schedule().get(0).getSchedule() != null) {
+                    Timing on = settings.getDevice_schedule().get(0).getSchedule().get(0).getOn();
+                    Timing off = settings.getDevice_schedule().get(0).getSchedule().get(0).getOff();
+                    onHourString[position] = "" + on.getHour();
+                    onMinuteString[position] = "" + on.getMinute();
+                    onSecondString[position] = "" + on.getSecond();
+                    offHourString[position] = "" + off.getHour();
+                    offMinuteString[position] = "" + off.getMinute();
+                    offSecondString[position] = "" + off.getSecond();
+                }
             }
         }
 
@@ -132,10 +132,6 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
         int currType = d.getType();
         relayOrSwithc = (currType == MainActivity.RELAY_type || currType == MainActivity.SWITCH_type);
-
-        //TODO fix me with the right code for relay devices
-        if(d.getType() == 1000)
-            scheduleLinearLayout.setVisibility(View.GONE);
 
         if(d.isChecked())
             selected.setChecked(true);

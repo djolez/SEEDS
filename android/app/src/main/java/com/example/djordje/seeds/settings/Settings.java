@@ -25,6 +25,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -197,7 +198,19 @@ public class Settings {
         protected void onPostExecute(Settings result) {
             ListView view = (ListView) ((SettingsActivity) ctx).findViewById(R.id.device_schedule_list);
 
-            dAdapter = new DeviceSettingsAdapter(ctx, MainActivity.getAvailable_devices(),result);
+            /*Retrieve all the sub devices from the array of available devices, in order to show them in the list
+            * of settings in SettingsActivity. Create the array with ALL the devices and pass it to the adapter
+            */
+            ArrayList<Device> allPossibleDevices = new ArrayList<>();
+            Device[] availableDevices = MainActivity.getAvailable_devices();
+            for(int i =0; i<availableDevices.length;i++){
+                for(int j =0; j<availableDevices[i].getSub_devices().size();j++){
+                    allPossibleDevices.add(availableDevices[i].getSub_devices().get(j));
+                }
+                allPossibleDevices.add(availableDevices[i]);
+            }
+
+            dAdapter = new DeviceSettingsAdapter(ctx, allPossibleDevices.toArray(new Device[allPossibleDevices.size()]),result);
             view.setAdapter(dAdapter);
 
             EditText poll  = (EditText) ((SettingsActivity) ctx).findViewById(R.id.polling_interval);
