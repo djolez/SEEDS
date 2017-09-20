@@ -228,6 +228,7 @@ public class Device {
             }else {
 
                 LinearLayout relayButtonsLayout = (LinearLayout) ((MainActivity) context).findViewById(R.id.relays_buttons_layout);
+                relayButtonsLayout.removeAllViews(); //avoid inserting buttons for the same relay every time we refresh
                 ArrayList<Device> temp = new ArrayList<>();
                 for (int i = 0; i < result.size(); i++) {
                     d = mapper.convertValue(result.get(i), Device.class);
