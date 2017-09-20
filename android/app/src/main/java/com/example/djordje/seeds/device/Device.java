@@ -148,9 +148,12 @@ public class Device {
     public static void showSelected(Context ctx, int[] ids, Date start, Date end) {
         if(context == null)
             context = ctx;
-
-        RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end,ctx);
-        r.execute();
+        if(ids == null){
+            new Device.RetrieveDeviceListTask(context,"MainActivity").execute();
+        }else {
+            RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end, ctx);
+            r.execute();
+        }
     }
 
     //HTTP
@@ -229,14 +232,24 @@ public class Device {
                 for (int i = 0; i < result.size(); i++) {
                     d = mapper.convertValue(result.get(i), Device.class);
                     if(d.getType() == MainActivity.RELAY_type){
-                        Button relayButton = new Button(context);
+                        final Button relayButton = new Button(context);
                         relayButton.setText(d.getName());
                         relayButtonsLayout.addView(relayButton);
                         relayButton.setGravity(Gravity.CENTER);
+                        final Device finalDevice = d;
                         relayButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 //TODO: call API "device_write_value" to switch the value of a relay. This means, create new AsyncTask
+                                if(relayButton.isPressed()) {
+                                    new SetRelayValueTask(context, finalDevice.getId(), 0).execute();
+                                    relayButton.setPressed(true);
+                                }
+                                else{
+                                    new SetRelayValueTask(context,finalDevice.getId(),1).execute();
+                                    relayButton.setPressed(false);
+                                }
+
                             }
                         });
                         result.remove(d);
@@ -276,6 +289,45 @@ public class Device {
 
     }
 
+
+    public static class SetRelayValueTask extends AsyncTask<Void, Void, String> {
+
+        private Context cont;
+        private int relayValue;
+        private int relayID;
+        public SetRelayValueTask(Context context, int relayID, int relayValue){
+            this.cont = context;
+            this.relayValue = relayValue;
+            this.relayID = relayID;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                /*if(!isNetworkConnected(cont) || !isInternetAvailable()) {
+                    return null;
+                }*/
+                String url = cont.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
+                url += "/device/"+relayID+"/write/"+relayValue;
+
+                RestTemplate restTemplate = new RestTemplate();
+
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                String devices = restTemplate.getForObject(url, String.class);
+                return devices;
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("Sending data to relay",result);
+        }
+
+    }
 
     public static class RetrieveDeviceListTask extends AsyncTask<Void, Void, List<Device>> {
 
