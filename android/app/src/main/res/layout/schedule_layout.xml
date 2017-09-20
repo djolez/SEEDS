@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/device_schedule_linearlayout"
+        android:id="@+id/device_schedule_inner_linearlayout"
         android:orientation="vertical"
         android:layout_height="wrap_content">
         <TextView

@@ -117,29 +117,72 @@
                     android:textColor="@color/textColorSecondary"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/textColorPrimary"
-                android:textStyle="bold"
-                android:layout_marginTop="15dp"
-                android:textSize="18sp"
-                android:text="Schedule: "/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:id="@+id/device_schedule_linearlayout"
-                android:layout_marginLeft="30dp"
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="15dp">
+                android:id="@+id/device_schedule_linearlayout">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"
+                    android:textSize="18sp"
+                    android:text="Schedule: "/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/device_schedule_inner_linearlayout"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="italic"
+                            android:textSize="15sp"
+                            android:text="On "/>
+                        <TextView
+                            android:id="@+id/schedule_on_hour"
+                            android:layout_width="80dp"
+                            android:textAlignment="center"
+                            android:maxLength="2"
+                            android:textColor="@color/textColorSecondary"
+                            android:layout_height="wrap_content"
+                            android:hint="hour"/>
+                        <TextView
+                            android:id="@+id/schedule_on_minute"
+                            android:layout_width="80dp"
+                            android:textColor="@color/textColorSecondary"
+                            android:textAlignment="center"
+                            android:maxLength="2"
+                            android:layout_height="wrap_content"
+
+                            android:hint="min"/>
+                        <TextView
+                            android:id="@+id/schedule_on_sec"
+                            android:layout_width="80dp"
+                            android:textColor="@color/textColorSecondary"
+                            android:textAlignment="center"
+                            android:maxLength="2"
+                            android:layout_height="wrap_content"
+                            android:hint="sec"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="italic"
                         android:textSize="15sp"
-                        android:text="On "/>
+                        android:text="Off "/>
                     <TextView
-                        android:id="@+id/schedule_on_hour"
+                        android:id="@+id/schedule_off_hour"
                         android:layout_width="80dp"
                         android:textAlignment="center"
                         android:maxLength="2"
@@ -147,59 +190,22 @@
                         android:layout_height="wrap_content"
                         android:hint="hour"/>
                     <TextView
-                        android:id="@+id/schedule_on_minute"
+                        android:id="@+id/schedule_off_minute"
                         android:layout_width="80dp"
-                        android:textColor="@color/textColorSecondary"
                         android:textAlignment="center"
                         android:maxLength="2"
+                        android:textColor="@color/textColorSecondary"
                         android:layout_height="wrap_content"
-
                         android:hint="min"/>
                     <TextView
-                        android:id="@+id/schedule_on_sec"
+                        android:id="@+id/schedule_off_sec"
                         android:layout_width="80dp"
-                        android:textColor="@color/textColorSecondary"
                         android:textAlignment="center"
+                        android:textColor="@color/textColorSecondary"
                         android:maxLength="2"
                         android:layout_height="wrap_content"
                         android:hint="sec"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="italic"
-                    android:textSize="15sp"
-                    android:text="Off "/>
-                <TextView
-                    android:id="@+id/schedule_off_hour"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:textColor="@color/textColorSecondary"
-                    android:layout_height="wrap_content"
-                    android:hint="hour"/>
-                <TextView
-                    android:id="@+id/schedule_off_minute"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:textColor="@color/textColorSecondary"
-                    android:layout_height="wrap_content"
-                    android:hint="min"/>
-                <TextView
-                    android:id="@+id/schedule_off_sec"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/textColorSecondary"
-                    android:maxLength="2"
-                    android:layout_height="wrap_content"
-                    android:hint="sec"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
