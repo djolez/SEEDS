@@ -3,6 +3,7 @@ package com.example.djordje.seeds.device;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
@@ -242,17 +243,25 @@ public class Device {
                             @Override
                             public void onClick(View view) {
                                 //TODO: call API "device_write_value" to switch the value of a relay. This means, create new AsyncTask
-                                if(relayButton.isPressed()) {
-                                    new SetRelayValueTask(context, finalDevice.getId(), 0).execute();
-                                    relayButton.setPressed(true);
-                                }
-                                else{
-                                    new SetRelayValueTask(context,finalDevice.getId(),1).execute();
-                                    relayButton.setPressed(false);
-                                }
+                                int value_to_send = finalDevice.getLast_value() > 0 ? 0 : 1;
+
+                                new SetRelayValueTask(context, finalDevice.getId(), value_to_send).execute();
+                                finalDevice.setLast_value(value_to_send);
+
+//                                if(relayButton.isPressed()) {
+//                                    new SetRelayValueTask(context, finalDevice.getId(), 0).execute();
+//                                    relayButton.setPressed(true);
+//                                }
+//                                else{
+//                                    new SetRelayValueTask(context,finalDevice.getId(),1).execute();
+//                                    relayButton.setPressed(false);
+//                                }
 
                             }
                         });
+
+
+
                         result.remove(d);
                     }else
                         temp.add(d);
@@ -326,6 +335,10 @@ public class Device {
         @Override
         protected void onPostExecute(String result) {
             Log.d("Sending data to relay",result);
+            String snack_text = "Device " + (relayValue > 0 ? "ON" : "OFF");
+
+            Snackbar.make(((MainActivity)context).findViewById(R.id.main_activity_coordinator), snack_text, Snackbar.LENGTH_LONG)
+                    .show();
         }
 
     }
