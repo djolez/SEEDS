@@ -220,6 +220,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
             public void onClick(View view) {
                 if(selected.isChecked()) {
                     settingsToSave = SettingsActivity.getSettingsToSave();
+                    //TODO: check device type: if it is a sub device, don't add/remove it from selected devices in SettingsActivity
                     SettingsActivity.addSelectedDevicesList(new Integer(d.getId()));
                     d.setChecked(true);
 

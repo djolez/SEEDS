@@ -45,14 +45,15 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void getAvailableDeviceIds() {
-        int [] devs = this.getIntent().getIntArrayExtra("AvailableDevicesIDs");
-
+        //int [] devs = this.getIntent().getIntArrayExtra("AvailableDevicesIDs");
+        int [] devs = MainActivity.available_devices_ids;
         if(devs == null)
             return;
 
         for(int i =0 ;i<devs.length;i++){
             available_devices_ids.add(devs[i]);
         }
+
         //available_devices_ids.addAll(Arrays.asList(this.getIntent().getIntArrayExtra("AvailableDevicesIDs")));
         //System.out.println(Arrays.asList(this.getIntent().getIntArrayExtra("AvailableDevicesIDs")).get(0));
     }
