@@ -121,6 +121,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         final CheckBox selected = (CheckBox) convertView.findViewById(R.id.device_selected_checkbox);
         final LinearLayout scheduleAndValueRangesLinearLayout = (LinearLayout) convertView.findViewById(R.id.value_range_and_schedule_layout);
         LinearLayout scheduleLinearLayout = (LinearLayout) convertView.findViewById(R.id.device_schedule_linearlayout);
+        LinearLayout valueRangeLinearLayout = (LinearLayout) convertView.findViewById(R.id.value_range_linearlayout);
         final TextView scheduleOnHour = (TextView) convertView.findViewById(R.id.schedule_on_hour);
         final TextView scheduleOnMinute = (TextView) convertView.findViewById(R.id.schedule_on_minute);
         final TextView scheduleOnSecond = (TextView) convertView.findViewById(R.id.schedule_on_sec);
@@ -148,14 +149,14 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 // get prompts.xml view
                 LayoutInflater li = LayoutInflater.from(context);
                 View promptsView = li.inflate(R.layout.settings_dialog, null);
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
                 // set prompts.xml to alertdialog builder
                 alertDialogBuilder.setView(promptsView);
 
                 TextView deviceName = (TextView) promptsView.findViewById(R.id.device_settings_name_dialog);
                 LinearLayout scheduleAndValueRangesLinearLayoutDialog = (LinearLayout) promptsView.findViewById(R.id.value_range_and_schedule_dialog_layout);
                 LinearLayout scheduleLinearLayoutDialog = (LinearLayout) promptsView.findViewById(R.id.device_schedule_linearlayout_dialog);
+                LinearLayout valueRangeLinearLayoutDialog = (LinearLayout) promptsView.findViewById(R.id.value_range_linearlayout_dialog);
                 final EditText scheduleOnHour = (EditText) promptsView.findViewById(R.id.schedule_on_hour_dialog);
                 final EditText scheduleOnMinute = (EditText) promptsView.findViewById(R.id.schedule_on_minute_dialog);
                 final EditText scheduleOnSecond = (EditText) promptsView.findViewById(R.id.schedule_on_sec_dialog);
@@ -166,8 +167,14 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 final EditText maxValue= (EditText) promptsView.findViewById(R.id.value_range_min_dialog);
                 deviceName.setText(d.getName());
 
-                if(isRelay)
+                if(devices[position].getType() == MainActivity.RELAY_type) {
+                    scheduleLinearLayoutDialog.setVisibility(View.VISIBLE);
+                    valueRangeLinearLayoutDialog.setVisibility(View.GONE);
+                }
+                else {
                     scheduleLinearLayoutDialog.setVisibility(View.GONE);
+                    valueRangeLinearLayoutDialog.setVisibility(View.VISIBLE);
+                }
 
                 scheduleOffSecond.setText(offSecondString[position]);
                 scheduleOffMinute.setText(offMinuteString[position]);
@@ -202,6 +209,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                         .setNegativeButton("Cancel",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
+                                        dialog.dismiss();
                                         dialog.cancel();
                                     }
                                 });
@@ -283,7 +291,9 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
         }
         else{
             if (isRelay){
+                scheduleAndValueRangesLinearLayout.setVisibility(View.VISIBLE);
                 scheduleLinearLayout.setVisibility(View.VISIBLE);
+                valueRangeLinearLayout.setVisibility(View.GONE);
                 scheduleOffSecond.setText(offSecondString[position]);
                 scheduleOffMinute.setText(offMinuteString[position]);
                 scheduleOffHour.setText(offHourString[position]);
@@ -292,6 +302,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 scheduleOnHour.setText(onHourString[position]);
             }else {
                 scheduleAndValueRangesLinearLayout.setVisibility(View.GONE);
+                scheduleLinearLayout.setVisibility(View.GONE);
                 editButton.setVisibility(View.GONE);
             }
         }
