@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 toSave.setCheck_interval_minutes(Integer.parseInt(checking_interval.getText().toString()+""));
-                toSave.setCheck_interval_minutes(Integer.parseInt(polling_interval.getText().toString()+""));
+                toSave.setPoll_interval_minutes(Integer.parseInt(polling_interval.getText().toString()+""));
                 toSave.setContext(SettingsActivity.this);
                 toSave.saveSettings();
 
