@@ -7,7 +7,9 @@ The apps is based on a _client-server_ approach. First of all, the server interf
 In particular, the data is shown in the client by plotting it in a graph related to a specific device (i.e: data belonging to a specific device, considering all the sub-devices connected to it, are shown in the same graph) with the exception of some kind of devices like relays which can be only triggered or untriggered.
 <br>
 In this way, the plant growing can be completely automatic in the sense that the only action that the user needs to perform is to change the nutrient solution at the right time.
-![](https://github.com/djolez/SEEDS/blob/master/SEEDS_scheme(1).png#center)
+<br><br><br><br><br>
+![](https://github.com/djolez/SEEDS/blob/master/SEEDS_scheme.png#center)
+<br>
 
 ## Technologies used
 <img align="right" src="https://github.com/djolez/SEEDS/blob/master/SEEDS_server_techs.png"></img>
