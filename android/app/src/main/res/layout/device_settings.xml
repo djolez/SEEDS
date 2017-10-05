@@ -89,24 +89,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="30dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="italic"
-                        android:textSize="15sp"
-                        android:text="max "/>
-                    <TextView
-                        android:id="@+id/value_range_max"
-                        android:layout_width="80dp"
-                        android:textColor="@color/textColorSecondary"
-                        android:layout_height="wrap_content"/>
-                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="30dp">
                     <TextView
@@ -121,6 +103,24 @@
                         android:textColor="@color/textColorSecondary"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="italic"
+                        android:textSize="15sp"
+                        android:text="max "/>
+                    <TextView
+                        android:id="@+id/value_range_max"
+                        android:layout_width="80dp"
+                        android:textColor="@color/textColorSecondary"
+                        android:layout_height="wrap_content"/>
+                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
