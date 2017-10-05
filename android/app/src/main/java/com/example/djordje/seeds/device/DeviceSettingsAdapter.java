@@ -163,8 +163,8 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                 final EditText scheduleOffHour = (EditText) promptsView.findViewById(R.id.schedule_off_hour_dialog);
                 final EditText scheduleOffMinute = (EditText) promptsView.findViewById(R.id.schedule_off_minute_dialog);
                 final EditText scheduleOffSecond = (EditText) promptsView.findViewById(R.id.schedule_off_sec_dialog);
-                final EditText minValue = (EditText) promptsView.findViewById(R.id.value_range_max_dialog);
-                final EditText maxValue= (EditText) promptsView.findViewById(R.id.value_range_min_dialog);
+                final EditText minValue = (EditText) promptsView.findViewById(R.id.value_range_min_dialog);
+                final EditText maxValue= (EditText) promptsView.findViewById(R.id.value_range_max_dialog);
                 deviceName.setText(d.getName());
 
                 if(devices[position].getType() == MainActivity.RELAY_type) {
