@@ -14,15 +14,18 @@ The whole system exploits a set of libraries and technologies in order to provid
 ### Server
 <img align="right" src="https://github.com/djolez/SEEDS/blob/master/SEEDS_server_techs.png"></img>
 The server is completely written in python, so it can run even on small embedded systems like RaspberryPi. In particular, it makes use of:
-* Peewee: a simple and small ORM used to easily store data on the underlying SQL database by means of _models_
-* Flask: a micro web framework written in Python used for RESTful request dispatching
+* _Peewee_ a simple and small ORM used to easily store data on the underlying SQL database by means of _models_
+* _Flask_ a micro web framework written in Python used for RESTful request dispatching
 
 ### Client
-The client is represented by and Android application, which uses some libraries to let the user control the server:
-* https://github.com/spring-projects/spring-android
-* https://github.com/FasterXML/jackson-core
-* https://github.com/PhilJay/MPAndroidChart
-* https://github.com/leavjenn/SmoothDateRangePicker
+The client is represented by and Android application, which uses some opensource libraries to let the user control the server:
+* _Spring for Android_ a framework used provide components of the Spring family like a Rest Clientand auth support for accessing secure APIs. It can be found at https://github.com/spring-projects/spring-android
+
+<img align="right" src="https://github.com/djolez/SEEDS/blob/master/SEEDS_android_techs.png"></img>
+
+* _Jackson_ a library to serialize a Java Entity to a JSON String and control the mapping process. It can be found at https://github.com/FasterXML/jackson-core
+* _PhilJay / MPAndroidChart_ a very easy to use library that cares of taking data and display them in a graph. It supports multiple kind of graphs (in this case, a barChart), providing high flexibility in terms of retrieving data, operate with them and show them in a customizable pretty way. It can be found at https://github.com/PhilJay/MPAndroidChart
+* _Leavjenn / SmoothDateRangePicker_ an android widget for selecting date range quickly and easily, following Material Design principle.https://github.com/leavjenn/SmoothDateRangePicker
 
 
 
