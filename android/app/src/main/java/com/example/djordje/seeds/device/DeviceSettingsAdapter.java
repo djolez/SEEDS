@@ -77,14 +77,17 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
             else
                 relayOrSwithc = false;
 
-            if (!relayOrSwithc && settings != null && settings.getValue_ranges() != null && settings.getValue_ranges().get(0) != null && devices[position].getId() == settings.getValue_ranges().get(0).getDevice_id()) {
-                SensorRange tmp = settings.getValue_ranges().get(0);
-                minValueString[position] = tmp.getMin_value() + "";
-                maxValueString[position] = tmp.getMax_value() + "";
-
-                if (!relayOrSwithc && settings.getDevice_schedule() != null && settings.getDevice_schedule().get(0) != null && settings.getDevice_schedule().get(0).getSchedule() != null) {
-                    Timing on = settings.getDevice_schedule().get(0).getSchedule().get(0).getOn();
-                    Timing off = settings.getDevice_schedule().get(0).getSchedule().get(0).getOff();
+            for(SensorRange sr: settings.getValue_ranges()) {
+                if (!relayOrSwithc && sr!= null &&  devices[position].getId() == sr.getDevice_id()) {
+                    SensorRange tmp = sr; //settings.getValue_ranges().get(0);
+                    minValueString[position] = tmp.getMin_value() + "";
+                    maxValueString[position] = tmp.getMax_value() + "";
+                }
+            }
+            for (DeviceSchedule ds : settings.getDevice_schedule()) {
+                if (ds != null && ds.getSchedule() != null && ds.getId() == devices[position].getId()) {
+                    Timing on = ds.getSchedule().get(0).getOn();
+                    Timing off = ds.getSchedule().get(0).getOff();
                     onHourString[position] = "" + on.getHour();
                     onMinuteString[position] = "" + on.getMinute();
                     onSecondString[position] = "" + on.getSecond();
@@ -93,6 +96,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                     offSecondString[position] = "" + off.getSecond();
                 }
             }
+
         }
 
     }
