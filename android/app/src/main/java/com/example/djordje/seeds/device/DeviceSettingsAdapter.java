@@ -206,6 +206,51 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
                                         offSecondString[position] = scheduleOffSecond.getText().toString();
                                         maxValueString[position] = maxValue.getText().toString();
                                         minValueString[position] = minValue.getText().toString();
+
+                                        settingsToSave = SettingsActivity.getSettingsToSave();
+
+                                        DeviceSchedule deviceSchedule = new DeviceSchedule();
+                                        List<Schedule> schedule = new ArrayList<>(1);
+                                        Schedule s = new Schedule();
+                                        Timing on = new Timing();
+                                        Timing off = new Timing();
+                                        SensorRange sensorRange = new SensorRange();
+
+                                        sensorRange.setMax_value(Integer.parseInt(maxValueString[position]!= null && !maxValueString[position].isEmpty()? maxValueString[position] : "0"));
+                                        sensorRange.setMin_value(Integer.parseInt(minValueString[position]!=null && !minValueString[position].isEmpty()? minValueString[position]: "0"));
+                                        sensorRange.setDevice_id(Integer.parseInt(deviceID.getText().toString()));
+
+                                        value_ranges = settingsToSave.getValue_ranges();
+
+                                        if(value_ranges.size()<=position)
+                                            value_ranges.add(sensorRange);
+                                        else
+                                            value_ranges.set(position,sensorRange);
+
+                                        on.setHour(Integer.parseInt(onHourString[position]!=null && !onHourString[position].isEmpty()? onHourString[position]: "00"));
+                                        on.setMinute(Integer.parseInt(onMinuteString[position] != null && !onMinuteString[position].isEmpty()? onMinuteString[position]: "00"));
+                                        on.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()?onSecondString[position] : "00"));
+                                        off.setHour(Integer.parseInt(offHourString[position]!=null && !offHourString[position].isEmpty()? offHourString[position]:"00"));
+                                        off.setMinute(Integer.parseInt(offMinuteString[position]!=null && !offMinuteString[position].isEmpty()? offMinuteString[position] : "00"));
+                                        off.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()? onSecondString[position]:"00"));
+                                        s.setOn(on);
+                                        s.setOff(off);
+                                        schedule.add(s);
+
+                                        deviceSchedule.setId(Integer.parseInt(deviceID.getText().toString()));
+                                        deviceSchedule.setSchedule(schedule);
+
+                                        device_schedule = settingsToSave.getDevice_schedule();
+
+                                        if(device_schedule.size()<=position)
+                                            device_schedule.add(deviceSchedule);
+                                        else
+                                            device_schedule.set(position,deviceSchedule);
+
+                                        //settingsToSave.setValue_ranges(value_ranges);
+                                        //settingsToSave.setDevice_schedule(device_schedule);
+                                        SettingsActivity.setSettingsToSave(settingsToSave);
+
                                         notifyDataSetChanged();
                                         dialog.cancel();
                                     }
@@ -231,48 +276,10 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
             @Override
             public void onClick(View view) {
                 if(selected.isChecked()) {
-                    settingsToSave = SettingsActivity.getSettingsToSave();
                     //TODO: check device type: if it is a sub device, don't add/remove it from selected devices in SettingsActivity
                     SettingsActivity.addSelectedDevicesList(new Integer(d.getId()));
                     d.setChecked(true);
 
-                    DeviceSchedule deviceSchedule = new DeviceSchedule();
-                    List<Schedule> schedule = new ArrayList<>(1);
-                    Schedule s = new Schedule();
-                    Timing on = new Timing();
-                    Timing off = new Timing();
-                    SensorRange sensorRange = new SensorRange();
-
-                    sensorRange.setMax_value(Integer.parseInt(maxValueString[position]!= null && !maxValueString[position].isEmpty()? maxValueString[position] : "0"));
-                    sensorRange.setMin_value(Integer.parseInt(minValueString[position]!=null && !minValueString[position].isEmpty()? minValueString[position]: "0"));
-                    sensorRange.setDevice_id(Integer.parseInt(deviceID.getText().toString()));
-
-                    if(value_ranges.size()<=position)
-                        value_ranges.add(sensorRange);
-                    else
-                        value_ranges.set(position,sensorRange);
-
-                    on.setHour(Integer.parseInt(onHourString[position]!=null && !onHourString[position].isEmpty()? onHourString[position]: "00"));
-                    on.setMinute(Integer.parseInt(onMinuteString[position] != null && !onMinuteString[position].isEmpty()? onMinuteString[position]: "00"));
-                    on.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()?onSecondString[position] : "00"));
-                    off.setHour(Integer.parseInt(offHourString[position]!=null && !offHourString[position].isEmpty()? offHourString[position]:"00"));
-                    off.setMinute(Integer.parseInt(offMinuteString[position]!=null && !offMinuteString[position].isEmpty()? offMinuteString[position] : "00"));
-                    off.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()? onSecondString[position]:"00"));
-                    s.setOn(on);
-                    s.setOff(off);
-                    schedule.add(s);
-
-                    deviceSchedule.setId(Integer.parseInt(deviceID.getText().toString()));
-                    deviceSchedule.setSchedule(schedule);
-
-                    if(device_schedule.size()<=position)
-                        device_schedule.add(deviceSchedule);
-                    else
-                        device_schedule.set(position,deviceSchedule);
-
-                    settingsToSave.setValue_ranges(value_ranges);
-                    settingsToSave.setDevice_schedule(device_schedule);
-                    SettingsActivity.setSettingsToSave(settingsToSave);
 
                 }
                 else {
