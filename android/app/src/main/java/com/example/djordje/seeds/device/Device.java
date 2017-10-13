@@ -199,7 +199,6 @@ public class Device {
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 MultiValueMap<String,Integer> map = new LinkedMultiValueMap<>();
 
-
                 for (int id : this.devs) {
                     map.add("ids", id);
                 }
@@ -221,14 +220,15 @@ public class Device {
             ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
             DeviceAdapter dAdapter;
             TextView noDataText = (TextView) ((MainActivity)context).findViewById(R.id.no_data_available_mainactivity);
+            LinearLayout relayButtonsLayout = (LinearLayout) ((MainActivity) context).findViewById(R.id.relays_buttons_layout);
 
             if(result == null || result.isEmpty()) {
                 noDataText.setVisibility(View.VISIBLE);
                 listview.setVisibility(View.INVISIBLE);
+                relayButtonsLayout.setVisibility(View.INVISIBLE);
                 Log.d("Device class","listview "+listview.getVisibility());
             }else {
 
-                LinearLayout relayButtonsLayout = (LinearLayout) ((MainActivity) context).findViewById(R.id.relays_buttons_layout);
                 relayButtonsLayout.removeAllViews(); //avoid inserting buttons for the same relay every time we refresh
                 ArrayList<Device> temp = new ArrayList<>();
                 for (int i = 0; i < result.size(); i++) {
@@ -273,6 +273,7 @@ public class Device {
 
                 noDataText.setVisibility(View.INVISIBLE);
                 listview.setVisibility(View.VISIBLE);
+                relayButtonsLayout.setVisibility(View.VISIBLE);
                 listview.setAdapter(dAdapter);
 
 

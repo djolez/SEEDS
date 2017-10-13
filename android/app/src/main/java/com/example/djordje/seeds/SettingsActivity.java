@@ -45,8 +45,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void getAvailableDeviceIds() {
-        //int [] devs = this.getIntent().getIntArrayExtra("AvailableDevicesIDs");
-        int [] devs = MainActivity.available_devices_ids;
+        int [] devs = this.getIntent().getIntArrayExtra("AvailableDevicesIDs");
+        //int [] devs = MainActivity.available_devices_ids;
         if(devs == null)
             return;
 

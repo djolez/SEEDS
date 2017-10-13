@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent startSettingsActivityIntent = new Intent(MainActivity.this, SettingsActivity.class);
             //if you previously selected some device, then call the activity showing them selected
-            if(selectedDevicesIds!= null && selectedDevicesIds.length != 0)
+            if(selectedDevicesIds!= null )
                 startSettingsActivityIntent.putExtra("AvailableDevicesIDs", selectedDevicesIds);
             else
                 startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
