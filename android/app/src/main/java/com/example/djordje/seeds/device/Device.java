@@ -3,10 +3,14 @@ package com.example.djordje.seeds.device;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -145,9 +149,12 @@ public class Device {
     public static void showSelected(Context ctx, int[] ids, Date start, Date end) {
         if(context == null)
             context = ctx;
-
-        RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end,ctx);
-        r.execute();
+        if(ids == null){
+            new Device.RetrieveDeviceListTask(context,"MainActivity").execute();
+        }else {
+            RetrieveWithValuesTask r = new RetrieveWithValuesTask(ids, start, end, ctx);
+            r.execute();
+        }
     }
 
     //HTTP
@@ -192,7 +199,6 @@ public class Device {
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
                 MultiValueMap<String,Integer> map = new LinkedMultiValueMap<>();
 
-
                 for (int id : this.devs) {
                     map.add("ids", id);
                 }
@@ -214,24 +220,63 @@ public class Device {
             ListView listview = (ListView) ((MainActivity)context).findViewById(R.id.charts_wrapper);
             DeviceAdapter dAdapter;
             TextView noDataText = (TextView) ((MainActivity)context).findViewById(R.id.no_data_available_mainactivity);
+            LinearLayout relayButtonsLayout = (LinearLayout) ((MainActivity) context).findViewById(R.id.relays_buttons_layout);
 
             if(result == null || result.isEmpty()) {
                 noDataText.setVisibility(View.VISIBLE);
                 listview.setVisibility(View.INVISIBLE);
+                relayButtonsLayout.setVisibility(View.INVISIBLE);
                 Log.d("Device class","listview "+listview.getVisibility());
             }else {
-                Device[] devices_array = new Device[result.size()];
 
+                relayButtonsLayout.removeAllViews(); //avoid inserting buttons for the same relay every time we refresh
+                ArrayList<Device> temp = new ArrayList<>();
                 for (int i = 0; i < result.size(); i++) {
                     d = mapper.convertValue(result.get(i), Device.class);
-                    devices_array[i] = d;
+                    if(d.getType() == MainActivity.RELAY_type){
+                        final Button relayButton = new Button(context);
+                        relayButton.setText(d.getName());
+                        relayButtonsLayout.addView(relayButton);
+                        relayButton.setGravity(Gravity.CENTER);
+                        final Device finalDevice = d;
+                        relayButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                //TODO: call API "device_write_value" to switch the value of a relay. This means, create new AsyncTask
+                                int value_to_send = finalDevice.getLast_value() > 0 ? 0 : 1;
+
+                                new SetRelayValueTask(context, finalDevice.getId(), value_to_send).execute();
+                                finalDevice.setLast_value(value_to_send);
+
+//                                if(relayButton.isPressed()) {
+//                                    new SetRelayValueTask(context, finalDevice.getId(), 0).execute();
+//                                    relayButton.setPressed(true);
+//                                }
+//                                else{
+//                                    new SetRelayValueTask(context,finalDevice.getId(),1).execute();
+//                                    relayButton.setPressed(false);
+//                                }
+
+                            }
+                        });
+
+
+
+                        result.remove(d);
+                    }else
+                        temp.add(d);
                 }
+                Device[] devices_array;
+                devices_array = temp.toArray(new Device[temp.size()]);
 
                 dAdapter = new DeviceAdapter(((MainActivity) context), devices_array);
 
                 noDataText.setVisibility(View.INVISIBLE);
                 listview.setVisibility(View.VISIBLE);
+                relayButtonsLayout.setVisibility(View.VISIBLE);
                 listview.setAdapter(dAdapter);
+
+
             }
             refreshLayout.setRefreshing(false);
             //new Settings(context).getAllSettings();
@@ -255,6 +300,49 @@ public class Device {
 
     }
 
+
+    public static class SetRelayValueTask extends AsyncTask<Void, Void, String> {
+
+        private Context cont;
+        private int relayValue;
+        private int relayID;
+        public SetRelayValueTask(Context context, int relayID, int relayValue){
+            this.cont = context;
+            this.relayValue = relayValue;
+            this.relayID = relayID;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                /*if(!isNetworkConnected(cont) || !isInternetAvailable()) {
+                    return null;
+                }*/
+                String url = cont.getString(R.string.server_address);// + "http://192.168.1.8:5000/device/from/01-07-2017 00:00:00/to/15-07-2017 23:59:59";
+                url += "/device/"+relayID+"/write/"+relayValue;
+
+                RestTemplate restTemplate = new RestTemplate();
+
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                String devices = restTemplate.getForObject(url, String.class);
+                return devices;
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("Sending data to relay",result);
+            String snack_text = "Device " + (relayValue > 0 ? "ON" : "OFF");
+
+            Snackbar.make(((MainActivity)context).findViewById(R.id.main_activity_coordinator), snack_text, Snackbar.LENGTH_LONG)
+                    .show();
+        }
+
+    }
 
     public static class RetrieveDeviceListTask extends AsyncTask<Void, Void, List<Device>> {
 

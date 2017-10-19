@@ -88,13 +88,21 @@
 
             </RelativeLayout>
         </LinearLayout>
-        
+        <LinearLayout
+            android:layout_below="@id/datepicker_linear_layout"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relays_buttons_layout"
+            android:orientation="horizontal">
+
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="20dp"
             android:id="@+id/separator"
-            android:layout_below="@id/datepicker_linear_layout"
+            android:layout_below="@id/relays_buttons_layout"
             android:backgroundTint="@color/colorPrimary"
             android:background="@android:color/darker_gray"/>
 

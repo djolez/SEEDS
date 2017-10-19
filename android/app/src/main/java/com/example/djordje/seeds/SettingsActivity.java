@@ -32,7 +32,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 toSave.setCheck_interval_minutes(Integer.parseInt(checking_interval.getText().toString()+""));
-                toSave.setCheck_interval_minutes(Integer.parseInt(polling_interval.getText().toString()+""));
+                toSave.setPoll_interval_minutes(Integer.parseInt(polling_interval.getText().toString()+""));
                 toSave.setContext(SettingsActivity.this);
                 toSave.saveSettings();
 
@@ -46,13 +46,14 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void getAvailableDeviceIds() {
         int [] devs = this.getIntent().getIntArrayExtra("AvailableDevicesIDs");
-
+        //int [] devs = MainActivity.available_devices_ids;
         if(devs == null)
             return;
 
         for(int i =0 ;i<devs.length;i++){
             available_devices_ids.add(devs[i]);
         }
+
         //available_devices_ids.addAll(Arrays.asList(this.getIntent().getIntArrayExtra("AvailableDevicesIDs")));
         //System.out.println(Arrays.asList(this.getIntent().getIntArrayExtra("AvailableDevicesIDs")).get(0));
     }

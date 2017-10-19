@@ -52,6 +52,7 @@
                     android:layout_width="80sp"
                     android:id="@+id/polling_interval"
                     android:textAlignment="center"
+                    android:inputType="number"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
@@ -72,6 +73,7 @@
                     android:id="@+id/check_interval"
                     android:gravity="center"
                     android:textAlignment="center"
+                    android:inputType="number"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>

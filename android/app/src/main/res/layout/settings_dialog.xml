@@ -39,147 +39,160 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:id="@+id/value_range_layout"
+            android:id="@+id/value_range_and_schedule_dialog_layout"
             android:orientation="vertical"
             android:layout_marginTop="30dp"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/textColorPrimary"
-                android:text="Value ranges "/>
             <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/value_range_linearlayout_dialog"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="30dp">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/textColorSecondary"
-                    android:text="min : "/>
-                <EditText
-                    android:layout_width="80dp"
-                    android:textSize="15sp"
-                    android:id="@+id/value_range_min_dialog"
-                    android:inputType="number"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="30dp">
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:text="Value ranges "/>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textColorSecondary"
-                    android:text="max: "/>
-                <EditText
-                    android:id="@+id/value_range_max_dialog"
-                    android:layout_width="80dp"
-                    android:textSize="15sp"
-                    android:inputType="number"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorSecondary"
+                        android:text="min : "/>
+                    <EditText
+                        android:layout_width="80dp"
+                        android:textSize="15sp"
+                        android:id="@+id/value_range_min_dialog"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorSecondary"
+                        android:text="max: "/>
+                    <EditText
+                        android:id="@+id/value_range_max_dialog"
+                        android:layout_width="80dp"
+                        android:textSize="15sp"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"/>
 
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/textColorPrimary"
-                android:text="Schedule: "/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:id="@+id/device_schedule_linearlayout"
-                android:layout_marginLeft="30dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/textColorSecondary"
-                    android:text="On: "/>
-                <EditText
-                    android:id="@+id/schedule_on_hour_dialog"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:textSize="15sp"
-                    android:hint="hour"/>
-                <EditText
-                    android:id="@+id/schedule_on_minute_dialog"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:textSize="15sp"
-                    android:layout_height="wrap_content"
-                    android:hint="min"/>
-                <EditText
-                    android:id="@+id/schedule_on_sec_dialog"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:textSize="15sp"
-                    android:inputType="number"
-                    android:layout_height="wrap_content"
-                    android:hint="sec"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="5dp">
+                android:orientation="vertical"
+                android:id="@+id/device_schedule_linearlayout_dialog"
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/textColorSecondary"
-                    android:text="Off: "/>
-                <EditText
-                    android:id="@+id/schedule_off_hour_dialog"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:textSize="15sp"
-                    android:inputType="number"
+                    android:textColor="@color/textColorPrimary"
+                    android:text="Schedule: "/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/device_schedule_inner_linearlayout"
+                    android:layout_marginLeft="30dp"
                     android:layout_height="wrap_content"
-                    android:hint="hour"/>
-                <EditText
-                    android:id="@+id/schedule_off_minute_dialog"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:textSize="15sp"
-                    android:inputType="number"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorSecondary"
+                        android:text="On: "/>
+                    <EditText
+                        android:id="@+id/schedule_on_hour_dialog"
+                        android:layout_width="80dp"
+                        android:textAlignment="center"
+                        android:maxLength="2"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:textSize="15sp"
+                        android:hint="hour"/>
+                    <EditText
+                        android:id="@+id/schedule_on_minute_dialog"
+                        android:layout_width="80dp"
+                        android:textAlignment="center"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textSize="15sp"
+                        android:layout_height="wrap_content"
+                        android:hint="min"/>
+                    <EditText
+                        android:id="@+id/schedule_on_sec_dialog"
+                        android:layout_width="80dp"
+                        android:textAlignment="center"
+                        android:maxLength="2"
+                        android:textSize="15sp"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"
+                        android:hint="sec"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="min"/>
-                <EditText
-                    android:id="@+id/schedule_off_sec_dialog"
-                    android:layout_width="80dp"
-                    android:textAlignment="center"
-                    android:maxLength="2"
-                    android:textSize="15sp"
-                    android:inputType="number"
-                    android:layout_height="wrap_content"
-                    android:hint="sec"/>
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/textColorSecondary"
+                        android:text="Off: "/>
+                    <EditText
+                        android:id="@+id/schedule_off_hour_dialog"
+                        android:layout_width="80dp"
+                        android:textAlignment="center"
+                        android:maxLength="2"
+                        android:textSize="15sp"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"
+                        android:hint="hour"/>
+                    <EditText
+                        android:id="@+id/schedule_off_minute_dialog"
+                        android:layout_width="80dp"
+                        android:textAlignment="center"
+                        android:maxLength="2"
+                        android:textSize="15sp"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"
+                        android:hint="min"/>
+                    <EditText
+                        android:id="@+id/schedule_off_sec_dialog"
+                        android:layout_width="80dp"
+                        android:textAlignment="center"
+                        android:maxLength="2"
+                        android:textSize="15sp"
+                        android:inputType="number"
+                        android:layout_height="wrap_content"
+                        android:hint="sec"/>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

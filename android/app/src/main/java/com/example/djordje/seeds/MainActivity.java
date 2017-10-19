@@ -37,6 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static Device[] available_devices;
     private SwipeRefreshLayout refreshLayout;
+    public static final int DS18B20_type = 0;
+    public static final int DHT11_type  = 1;
+    public static final int RELAY_type  = 2;
+    public static final int SWITCH_type  = 3;
+    public static final int ANALOG_type  = 4;
 
     public static Device[] getAvailable_devices() {
         return available_devices;
@@ -135,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent startSettingsActivityIntent = new Intent(MainActivity.this, SettingsActivity.class);
             //if you previously selected some device, then call the activity showing them selected
-            if(selectedDevicesIds!= null && selectedDevicesIds.length != 0)
+            if(selectedDevicesIds!= null )
                 startSettingsActivityIntent.putExtra("AvailableDevicesIDs", selectedDevicesIds);
             else
                 startSettingsActivityIntent.putExtra("AvailableDevicesIDs", available_devices_ids);
