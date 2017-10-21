@@ -377,3 +377,8 @@ Stopping [name: data_poll_all, date_time: 2017-09-16 18:33:01.904734, args: []]
 Stopping [name: analyze_values, date_time: 2017-09-16 18:34:01.928935, args: []]
 Stopping [name: device-1-off, date_time: 2017-09-17 00:00:00.006702, args: []]
 Done
+Trying to open 'settings.json'
+Trying to open 'settings.json'
+Trying to open 'settings.json'
+Trying to open 'settings.json'
+Sending message 'sync$dht11_1:temperature_2,humidity_3|ds18b20_4|water level_5|relay_6'

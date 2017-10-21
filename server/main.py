@@ -115,7 +115,7 @@ def cleanup():
 app_start(sys.argv[1:])
 
 # COMM TEST
-'''b = Board.get(id = 1)
+b = Board.get(id = 1)
 b.sync()
 b.read_all()
 
@@ -123,7 +123,7 @@ d = Device.get_by_id(1)
 d.write(1)
 
 d.read()
-'''
+
 
 #comm.handle_msg("board_init$STM32:dht11.1-humidity,temperature|ds18b20.0")
 #comm.handle_msg("device_reading$1|2_2820,3_3500")
