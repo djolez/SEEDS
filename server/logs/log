@@ -1,3 +1,19 @@
 158.85.81.118 - - [19/Oct/2017 10:44:58] "GET / HTTP/1.0" 404 -
 Exit by user request, performing cleanup...
 Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Exit by user request, performing cleanup...
+Done
+Trying to open 'settings.json'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Exit by user request, performing cleanup...
+Done
