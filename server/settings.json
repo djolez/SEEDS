@@ -1,1 +1,1 @@
-{"check_interval_minutes": 1, "device_schedule": [{"id": 1, "schedule": [{"on": {"hour": 0, "second": 0, "minute": 0}, "off": {"hour": 0, "second": 0, "minute": 0}}]}], "poll_interval_minutes": 0, "value_ranges": [{"max_value": 30, "device_id": 1, "min_value": 40}]}
+{"check_interval_minutes": 120, "device_schedule": [{"schedule": [{"on": {"hour": 15, "minute": 20, "second": 0}, "off": {"hour": 20, "minute": 0, "second": 0}}], "id": 7}], "value_ranges": [{"max_value": 0, "device_id": 7, "min_value": 0}], "poll_interval_minutes": 10}

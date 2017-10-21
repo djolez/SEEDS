@@ -100,8 +100,9 @@ class Device(BaseModel):
             device.board_full = board
             device.values = []
             device.sub_devices = []
-
-            if(device.is_complex()):
+            
+            #if(device.is_complex()):
+            if(device.type == 0 or device.type == 1):
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
@@ -119,9 +120,11 @@ class Device(BaseModel):
 
                     device.sub_devices.append(s_dev)
             else:
+                if(device.type != 3):
+                    return
+
                 device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
                 tmp, device.avg_value = Device.get_avg_for_subdevice(device.id, start, end)
-                
                 readings = device.readings.select().where(
                         Device_reading.timestamp.between(
                             start, end))
@@ -174,7 +177,7 @@ class Device(BaseModel):
 
         try:
             # Get values for all subdevices
-            if(device.is_complex()):
+            if(device.type == 0 or device.type == 1):
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
