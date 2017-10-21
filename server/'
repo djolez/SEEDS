@@ -256,7 +256,7 @@ def add_test_values():
             board_id = b.id,
             name = "temperature",
             parent_id = dht.id,
-            #type = -1
+            type = -1
             )
     if c:
         dht_temp.save()
@@ -265,7 +265,7 @@ def add_test_values():
             board_id = b.id,
             name = "humidity",
             parent_id = dht.id,
-            #type = -1
+            type = -1
             )
     if c:
         dht_hum.save()
@@ -279,22 +279,13 @@ def add_test_values():
     if c:
         temp.save()
     
-    water_temp, c = models.device.Device.get_or_create(
-            board_id = b.id,
-            name = "water_temp",
-            parent_id = temp.id,
-            #type = -1
-            )
-    if c:
-        water_temp.save()
-    
-    water_level, c = models.device.Device.get_or_create(
-            name = "water_level",
+    switch, c = models.device.Device.get_or_create(
+            name = "water level",
             type = 3,
             board_id = b.id
             )
     if c:
-        water_level.save()
+        switch.save()
 
     relay, c = models.device.Device.get_or_create(
             name = "relay",
@@ -306,7 +297,7 @@ def add_test_values():
     
     now = datetime.now()
 
-    for v in randomize_values(60, 60, 70):
+    for v in randomize_values(60, 20, 70):
         models.device_reading.Device_reading.create(
                 device_id = dht_hum.id,
                 value = v,
@@ -316,33 +307,22 @@ def add_test_values():
     
     now = datetime.now()
 
-    for v in randomize_values(60, 20, 25):
+    for v in randomize_values(60, 20, 40):
         models.device_reading.Device_reading.create(
                 device_id = dht_temp.id,
                 value = v,
                 timestamp = now
                 )
         now = now + timedelta(minutes = 1)
-
-    now = datetime.now()
-
-    for v in randomize_values(60, 18, 19):
-        models.device_reading.Device_reading.create(
-                device_id = water_temp.id,
-                value = v,
-                timestamp = now
-             )
-        now = now + timedelta(minutes = 1)
     
-    now = datetime.now()
-
-    for i in range(60):
+    for v in randomize_values(50, 20, 40):
         models.device_reading.Device_reading.create(
-                device_id = water_level.id,
-                value = 1 if (i < 20 or i > 40) else 0 ,
-                timestamp = now
+                device_id = temp.id,
+                name = "water_temp",
+                value = v,
+                timestamp = datetime.now()
              )
-        now = now + timedelta(minutes = 1)
+    
 
 
 

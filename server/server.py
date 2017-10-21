@@ -93,13 +93,15 @@ def get_device_with_readings(id, start_datetime, end_datetime):
 @app.route('/device/from/<start_datetime>/to/<end_datetime>', methods = ["POST"])
 def get_readings_from_devices_list(start_datetime, end_datetime):
     ids = request.form.getlist('ids')
+    print(ids)
     start = helper.string_to_datetime(start_datetime)
     end = helper.string_to_datetime(end_datetime)
 
     res = []
     for id in ids:
         dr = get_full_device_with_readings(int(id), start, end)
-        res.append(dr.to_dict())
+        if(dr is not None):
+            res.append(dr.to_dict())
     return jsonify(res)
 
 @app.route('/device/<int:id>/last-reading')
