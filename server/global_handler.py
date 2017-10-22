@@ -2,6 +2,7 @@ import json
 import logging
 from random import randint
 from datetime import datetime, timedelta
+import os, sys
 
 import config
 import models
@@ -37,7 +38,7 @@ def process_comm_data(data):
                 board.save()
             
             for d in devices:
-                tmp = d.split("-")
+                tmp = d.split("_")
                 
                 has_sub_devices = False
                 if(len(tmp) > 1):
@@ -119,14 +120,18 @@ def load_settings(path = "settings.json"):
     try:
         logger.debug("Trying to open '{}'".format(path))
 
-        with open(path, "r") as file:
+        # Needed to write like this because the commented line doesn't work on windows
+        with open(os.path.join(sys.path[0], path), "r") as file:
+        # with open(path, "r") as file:
             res = json.load(file)
+            print(res)
     except IOError:
         logger.warning("Settings file not found in path, using default settings".format(path))
     except ValueError:
         logger.error("Failed to parse as JSON, using default settings".format(file))
     finally:
         global_vars.SETTINGS = res
+        logger.debug("Settings loaded")
 
 def stop_running_actions():
     global actions
@@ -138,28 +143,28 @@ def stop_running_actions():
 actions = {}
 settings = {}
 def apply_settings():
-    #TODO: Remove this
-    return
+    #TODO: Remove this and check if time is set to minute instead of second
+    # return
     
     stop_running_actions()
     print(global_vars.SETTINGS) 
-    if("poll_interval_minutes" in global_vars.SETTINGS):
+    # if("poll_interval_minutes" in global_vars.SETTINGS):
          
-        actions["data_polling"] = Action(
-            "data_poll_all",
-            repeat=Time(minute=global_vars.SETTINGS["poll_interval_minutes"]),
-            callbacks=[gh.retrieve_data_all_boards]
-            )
-        actions["data_polling"].schedule()
+    #     actions["data_polling"] = Action(
+    #         "data_poll_all",
+    #         repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+    #         callbacks=[gh.retrieve_data_all_boards]
+    #         )
+    #     actions["data_polling"].schedule()
                 
-    if("check_interval_minutes" in global_vars.SETTINGS):
+    # if("check_interval_minutes" in global_vars.SETTINGS):
         
-        actions["analyze_values"] = Action(
-            "analyze_values",
-            repeat=Time(minute=global_vars.SETTINGS["check_interval_minutes"]),
-            callbacks=[analyze_db_values],
-            )
-        actions["analyze_values"].schedule()
+    #     actions["analyze_values"] = Action(
+    #         "analyze_values",
+    #         repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+    #         callbacks=[analyze_db_values],
+    #         )
+    #     actions["analyze_values"].schedule()
     
     if("device_schedule" in global_vars.SETTINGS):
         for d in global_vars.SETTINGS["device_schedule"]:
@@ -194,7 +199,7 @@ def save_settings_to_file(reload_actions = True):
     try:
         with open("settings.json", "w") as file:
             file.write(json.dumps(global_vars.SETTINGS))
-        #TODO: uncomment
+        
         if(reload_actions):
             apply_settings()
     except Exception as e:
