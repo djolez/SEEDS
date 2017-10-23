@@ -23,7 +23,7 @@ import comm_implementation as comm
 
 logging.basicConfig(
     level = logging.DEBUG,
-    format='%(asctime)s -- %(name)s -- %(levelname)s -- %(message)s',
+    format='%(asctime)s -- %(levelname)s -- %(name)s -- %(message)s',
     datefmt='%d-%m-%Y %H:%M:%S')
 
 """logging.basicConfig(
@@ -79,7 +79,7 @@ def app_start(argv):
         elif(arg == "run_server"):
             # There is a problem with this on windows, when put in a thread it needs a minute before it starts
             # (on linux starts immediately)
-            
+
             active_threads["server"] = Thread(target = server.run, daemon = True)
             active_threads["server"].start()
             

@@ -86,7 +86,10 @@ class Device(BaseModel):
 
     def interrupt(self, value):
         from .notification import Notification
-        Notification.add("Interrupt triggered, value: {}".format(value), self.id, 3) 
+        Notification.add("Interrupt triggered, value: {}".format(value), self.id, 3)
+        
+        from .device_reading import Device_reading
+        Device_reading.add(self.id, value)
         #TODO: Send notification to the user
 
     def get_with_readings(id, start, end):
@@ -106,32 +109,36 @@ class Device(BaseModel):
                 sub_devices = device.get_sub_devices()
                 
                 for s_dev in sub_devices:
-                    s_dev.last_value = s_dev.readings.order_by(Device_reading.timestamp.desc()).get().value
-                    tmp, s_dev.avg_value = Device.get_avg_for_subdevice(s_dev.id, start, end)
+                    if(len(s_dev.readings) > 0):
+                        s_dev.last_value = s_dev.readings.order_by(Device_reading.timestamp.desc()).get().value
+                        tmp, s_dev.avg_value = Device.get_avg_for_subdevice(s_dev.id, start, end)
 
-                    s_dev.values = []
-                    readings = s_dev.readings.select().where(
+                        s_dev.values = []
+                        readings = s_dev.readings.select().where(
                             Device_reading.timestamp.between(
                                 start, end)) 
                     
-                    for r in readings:
-                        s_dev.values.append(r)
-                        #s_dev.values.append(r.to_dict())
+                        for r in readings:
+                            s_dev.values.append(r)
+                            #s_dev.values.append(r.to_dict())
 
                     device.sub_devices.append(s_dev)
             else:
                 if(device.type != 3):
                     return
 
-                device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
-                tmp, device.avg_value = Device.get_avg_for_subdevice(device.id, start, end)
-                readings = device.readings.select().where(
-                        Device_reading.timestamp.between(
-                            start, end))
+                logger.debug("working on {}, size is {}".format(device.id, len(device.readings)))
 
-                for r in readings:
-                    device.values.append(r)
-                    #device.values.append(r.to_dict())
+                if(len(device.readings) > 0):
+                    device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
+                    tmp, device.avg_value = Device.get_avg_for_subdevice(device.id, start, end)
+                    readings = device.readings.select().where(
+                            Device_reading.timestamp.between(
+                                start, end))
+
+                    for r in readings:
+                        device.values.append(r)
+                        #device.values.append(r.to_dict())
                 
             return device
         except Device.DoesNotExist:

@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 def send_msg(msg):
     try:
         logger.debug("Sending message '{}'".format(msg))
-        # serial_conn.write(bytearray(msg + '\n', encoding='ISO-8859-1'))
+        serial_conn.write(bytearray(msg + '\n', encoding='ISO-8859-1'))
     except serial.SerialTimeoutException as e:
         pass
         #logger.exception("Serial timeout expired")
@@ -28,7 +28,8 @@ def main():
             #pass
             raw = serial_conn.readline()
             data = str(raw, 'ISO-8859-1')
-            handle_msg(data)
+            # Remove trailing \n
+            handle_msg(data[:-1])
         except TypeError as e:
             logging.exception(e)
         except OSError as e:
