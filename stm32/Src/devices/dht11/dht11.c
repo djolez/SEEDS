@@ -15,8 +15,10 @@ void dht11_init(Port_t* port)
 	}
 	port->GPIO_Pin_Pos = position-1;
 
-	port->Sub_devices[0].Name = "Temperature";
-	port->Sub_devices[1].Name = "Humidity";
+	strcpy(port->Sub_devices[0].Name, "Temperature");
+	strcpy(port->Sub_devices[1].Name, "Humidity");
+//	port->Sub_devices[0].Name = "Temperature";
+//	port->Sub_devices[1].Name = "Humidity";
 	port->Num_Sub_devices = 2;
 }
 

@@ -3,7 +3,7 @@
 #include <string.h>
 
 char read_buffer[40];
-uint8_t devices, i, j, count, alarm_count;
+uint8_t current_device, i, j, count, alarm_count;
 float tmp_value;
 uint8_t device[EXPECTING_SENSORS][8];
 uint8_t alarm_device[EXPECTING_SENSORS][8];
@@ -22,12 +22,13 @@ void ds18b20_init_all(Port_t* port)
 
 	/* Checks for any device on 1-wire */
 	count = 0;
-	devices = TM_OneWire_First(&OneWire1);
+	current_device = TM_OneWire_First(&OneWire1);
 
-	while (devices) {
+	while (current_device) {
 		char tmp_name[50];
 		sprintf(tmp_name, "temp-%d", count);
-		port->Sub_devices[count].Name = tmp_name;
+//		port->Sub_devices[count].Name = "temp-0";
+		strcpy(port->Sub_devices[count].Name, tmp_name);
 //		port->Sub_devices[count].Name = "Water";
 		/* Increase counter */
 		count++;
@@ -36,7 +37,7 @@ void ds18b20_init_all(Port_t* port)
 		TM_OneWire_GetFullROM(&OneWire1, device[count - 1]);
 
 		/* Get next device */
-		devices = TM_OneWire_Next(&OneWire1);
+		current_device = TM_OneWire_Next(&OneWire1);
 	}
 
 	port->Num_Sub_devices = count;

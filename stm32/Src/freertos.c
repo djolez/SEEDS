@@ -170,28 +170,33 @@ void handle_msg(char* msg) {
 	payload = strsep(&msg, MSG_DELIMITER);
 
 	if (strcmp(action, "read") == 0) {
-		comm_send_msg("READ");
+
 		int device_id = string_to_int(payload);
 
 		if (device_id < 0) {
+//			comm_send_msg("reading from all devices...");
 			manager_update_data_all();
 			manager_send_data_all();
+//			comm_send_msg("\n");
 		} else {
+//			comm_send_msg("reading from a device...");
 			Port_t* device = find_device_by_id(device_id);
 
 			manager_update_data_specific(device);
 			manager_send_data_specific(device);
+//			comm_send_msg("\n");
 		}
 
 	} else if (strcmp(action, "write") == 0) {
-		comm_send_msg("WRITE");
+//		comm_send_msg("writing to a device...");
 		uint16_t id = string_to_int(strsep(&payload, "_"));
 		uint8_t value = string_to_int(strsep(&payload, "_"));
 
 		manager_write_data(id, value);
+//		comm_send_msg("Done.\n");
 
 	} else if (strcmp(action, "sync") == 0) {
-		comm_send_msg("SYNC");
+//		comm_send_msg("syncing...");
 
 //		manager_print_all_devices();
 
@@ -230,7 +235,8 @@ void handle_msg(char* msg) {
 			}
 			full_device = strsep(&payload, "|");
 		}
-		manager_print_all_devices();
+//		comm_send_msg("Done. Printing all devices...\n");
+//		manager_print_all_devices();
 
 	} else {
 //		ERROR

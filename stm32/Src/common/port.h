@@ -20,7 +20,8 @@ typedef struct{
 
 typedef struct {
 	uint16_t db_id;
-	char* Name;
+	char Name[50];
+//	char* Name;
 	uint16_t Last_Value;
 } Sub_device_t;
 

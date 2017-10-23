@@ -13,8 +13,9 @@
  * 	sync$deviceName1_dbID1:subDeviceName1_dbID, subDeviceName2_dbID | deviceName2_dbID2...
  *
  *	TX
- *	board_init $ boardName: deviceName1.type- subDeviceName1, subDeviceName2 | deviceName2.type- ..., ... | ...
+ *	board_init $ boardName: deviceName1.type_ subDeviceName1, subDeviceName2 | deviceName2.type- ..., ... | ...
  *	device_reading $ dbID(_value) (| sub-device1-id_value,  sub-device2-id_value...)
+ *	interrupt $ dbID_value
  * */
 
 char rx_data[2], rx_indx, rx_buffer[MAX_COMM_MSG_LENGTH];
@@ -60,6 +61,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			}
 			else //if received data == "\n"
 			{
+//				comm_send_msg("-----------------------------------------");
 				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
 
 				rx_indx = 0;
@@ -68,8 +70,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 		else
 		{
 			char msg[70];
-//			sprintf(msg, "Error: Message size is greater than %d chars\n", MAX_COMM_MSG_LENGTH);
-			comm_send_msg("Error: Message size is greater than %d chars");
+			sprintf(msg, "Error: Message size is greater than %d chars\n", MAX_COMM_MSG_LENGTH);
+			comm_send_msg(msg);
+//			comm_send_msg("Error: Message size is greater than %d chars");
 //			HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), 1000);
 			rx_indx = 0;
 //			HAL_UART_Receive_IT(&huart2, rx_data, 1);

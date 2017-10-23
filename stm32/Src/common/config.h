@@ -8,9 +8,9 @@
 //#define TX_BUFFER_SIZE 150
 #define MSG_DELIMITER "$"
 #define MAX_COMMS_DELAY 500
-#define MAX_COMM_MSG_LENGTH 150
+#define MAX_COMM_MSG_LENGTH 200
 #define MAX_SUBDEVICES_NUMBER 10
-#define NUMBER_OF_ENTITIES 5
+#define NUMBER_OF_ENTITIES 4
 //Port_t* entities[] = {
 //	{ .Name = "ds18b20", .GPIOx = GPIOC, .GPIO_Pin = GPIO_PIN_7, .Type = DS18B20 },
 //	{ .Name = "dht11", .GPIOx = GPIOA, .GPIO_Pin = GPIO_PIN_9, .Type = DHT11 },
