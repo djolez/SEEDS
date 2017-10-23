@@ -150,25 +150,30 @@ def apply_settings():
     # return
     
     stop_running_actions()
+<<<<<<< HEAD
     # print(global_vars.SETTINGS) 
     
     if("poll_interval_minutes" in global_vars.SETTINGS):
+=======
+    print(global_vars.SETTINGS) 
+    # if("poll_interval_minutes" in global_vars.SETTINGS):
+>>>>>>> 90ac475da18fd0277bc50d6c6145e65226575a60
          
-        actions["data_polling"] = Action(
-            "data_poll_all",
-            repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
-            callbacks=[gh.retrieve_data_all_boards]
-            )
-        actions["data_polling"].schedule()
+    #     actions["data_polling"] = Action(
+    #         "data_poll_all",
+    #         repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+    #         callbacks=[gh.retrieve_data_all_boards]
+    #         )
+    #     actions["data_polling"].schedule()
                 
-    if("check_interval_minutes" in global_vars.SETTINGS):
+    # if("check_interval_minutes" in global_vars.SETTINGS):
         
-        actions["analyze_values"] = Action(
-            "analyze_values",
-            repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
-            callbacks=[analyze_db_values],
-            )
-        actions["analyze_values"].schedule()
+    #     actions["analyze_values"] = Action(
+    #         "analyze_values",
+    #         repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+    #         callbacks=[analyze_db_values],
+    #         )
+    #     actions["analyze_values"].schedule()
     
     if("device_schedule" in global_vars.SETTINGS):
         for d in global_vars.SETTINGS["device_schedule"]:

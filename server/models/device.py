@@ -127,7 +127,15 @@ class Device(BaseModel):
                 if(device.type != 3):
                     return
 
+<<<<<<< HEAD
                 logger.debug("working on {}, size is {}".format(device.id, len(device.readings)))
+=======
+                device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
+                tmp, device.avg_value = Device.get_avg_for_subdevice(device.id, start, end)
+                readings = device.readings.select().where(
+                        Device_reading.timestamp.between(
+                            start, end))
+>>>>>>> 90ac475da18fd0277bc50d6c6145e65226575a60
 
                 if(len(device.readings) > 0):
                     device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
