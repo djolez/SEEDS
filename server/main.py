@@ -79,11 +79,7 @@ def app_start(argv):
         elif(arg == "run_server"):
             # There is a problem with this on windows, when put in a thread it needs a minute before it starts
             # (on linux starts immediately)
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> 90ac475da18fd0277bc50d6c6145e65226575a60
             active_threads["server"] = Thread(target = server.run, daemon = True)
             active_threads["server"].start()
             

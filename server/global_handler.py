@@ -150,15 +150,9 @@ def apply_settings():
     # return
     
     stop_running_actions()
-<<<<<<< HEAD
     # print(global_vars.SETTINGS) 
     
-    if("poll_interval_minutes" in global_vars.SETTINGS):
-=======
-    print(global_vars.SETTINGS) 
     # if("poll_interval_minutes" in global_vars.SETTINGS):
->>>>>>> 90ac475da18fd0277bc50d6c6145e65226575a60
-         
     #     actions["data_polling"] = Action(
     #         "data_poll_all",
     #         repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
