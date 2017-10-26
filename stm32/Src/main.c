@@ -113,7 +113,9 @@ int main(void)
 //	  volatile uint32_t adcResult;
 //	  adcResult = HAL_ADC_GetValue(&hadc1);
 //	  HAL_ADC_Stop(&hadc1);
-//
+
+	//KURCHINA KURCHINA KURHC
+
 //	  char* msg[MAX_COMM_MSG_LENGTH];
 //	  sprintf(msg, "%d %d", adcResult);
 //	  comm_send_msg(msg);
