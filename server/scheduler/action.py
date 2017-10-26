@@ -26,14 +26,16 @@ class Action:
         return '[action: {} @ {}]'.format(self.name, self.time or self.repeat)
 
     def schedule(self):
+
         if(self.time is not None):
             time = self.time.to_date()
             now = dt.datetime.now()
-            
+            logger.debug("Now: {}, time: {}".format(now, time))
             if(time < now):
                 if(self.force_execute):
                     self.execute(True)
-                time += dt.timedelta(days=1)
+                # time += dt.timedelta(days=1)
+                time += dt.timedelta(minutes=1)
         if(self.repeat is not None):
             if(self.force_execute):
                 self.force_execute = False

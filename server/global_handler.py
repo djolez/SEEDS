@@ -177,23 +177,24 @@ def apply_settings():
                 on_time = Time(time["on"]["hour"], time["on"]["minute"], time["on"]["second"])
                 off_time = Time(time["off"]["hour"], time["off"]["minute"], time["off"]["second"])
 
-                action_on = "device-{}-on".format(d["id"])
-                action_off = "device-{}-off".format(d["id"])
+                # action_on = "device-{}-on".format(d["id"])
+                # action_off = "device-{}-off".format(d["id"])
+                # logger.debug(global_vars.SETTINGS)
                 
-                #action_on = "device-{}-on-{}".format(d["id"], on_time)
-                #action_off = "device-{}-off-{}".format(d["id"], off_time)
+                action_on = "device-{}-on-{}".format(d["id"], on_time)
+                action_off = "device-{}-off-{}".format(d["id"], off_time)
 
-            actions[action_on] = Action(
-                    action_on,
-                    time = on_time,
-                    callbacks = [device.on])
-            actions[action_on].schedule()
+                actions[action_on] = Action(
+                        action_on,
+                        time = on_time,
+                        callbacks = [device.on])
+                actions[action_on].schedule()
 
-            actions[action_off] = Action(
-                    action_off,
-                    time = off_time,
-                    callbacks = [device.off])
-            actions[action_off].schedule()
+                actions[action_off] = Action(
+                        action_off,
+                        time = off_time,
+                        callbacks = [device.off])
+                actions[action_off].schedule()
 
 
 def save_settings_to_file(reload_actions = True):

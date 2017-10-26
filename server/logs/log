@@ -4,3 +4,324 @@ Settings loaded
 Server started
 Received msg: 'board_init$STM32:dht11-PA9.1_Temperature,Humidity|ds18b20-PC7.0_temp-0|float-switch-PA7.3|relay-light-PB6.2'
 Sending message 'sync$dht11-PA9_1:Temperature_2,Humidity_3|ds18b20-PC7_4:temp-0_5|float-switch-PA7_6|relay-light-PB6_7'
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+[action: device-2-on @ [12:53:20]] -- Scheduled
+[action: device-2-off @ [12:53:30]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on @ [12:53:20]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on @ [12:53:20]] -- Scheduled
+Received msg: 'error$ Device not found'
+Sending message 'write$2_1'
+Board error: ' Device not found'
+Adding reading: device_id 2, value 1
+[action: device-2-on @ [12:53:20]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on @ [12:53:20]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off @ [12:53:30]] -- Scheduled
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off @ [12:53:30]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off @ [12:53:30]] -- Scheduled
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off @ [12:53:30]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+[action: device-2-on-[12:58:00] @ [12:58:00]] -- Scheduled
+[action: device-2-off-[12:58:10] @ [12:58:10]] -- Scheduled
+[action: device-2-on-[12:58:20] @ [12:58:20]] -- Scheduled
+[action: device-2-off-[12:58:30] @ [12:58:30]] -- Scheduled
+Received msg: 'board_init$STM32:dht11-PA9.1_Temperature,Humidity|ds18b20-PC7.0_temp-0|float-switch-PA7.3|relay-light-PB6.2'
+Sending message 'sync$dht11-PA9_1:Temperature_2,Humidity_3|ds18b20-PC7_4:temp-0_5|float-switch-PA7_6|relay-light-PB6_7'
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:00] @ [12:58:00]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+[action: device-2-on-[12:58:00] @ [12:58:00]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:00] @ [12:58:00]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+[action: device-2-on-[12:58:00] @ [12:58:00]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:00] @ [12:58:00]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off-[12:58:10] @ [12:58:10]] -- Scheduled
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off-[12:58:10] @ [12:58:10]] -- Scheduled
+Sending message 'write$2_0'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Adding reading: device_id 2, value 0
+[action: device-2-off-[12:58:10] @ [12:58:10]] -- Scheduled
+Sending message 'write$2_0'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Adding reading: device_id 2, value 0
+[action: device-2-off-[12:58:10] @ [12:58:10]] -- Scheduled
+Sending message 'write$2_0'
+Adding reading: device_id 2, value 0
+[action: device-2-off-[12:58:10] @ [12:58:10]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:20] @ [12:58:20]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:20] @ [12:58:20]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:20] @ [12:58:20]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+[action: device-2-on-[12:58:20] @ [12:58:20]] -- Scheduled
+Sending message 'write$2_1'
+Adding reading: device_id 2, value 1
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+[action: device-2-on-[12:58:20] @ [12:58:20]] -- Scheduled
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Received msg: 'error$ Device not found'
+Board error: ' Device not found'
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+[action: device-7-on-[12:59:00] @ [12:59:00]] -- Scheduled
+[action: device-7-off-[12:59:10] @ [12:59:10]] -- Scheduled
+[action: device-7-on-[12:59:20] @ [12:59:20]] -- Scheduled
+[action: device-7-off-[12:59:30] @ [12:59:30]] -- Scheduled
+Received msg: 'board_init$STM32:dht11-PA9.1_Temperature,Humidity|ds18b20-PC7.0_temp-0|float-switch-PA7.3|relay-light-PB6.2'
+Sending message 'sync$dht11-PA9_1:Temperature_2,Humidity_3|ds18b20-PC7_4:temp-0_5|float-switch-PA7_6|relay-light-PB6_7'
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:00] @ [12:59:00]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:00] @ [12:59:00]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:00] @ [12:59:00]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:00] @ [12:59:00]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:10] @ [12:59:10]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:10] @ [12:59:10]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:10] @ [12:59:10]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:10] @ [12:59:10]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:20] @ [12:59:20]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:20] @ [12:59:20]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:20] @ [12:59:20]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+[action: device-7-on-[12:59:20] @ [12:59:20]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:30] @ [12:59:30]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:30] @ [12:59:30]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:30] @ [12:59:30]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+[action: device-7-off-[12:59:30] @ [12:59:30]] -- Scheduled
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+here1
+here2
+[action: device-7-on-[13:00:00] @ [13:00:00]] -- Scheduled
+here2
+[action: device-7-off-[13:00:10] @ [13:00:10]] -- Scheduled
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+here1
+here2
+[action: device-7-on-[13:03:00] @ [13:03:00]] -- Scheduled
+here2
+[action: device-7-off-[13:03:10] @ [13:03:10]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+here2
+[action: device-7-on-[13:03:00] @ [13:03:00]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+here2
+[action: device-7-on-[13:03:00] @ [13:03:00]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+here2
+[action: device-7-off-[13:03:10] @ [13:03:10]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+here2
+[action: device-7-off-[13:03:10] @ [13:03:10]] -- Scheduled
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+{'poll_interval_minutes': 10, 'device_schedule': [{'id': 7, 'schedule': [{'on': {'second': 0, 'minute': 3, 'hour': 13}, 'off': {'second': 10, 'minute': 3, 'hour': 13}}]}], 'check_interval_minutes': 60, 'value_ranges': []}
+here2
+[action: device-7-on-[13:03:00] @ [13:03:00]] -- Scheduled
+here2
+[action: device-7-off-[13:03:10] @ [13:03:10]] -- Scheduled
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+{'value_ranges': [], 'device_schedule': [{'id': 7, 'schedule': [{'off': {'minute': 3, 'second': 10, 'hour': 13}, 'on': {'minute': 3, 'second': 0, 'hour': 13}}]}], 'check_interval_minutes': 60, 'poll_interval_minutes': 10}
+here2
+Setting timer for [name: device-7-on-[13:03:00], date_time: 2017-10-26 13:03:00.953225, args: []]
+[action: device-7-on-[13:03:00] @ [13:03:00]] -- Scheduled
+here2
+Setting timer for [name: device-7-off-[13:03:10], date_time: 2017-10-26 13:03:10.954226, args: []]
+[action: device-7-off-[13:03:10] @ [13:03:10]] -- Scheduled
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+Setting timer for [name: device-7-on-[13:43:00], date_time: 2017-10-25 13:43:00.457202, args: []]
+[action: device-7-on-[13:43:00] @ [13:43:00]] -- Scheduled
+Setting timer for [name: device-7-off-[13:43:10], date_time: 2017-10-25 13:43:10.459204, args: []]
+[action: device-7-off-[13:43:10] @ [13:43:10]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+Setting timer for [name: device-7-on-[13:43:00], date_time: 2017-10-25 13:43:00.569196, args: []]
+Cannot schedule call, specified date_time "2017-10-25 13:43:00.569196" is before current time
+[action: device-7-on-[13:43:00] @ [13:43:00]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+Setting timer for [name: device-7-off-[13:43:10], date_time: 2017-10-25 13:43:10.587192, args: []]
+Cannot schedule call, specified date_time "2017-10-25 13:43:10.587192" is before current time
+[action: device-7-off-[13:43:10] @ [13:43:10]] -- Scheduled
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+Setting timer for [name: device-7-on-[13:47:00], date_time: 2017-10-25 13:47:00.332966, args: []]
+[action: device-7-on-[13:47:00] @ [13:47:00]] -- Scheduled
+Setting timer for [name: device-7-off-[13:47:10], date_time: 2017-10-25 13:47:10.334971, args: []]
+[action: device-7-off-[13:47:10] @ [13:47:10]] -- Scheduled
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+Setting timer for [name: device-7-on-[13:47:00], date_time: 2017-10-25 13:47:00.442848, args: []]
+Cannot schedule call, specified date_time "2017-10-25 13:47:00.442848" is before current time
+[action: device-7-on-[13:47:00] @ [13:47:00]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+Setting timer for [name: device-7-off-[13:47:10], date_time: 2017-10-25 13:47:10.430797, args: []]
+Cannot schedule call, specified date_time "2017-10-25 13:47:10.430797" is before current time
+[action: device-7-off-[13:47:10] @ [13:47:10]] -- Scheduled
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+Now: 2017-10-25 13:58:11.933432, time: 2017-10-25 13:58:30.933432
+Setting timer for [name: device-7-on-[13:58:30], date_time: 2017-10-25 13:58:30.933432, args: []]
+[action: device-7-on-[13:58:30] @ [13:58:30]] -- Scheduled
+Now: 2017-10-25 13:58:11.934432, time: 2017-10-25 13:58:40.934432
+Setting timer for [name: device-7-off-[13:58:40], date_time: 2017-10-25 13:58:40.934432, args: []]
+[action: device-7-off-[13:58:40] @ [13:58:40]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+Now: 2017-10-25 13:58:31.086190, time: 2017-10-25 13:58:30.086190
+Setting timer for [name: device-7-on-[13:58:30], date_time: 2017-10-25 13:59:30.086190, args: []]
+[action: device-7-on-[13:58:30] @ [13:58:30]] -- Scheduled
+Trying to open 'settings.json'
+Settings file not found in path, using default settings
+Settings loaded
+Server started
+Now: 2017-10-25 14:02:48.345681, time: 2017-10-25 14:03:00.345681
+Setting timer for [name: device-7-on-[14:03:00], date_time: 2017-10-25 14:03:00.345681, args: []]
+[action: device-7-on-[14:03:00] @ [14:03:00]] -- Scheduled
+Now: 2017-10-25 14:02:48.346673, time: 2017-10-25 14:03:10.346673
+Setting timer for [name: device-7-off-[14:03:10], date_time: 2017-10-25 14:03:10.346673, args: []]
+[action: device-7-off-[14:03:10] @ [14:03:10]] -- Scheduled
+Sending message 'write$7_1'
+Adding reading: device_id 7, value 1
+Now: 2017-10-25 14:03:00.453461, time: 2017-10-25 14:03:00.453461
+Setting timer for [name: device-7-on-[14:03:00], date_time: 2017-10-25 14:03:00.453461, args: []]
+Cannot schedule call, specified date_time "2017-10-25 14:03:00.453461" is before current time
+[action: device-7-on-[14:03:00] @ [14:03:00]] -- Scheduled
+Sending message 'write$7_0'
+Adding reading: device_id 7, value 0
+Now: 2017-10-25 14:03:10.458311, time: 2017-10-25 14:03:10.458311
+Setting timer for [name: device-7-off-[14:03:10], date_time: 2017-10-25 14:03:10.458311, args: []]
+Cannot schedule call, specified date_time "2017-10-25 14:03:10.458311" is before current time
+[action: device-7-off-[14:03:10] @ [14:03:10]] -- Scheduled
