@@ -3,8 +3,11 @@
 #include "usart.h"
 #include "FreeRTOS.h"
 #include "queue.h"
+#include "manager.h"
 
 #include "global.h"
+
+void handle_msg(char* msg);
 
 /* Possible message formats (parameters in brackets are optional):
  *  RX
@@ -41,7 +44,6 @@ void comm_send_error_msg(char* msg) {
 }
 
 
-
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 
 	uint8_t i;
@@ -62,8 +64,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			else //if received data == "\n"
 			{
 //				comm_send_msg("-----------------------------------------");
-				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
-
+//				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
+				handle_msg(rx_buffer);
 				rx_indx = 0;
 			}
 		}
@@ -81,6 +83,93 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	}
 }
 
+void handle_msg(char* msg) {
+	char* action;
+	char* payload;
+
+	action = strsep(&msg, MSG_DELIMITER);
+	payload = strsep(&msg, MSG_DELIMITER);
+
+	if (strcmp(action, "read") == 0) {
+
+		int device_id = string_to_int(payload);
+
+		if (device_id < 0) {
+//			comm_send_msg("reading from all devices...");
+			manager_update_data_all();
+			manager_send_data_all();
+//			comm_send_msg("\n");
+		} else {
+//			comm_send_msg("reading from a device...");
+			Port_t* device = find_device_by_id(device_id);
+
+			manager_update_data_specific(device);
+			manager_send_data_specific(device);
+//			comm_send_msg("\n");
+		}
+
+	} else if (strcmp(action, "write") == 0) {
+//		comm_send_msg("writing to a device...");
+		uint16_t id = string_to_int(strsep(&payload, "_"));
+		uint8_t value = string_to_int(strsep(&payload, "_"));
+
+		manager_write_data(id, value);
+//		comm_send_msg("Done.\n");
+
+	} else if (strcmp(action, "sync") == 0) {
+//		comm_send_msg("syncing...");
+
+//		manager_print_all_devices();
+
+		char* full_device;
+		char* device;
+		char* device_name;
+		uint16_t device_id;
+
+		char* sub_devices;
+		char* sub_device;
+		char* sub_device_name;
+		uint16_t sub_device_id;
+
+		full_device = strsep(&payload, "|");
+
+		while(full_device) {
+			device = strsep(&full_device, ":");
+			device_name = strsep(&device, "_");
+
+//			char* tmp = strsep(&device, "_");
+//			device_id = strtol(strsep(&device, "_"), NULL, 10);
+			device_id = string_to_int(strsep(&device, "_"));
+//			uint16_t device_id = strtol(tmp, NULL, 10);
+			manager_update_device_id(device_name, NULL, device_id);
+
+			sub_devices = strsep(&full_device, ":");
+			sub_device = strsep(&sub_devices, ",");
+
+			while(sub_device) {
+				sub_device_name = strsep(&sub_device, "_");
+				sub_device_id = string_to_int(strsep(&sub_device, "_"));
+//				sub_device_id = strtol(strsep(&sub_device, "_"), NULL, 10);
+				sub_device = strsep(&sub_devices, ",");
+
+				manager_update_device_id(sub_device_name, device_name, sub_device_id);
+			}
+			full_device = strsep(&payload, "|");
+		}
+//		comm_send_msg("Done. Printing all devices...\n");
+//		manager_print_all_devices();
+
+	} else {
+//		ERROR
+		comm_send_error_msg("Unknown command");
+	}
+	//transmit_msg(payload);
+
+//	while ((action = strsep(&msg, "_")) != NULL) {
+//		HAL_UART_Transmit(&huart2, action, strlen(action), 100);
+//		HAL_UART_Transmit(&huart2, "\r\n", strlen("\n"), 100);
+//	}
+}
 
 
 

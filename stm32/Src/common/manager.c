@@ -5,6 +5,7 @@
 #include <string.h>
 #include "config.h"
 #include "communication.h"
+#include "delay.h"
 
 //Port_t* tmp;
 
@@ -255,7 +256,11 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	NVIC_DisableIRQ(EXTI9_5_IRQn);
 	interrupt_pin = GPIO_Pin;
-	xTimerStartFromISR(timer_handle, pdFALSE);
+//	xTimerStartFromISR(timer_handle, pdFALSE);
+//	DelayMs(10);
+	DELAY(20);
+	__HAL_GPIO_EXTI_CLEAR_IT(interrupt_pin);
+	NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
 //		Change this to somehow check GPIO port, TYPE is just a temp solution

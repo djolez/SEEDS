@@ -50,6 +50,15 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+#include "stm32l4xx_hal_rtc_ex.h"
+#include <string.h>
+#include "hw.h"
+#include "radio.h"
+#include "timeServer.h"
+#include "delay.h"
+#include "low_power.h"
+#include "vcom.h"
+
 #include "config.h"
 #include "communication.h"
 #include "manager.h"
@@ -239,14 +248,14 @@ void SystemClock_Config(void)
   * @param  None
   * @retval None
   */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler */
-	/* User can add his own implementation to report the HAL error return state */
-	while (1) {
-	}
-  /* USER CODE END Error_Handler */ 
-}
+//void Error_Handler(void)
+//{
+//  /* USER CODE BEGIN Error_Handler */
+//	/* User can add his own implementation to report the HAL error return state */
+//	while (1) {
+//	}
+//  /* USER CODE END Error_Handler */
+//}
 
 #ifdef USE_FULL_ASSERT
 

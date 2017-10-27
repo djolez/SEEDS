@@ -56,7 +56,7 @@ void ds18b20_update_all(Port_t* port)
 	/* Wait until all are done on one onewire port */
 	while (!TM_DS18B20_AllDone(&OneWire1));
 
-	/* Read temperature from each device separatelly */
+	/* Read temperature from each device separately */
 	for (i = 0; i < count; i++) {
 		/* Read temperature from ROM address and store it to temps variable */
 		if (TM_DS18B20_Read(&OneWire1, device[i], &tmp_value)) {

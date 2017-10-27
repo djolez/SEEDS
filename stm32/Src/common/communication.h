@@ -10,8 +10,6 @@
 extern uint8_t msg_pending;
 
 void comm_start(void);
-//void finished_reading(void);
-//void to_string(Port_t* port, Value_t* values, uint8_t values_size, char* ret_val);
 void to_string(Port_t* port, char* ret_val);
 void comm_send_msg(char* msg);
 void comm_send_error_msg(char* msg);
