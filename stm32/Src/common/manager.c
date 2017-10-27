@@ -250,14 +250,12 @@ void manager_print_all_devices() {
 	}
 }
 
-extern osTimerId timer_handle;
 extern uint16_t interrupt_pin;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 
 	NVIC_DisableIRQ(EXTI9_5_IRQn);
 	interrupt_pin = GPIO_Pin;
-//	xTimerStartFromISR(timer_handle, pdFALSE);
-//	DelayMs(10);
+
 	DELAY(20);
 	__HAL_GPIO_EXTI_CLEAR_IT(interrupt_pin);
 	NVIC_EnableIRQ(EXTI9_5_IRQn);
