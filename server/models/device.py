@@ -125,7 +125,7 @@ class Device(BaseModel):
                     device.sub_devices.append(s_dev)
             else:
                 if(device.type != 3):
-                    return
+                    return device
 
                 logger.debug("working on {}, size is {}".format(device.id, len(device.readings)))
 
@@ -134,7 +134,7 @@ class Device(BaseModel):
                 readings = device.readings.select().where(
                         Device_reading.timestamp.between(
                             start, end))
-                
+
                 if(len(device.readings) > 0):
                     device.last_value = device.readings.order_by(Device_reading.timestamp.desc()).get().value
                     tmp, device.avg_value = Device.get_avg_for_subdevice(device.id, start, end)

@@ -152,13 +152,13 @@ def apply_settings():
     stop_running_actions()
     # print(global_vars.SETTINGS) 
     
-    # if("poll_interval_minutes" in global_vars.SETTINGS):
-    #     actions["data_polling"] = Action(
-    #         "data_poll_all",
-    #         repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
-    #         callbacks=[gh.retrieve_data_all_boards]
-    #         )
-    #     actions["data_polling"].schedule()
+    if("poll_interval_minutes" in global_vars.SETTINGS):
+        actions["data_polling"] = Action(
+            "data_poll_all",
+            repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+            callbacks=[gh.retrieve_data_all_boards]
+            )
+        actions["data_polling"].schedule()
                 
     # if("check_interval_minutes" in global_vars.SETTINGS):
         

@@ -142,7 +142,7 @@ def get_settings():
 def save_settings():
     try:
         data = request.get_json(force = True)
-        print(data)
+        logger.debug(data)
         
         global_vars.SETTINGS = data
 

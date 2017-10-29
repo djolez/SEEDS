@@ -107,8 +107,10 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
                     }
 
                     LineDataSet sub_device_line = new LineDataSet(chart_entries.get(sub_device_counter), sub_device.getName());
+                    sub_device_line.setLineWidth(3f);
+
                     Random rnd = new Random();
-                    int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+                    int color = Color.argb(255, rnd.nextInt(250-150) + 150, rnd.nextInt(250-150) + 150, rnd.nextInt(250-150) + 150);
 
                     sub_device_line.setColors(color);
                     sub_device_line.setDrawValues(false);
@@ -138,6 +140,11 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
                 }
 
                 LineDataSet line = new LineDataSet(chart_entries.get(0), this.readings[position].getName());
+                Random rnd = new Random();
+                int color = Color.argb(255, rnd.nextInt(250-150) + 150, rnd.nextInt(250-150) + 150, rnd.nextInt(250-150) + 150);
+                line.setLineWidth(3f);
+
+                line.setColors(color);
                 line.setDrawValues(false);
                 line.setDrawCircles(false);
 
@@ -152,6 +159,8 @@ public class DeviceAdapter extends ArrayAdapter<Device> {
 //        xAxis.setGranularity(100);
             xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
             xAxis.setValueFormatter(new DateValueFormatter(xAxisDates));
+            mChart.getXAxis().setDrawGridLines(false);
+            mChart.setHighlightPerTapEnabled(false);
             mChart.invalidate();
 
         }

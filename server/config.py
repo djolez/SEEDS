@@ -45,28 +45,28 @@ DEFAULT_SETTINGS = {
             "schedule": [
                 {
                     "on": {
-                        "hour": 14,
-                        "minute": 3,
+                        "hour": 15,
+                        "minute": 11,
                         "second": 0
                     },
                     "off": {
-                        "hour": 14,
-                        "minute": 3,
+                        "hour": 15,
+                        "minute": 11,
                         "second": 10
                     }
                 },
-                # {
-                #     "on": {
-                #         "hour": 12,
-                #         "minute": 59,
-                #         "second": 20
-                #     },
-                #     "off": {
-                #         "hour": 12,
-                #         "minute": 59,
-                #         "second": 30
-                #     }
-                # }
+                {
+                    "on": {
+                        "hour": 15,
+                        "minute": 11,
+                        "second": 20
+                    },
+                    "off": {
+                        "hour": 15,
+                        "minute": 11,
+                        "second": 30
+                    }
+                }
             ]
         }    
     ]

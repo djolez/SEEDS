@@ -49,6 +49,7 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
     List<DeviceSchedule> device_schedule;
     private boolean relayOrSwithc;
     private boolean isRelay;
+    private boolean isSwitch;
 
     public DeviceSettingsAdapter(Context context, Device[] devices, Settings settings) {
         super(context, -1, devices);
@@ -139,8 +140,8 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
         int currType = d.getType();
         relayOrSwithc = (currType == MainActivity.RELAY_type || currType == MainActivity.SWITCH_type);
-        isRelay = (currType == MainActivity.RELAY_type);
-
+        isRelay = currType == MainActivity.RELAY_type;
+        isSwitch = currType == MainActivity.SWITCH_type;
         if(d.isChecked())
             selected.setChecked(true);
         else
@@ -222,17 +223,26 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
                                         value_ranges = settingsToSave.getValue_ranges();
 
-                                        if(value_ranges.size()<=position)
+                                        int j = 0;
+                                        boolean over = false;
+                                        for (SensorRange sr : value_ranges) {
+                                            if (sr.getDevice_id() == d.getId()) {
+                                                value_ranges.set(j, sensorRange);
+                                                over = true;
+                                            }
+                                            j++;
+                                        }
+                                        if (!over) {
                                             value_ranges.add(sensorRange);
-                                        else
-                                            value_ranges.set(position,sensorRange);
+                                        }
+
 
                                         on.setHour(Integer.parseInt(onHourString[position]!=null && !onHourString[position].isEmpty()? onHourString[position]: "00"));
                                         on.setMinute(Integer.parseInt(onMinuteString[position] != null && !onMinuteString[position].isEmpty()? onMinuteString[position]: "00"));
                                         on.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()?onSecondString[position] : "00"));
                                         off.setHour(Integer.parseInt(offHourString[position]!=null && !offHourString[position].isEmpty()? offHourString[position]:"00"));
                                         off.setMinute(Integer.parseInt(offMinuteString[position]!=null && !offMinuteString[position].isEmpty()? offMinuteString[position] : "00"));
-                                        off.setSecond(Integer.parseInt(onSecondString[position]!=null && !onSecondString[position].isEmpty()? onSecondString[position]:"00"));
+                                        off.setSecond(Integer.parseInt(offSecondString[position]!=null && !offSecondString[position].isEmpty()? offSecondString[position]:"00"));
                                         s.setOn(on);
                                         s.setOff(off);
                                         schedule.add(s);
@@ -242,14 +252,25 @@ public class DeviceSettingsAdapter  extends ArrayAdapter<Device> {
 
                                         device_schedule = settingsToSave.getDevice_schedule();
 
-                                        if(device_schedule.size()<=position)
-                                            device_schedule.add(deviceSchedule);
-                                        else
-                                            device_schedule.set(position,deviceSchedule);
 
-                                        //settingsToSave.setValue_ranges(value_ranges);
-                                        //settingsToSave.setDevice_schedule(device_schedule);
-                                        SettingsActivity.setSettingsToSave(settingsToSave);
+                                        int i = 0;
+                                        boolean overwitten = false;
+                                        for (DeviceSchedule ds : device_schedule) {
+                                            if (ds.getId() == d.getId()) {
+                                                System.out.println(ds.getId());
+                                                overwitten = true;
+                                                device_schedule.set(i, deviceSchedule);
+                                            }
+                                            i++;
+                                        }
+                                        if (!overwitten)
+                                            device_schedule.add(deviceSchedule);
+
+
+
+                                        settingsToSave.setValue_ranges(value_ranges);
+                                        settingsToSave.setDevice_schedule(device_schedule);
+                                        //SettingsActivity.setSettingsToSave(settingsToSave);
 
                                         notifyDataSetChanged();
                                         dialog.cancel();
