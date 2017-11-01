@@ -1,9 +1,8 @@
 #include "communication.h"
 #include <string.h>
 #include "usart.h"
-#include "FreeRTOS.h"
-#include "queue.h"
 #include "manager.h"
+#include "helper.h"
 
 #include "global.h"
 

@@ -102,7 +102,7 @@ int main(void)
 
 	comm_start();
 //	comm_send_msg("\nApplication starting...");
-	manager_init_all();
+//	manager_init_all();
 
 
 //	  HAL_ADC_Start(&hadc1);
@@ -228,14 +228,14 @@ void SystemClock_Config(void)
   * @param  None
   * @retval None
   */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler */
-//	/* User can add his own implementation to report the HAL error return state */
-//	while (1) {
-//	}
-  /* USER CODE END Error_Handler */ 
-}
+//void Error_Handler(void)
+//{
+//  /* USER CODE BEGIN Error_Handler */
+////	/* User can add his own implementation to report the HAL error return state */
+////	while (1) {
+////	}
+//  /* USER CODE END Error_Handler */
+//}
 
 #ifdef USE_FULL_ASSERT
 

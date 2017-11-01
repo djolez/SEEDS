@@ -1,8 +1,6 @@
 #ifndef __GLOBAL_H
 #define __GLOBAL_H
 
-#include "FreeRTOS.h"
-#include "queue.h"
 #include "config.h"
 
 enum EntityType {
@@ -12,8 +10,5 @@ enum EntityType {
 	SWITCH = 3,
 	ANALOG = 4
 };
-
-xQueueHandle comm_handle;
-xQueueHandle comm_handle_tx;
 
 #endif /* __GLOBAL_H */
