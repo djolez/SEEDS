@@ -40,35 +40,35 @@ DEFAULT_SETTINGS = {
     "value_ranges": [
     ],
     "device_schedule": [
-        {
-            "id": 7,
-            "schedule": [
-                {
-                    "on": {
-                        "hour": 15,
-                        "minute": 11,
-                        "second": 0
-                    },
-                    "off": {
-                        "hour": 15,
-                        "minute": 11,
-                        "second": 10
-                    }
-                },
-                {
-                    "on": {
-                        "hour": 15,
-                        "minute": 11,
-                        "second": 20
-                    },
-                    "off": {
-                        "hour": 15,
-                        "minute": 11,
-                        "second": 30
-                    }
-                }
-            ]
-        }    
+        # {
+        #     "id": 7,
+        #     "schedule": [
+        #         {
+        #             "on": {
+        #                 "hour": 15,
+        #                 "minute": 11,
+        #                 "second": 0
+        #             },
+        #             "off": {
+        #                 "hour": 15,
+        #                 "minute": 11,
+        #                 "second": 10
+        #             }
+        #         },
+        #         {
+        #             "on": {
+        #                 "hour": 15,
+        #                 "minute": 11,
+        #                 "second": 20
+        #             },
+        #             "off": {
+        #                 "hour": 15,
+        #                 "minute": 11,
+        #                 "second": 30
+        #             }
+        #         }
+        #     ]
+        # }    
     ]
 }
 

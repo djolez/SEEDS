@@ -155,7 +155,7 @@ def apply_settings():
     if("poll_interval_minutes" in global_vars.SETTINGS):
         actions["data_polling"] = Action(
             "data_poll_all",
-            repeat=Time(second=global_vars.SETTINGS["poll_interval_minutes"]),
+            repeat=Time(minute=global_vars.SETTINGS["poll_interval_minutes"]),
             callbacks=[gh.retrieve_data_all_boards]
             )
         actions["data_polling"].schedule()
@@ -164,7 +164,7 @@ def apply_settings():
         
     #     actions["analyze_values"] = Action(
     #         "analyze_values",
-    #         repeat=Time(second=global_vars.SETTINGS["check_interval_minutes"]),
+    #         repeat=Time(minute=global_vars.SETTINGS["check_interval_minutes"]),
     #         callbacks=[analyze_db_values],
     #         )
     #     actions["analyze_values"].schedule()
@@ -180,7 +180,7 @@ def apply_settings():
                 # action_on = "device-{}-on".format(d["id"])
                 # action_off = "device-{}-off".format(d["id"])
                 # logger.debug(global_vars.SETTINGS)
-                
+
                 action_on = "device-{}-on-{}".format(d["id"], on_time)
                 action_off = "device-{}-off-{}".format(d["id"], off_time)
 
