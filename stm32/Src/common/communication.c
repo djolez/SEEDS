@@ -1,8 +1,6 @@
 #include "communication.h"
 #include <string.h>
 #include "usart.h"
-#include "FreeRTOS.h"
-#include "queue.h"
 
 #include "global.h"
 
@@ -62,7 +60,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			else //if received data == "\n"
 			{
 //				comm_send_msg("-----------------------------------------");
-				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
 
 				rx_indx = 0;
 			}
