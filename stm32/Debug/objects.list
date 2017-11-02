@@ -1,5 +1,5 @@
-"Drivers/BSP/Components/sx1272/sx1272.o"
 "Drivers/BSP/STM32L4xx_Nucleo/stm32l4xx_nucleo.o"
+"Drivers/BSP/sx1272/sx1272.o"
 "Drivers/BSP/sx1272mb2das/sx1272mb2das.o"
 "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o"
 "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_adc.o"

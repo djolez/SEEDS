@@ -165,7 +165,29 @@ void lora_init() {
 
 	  Radio.Rx( RX_TIMEOUT_VALUE );
 
+	  TimerStop(&timerLed );
+	  LED_Off( LED_BLUE);
+	  LED_Off( LED_GREEN ) ;
+	  LED_Off( LED_RED1 ) ;;
+	  // Indicates on a LED that the received frame is a PONG
+	  LED_Toggle( LED_RED2 ) ;
 
+
+	  // Send the next PING frame
+	  Buffer[0] = 'P';
+	  Buffer[1] = 'I';
+	  Buffer[2] = 'N';
+	  Buffer[3] = 'G';
+	  // We fill the buffer with numbers for the payload
+	  uint8_t i;
+	  for( i = 4; i < BufferSize; i++ )
+	  {
+		Buffer[i] = i - 4;
+	  }
+	  PRINTF("...PING\n\r");
+
+	  DelayMs( 1 );
+	  Radio.Send( Buffer, BufferSize );
 }
 
 void OnTxDone( void )

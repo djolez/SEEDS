@@ -15,8 +15,8 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-Drivers/BSP/Components/sx1272 \
 Drivers/BSP/STM32L4xx_Nucleo \
+Drivers/BSP/sx1272 \
 Drivers/BSP/sx1272mb2das \
 Drivers/STM32L4xx_HAL_Driver/Src \
 Middlewares/Third_Party/Lora/Conf/Src \

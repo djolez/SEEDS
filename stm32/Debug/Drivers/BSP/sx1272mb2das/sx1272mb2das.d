@@ -51,9 +51,9 @@ Drivers/BSP/sx1272mb2das/sx1272mb2das.o: \
  C:/Users/Djordje/workspace/thesis/stm32/Inc/lora/debug.h \
  C:/Users/Djordje/workspace/thesis/stm32/Inc/lora/vcom.h \
  C:/Users/Djordje/workspace/thesis/stm32/Middlewares/Third_Party/Lora/Phy/radio.h \
- C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/Components/sx1272/sx1272.h \
- C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/Components/sx1272/sx1272Regs-Fsk.h \
- C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/Components/sx1272/sx1272Regs-LoRa.h \
+ C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/sx1272/sx1272.h \
+ C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/sx1272/sx1272Regs-Fsk.h \
+ C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/sx1272/sx1272Regs-LoRa.h \
  ../Drivers/BSP/sx1272mb2das/sx1272mb2das.h
 
 C:/Users/Djordje/workspace/thesis/stm32/Inc/lora/hw.h:
@@ -158,10 +158,10 @@ C:/Users/Djordje/workspace/thesis/stm32/Inc/lora/vcom.h:
 
 C:/Users/Djordje/workspace/thesis/stm32/Middlewares/Third_Party/Lora/Phy/radio.h:
 
-C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/Components/sx1272/sx1272.h:
+C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/sx1272/sx1272.h:
 
-C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/Components/sx1272/sx1272Regs-Fsk.h:
+C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/sx1272/sx1272Regs-Fsk.h:
 
-C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/Components/sx1272/sx1272Regs-LoRa.h:
+C:/Users/Djordje/workspace/thesis/stm32/Drivers/BSP/sx1272/sx1272Regs-LoRa.h:
 
 ../Drivers/BSP/sx1272mb2das/sx1272mb2das.h:

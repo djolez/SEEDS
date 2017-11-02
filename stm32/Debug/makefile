@@ -26,8 +26,8 @@ RM := rm -rf
 -include Middlewares/Third_Party/Lora/Conf/Src/subdir.mk
 -include Drivers/STM32L4xx_HAL_Driver/Src/subdir.mk
 -include Drivers/BSP/sx1272mb2das/subdir.mk
+-include Drivers/BSP/sx1272/subdir.mk
 -include Drivers/BSP/STM32L4xx_Nucleo/subdir.mk
--include Drivers/BSP/Components/sx1272/subdir.mk
 -include subdir.mk
 -include objects.mk
 
