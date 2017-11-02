@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "config.h"
-#include "communication.h"
 
 //Port_t* tmp;
 
@@ -89,7 +88,7 @@ void manager_init_all() {
 
 //	TODO: Check if this works
 
-	comm_send_msg(msg);
+//	comm_send_msg(msg);
 //	comm_send_msg("\n");
 }
 
@@ -264,7 +263,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			char* msg[MAX_COMM_MSG_LENGTH];
 			sprintf(msg, "interrupt$%d_%d\r", devices[i]->db_id, current_value);
 //			xQueueSendFromISR(comm_handle_tx, msg, NULL);
-			comm_send_msg(msg);
+//			comm_send_msg(msg);
 
 			break;
 		}

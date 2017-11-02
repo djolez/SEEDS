@@ -35,12 +35,10 @@
 #include "stm32l4xx_hal.h"
 #include "adc.h"
 #include "tim.h"
-#include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
 #include "config.h"
-#include "communication.h"
 #include "manager.h"
 
 //#include "jsmn.h"
@@ -83,15 +81,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART2_UART_Init();
   MX_TIM3_Init();
   MX_TIM2_Init();
   MX_ADC1_Init();
 
   /* USER CODE BEGIN 2 */
 
-
-	comm_start();
 //	comm_send_msg("\nApplication starting...");
 	manager_init_all();
 
@@ -168,8 +163,7 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_ADC;
-  PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
   PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
   PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_HSI;
   PeriphClkInit.PLLSAI1.PLLSAI1M = 1;

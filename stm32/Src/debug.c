@@ -105,11 +105,11 @@ void DBG_Init( void )
   * @param None
   * @retval None
   */
-void Error_Handler(void)
-{
-  DBG_PRINTF("Error_Handler\n");
-  while(1);
-}
+//void Error_Handler(void)
+//{
+//  DBG_PRINTF("Error_Handler\n");
+//  while(1);
+//}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 
