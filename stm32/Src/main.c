@@ -38,6 +38,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
+#include "lora_com.h"
 #include "config.h"
 #include "manager.h"
 
@@ -88,6 +89,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 //	comm_send_msg("\nApplication starting...");
+  lora_init();
 	manager_init_all();
 
 

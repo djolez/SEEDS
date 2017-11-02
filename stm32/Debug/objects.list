@@ -62,6 +62,7 @@
 "Src/system_stm32l4xx.o"
 "Src/tim.o"
 "Src/vcom.o"
+"Src/common/lora_com.o"
 "Src/common/manager.o"
 "Src/common/port.o"
 "Src/devices/dht11/dht11.o"
