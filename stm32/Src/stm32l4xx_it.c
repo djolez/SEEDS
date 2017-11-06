@@ -42,10 +42,12 @@
 void SysTick_Handler(void)
 {
 	HAL_IncTick();
+/*
 	HAL_SYSTICK_IRQHandler();
 #ifdef USE_RTOS_SYSTICK
 	osSystickHandler();
 #endif
+*/
 }
 
 /**
