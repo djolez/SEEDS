@@ -50,7 +50,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l4xx_hal.h"
-#include "main.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -58,6 +57,7 @@
 
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
+extern LPTIM_HandleTypeDef hlptim1;
 
 /* USER CODE BEGIN Private defines */
 
@@ -67,6 +67,7 @@ extern void Error_Handler(void);
 
 void MX_TIM2_Init(void);
 void MX_TIM3_Init(void);
+void MX_LPTIM1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 

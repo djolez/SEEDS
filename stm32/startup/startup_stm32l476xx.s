@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32l476xx.s
   * @author    MCD Application Team
-  * @version   V1.3.0
-  * @date      17-February-2017
+  * @version   V1.2.0
+  * @date      28-October-2016
   * @brief     STM32L476xx devices vector table GCC toolchain.
   *            This module performs:
   *                - Set the initial SP
@@ -17,7 +17,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -78,7 +78,7 @@ defined in linker script */
 	.weak	Reset_Handler
 	.type	Reset_Handler, %function
 Reset_Handler:
-  ldr   sp, =_estack    /* Atollic update: set stack pointer */
+  ldr   sp, =_estack    /* System Workbench for STM32update: set stack pointer */
 
 /* Copy the data segment initializers from flash to SRAM */
   movs	r1, #0

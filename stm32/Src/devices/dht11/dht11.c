@@ -1,6 +1,5 @@
 #include "dht11.h"
 #include <string.h>
-#include "task.h"
 
 //Value_t values[] = {
 //		{.Name = "Temperature"},

@@ -1,9 +1,9 @@
 #ifndef __PORT_H
 #define __PORT_H
 
-#include "gpio.h"
-#include "tim.h"
-#include "global.h"
+#include "stm32l4xx.h"
+
+//#include "global.h"
 #include "config.h"
 
 /* All values are kept as an integer and will be divided by 100 on

@@ -1,279 +1,188 @@
 /**
-  ******************************************************************************
-  * File Name          : main.c
-  * Description        : Main program body
-  ******************************************************************************
-  *
-  * Copyright (c) 2017 STMicroelectronics International N.V. 
-  * All rights reserved.
-  *
-  * Redistribution and use in source and binary forms, with or without 
-  * modification, are permitted, provided that the following conditions are met:
-  *
-  * 1. Redistribution of source code must retain the above copyright notice, 
-  *    this list of conditions and the following disclaimer.
-  * 2. Redistributions in binary form must reproduce the above copyright notice,
-  *    this list of conditions and the following disclaimer in the documentation
-  *    and/or other materials provided with the distribution.
-  * 3. Neither the name of STMicroelectronics nor the names of other 
-  *    contributors to this software may be used to endorse or promote products 
-  *    derived from this software without specific written permission.
-  * 4. This software, including modifications and/or derivative works of this 
-  *    software, must execute solely and exclusively on microcontroller or
-  *    microprocessor devices manufactured by or for STMicroelectronics.
-  * 5. Redistribution and use of this software other than as permitted under 
-  *    this license is void and will automatically terminate your rights under 
-  *    this license. 
-  *
-  * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
-  * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
-  * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
-  * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
-  * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
-  * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-  * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
-  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
-/* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include "stm32l4xx_hal.h"
-#include "cmsis_os.h"
-#include "adc.h"
-#include "tim.h"
-#include "usart.h"
-#include "gpio.h"
+ ******************************************************************************
+ * @file    main.c
+ * @author  Ac6
+ * @version V1.0
+ * @date    01-December-2013
+ * @brief   Default main function.
+ ******************************************************************************
+ */
 
-/* USER CODE BEGIN Includes */
+/*
+ / _____)             _              | |
+ ( (____  _____ ____ _| |_ _____  ____| |__
+ \____ \| ___ |    (_   _) ___ |/ ___)  _ \
+ _____) ) ____| | | || |_| ____( (___| | | |
+ (______/|_____)_|_|_| \__)_____)\____)_| |_|
+ (C)2013 Semtech
+
+ Description: Ping-Pong implementation
+
+ License: Revised BSD License, see LICENSE.TXT file include in the project
+
+ Maintainer: Miguel Luis and Gregory Cristian
+ */
+/******************************************************************************
+ * @file    main.c
+ * @author  MCD Application Team
+ * @version V1.1.2
+ * @date    08-September-2017
+ * @brief   this is the main!
+ ******************************************************************************
+ * @attention
+ *
+ * <h2><center>&copy; Copyright (c) 2017 STMicroelectronics International N.V.
+ * All rights reserved.</center></h2>
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted, provided that the following conditions are met:
+ *
+ * 1. Redistribution of source code must retain the above copyright notice,
+ *    this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ * 3. Neither the name of STMicroelectronics nor the names of other
+ *    contributors to this software may be used to endorse or promote products
+ *    derived from this software without specific written permission.
+ * 4. This software, including modifications and/or derivative works of this
+ *    software, must execute solely and exclusively on microcontroller or
+ *    microprocessor devices manufactured by or for STMicroelectronics.
+ * 5. Redistribution and use of this software other than as permitted under
+ *    this license is void and will automatically terminate your rights under
+ *    this license.
+ *
+ * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
+ * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT
+ * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+ * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ ******************************************************************************
+ */
+
+/* Includes ------------------------------------------------------------------*/
+#include <string.h>
+#include "hw.h"
+#include "radio.h"
+#include "timeServer.h"
+#include "delay.h"
+#include "low_power.h"
+#include "vcom.h"
+#include "lora.h"
+#include "stm32l4xx_nucleo.h"
+#include "stm32l4xx.h"
+
 #include "config.h"
-#include "communication.h"
+//#include "communication.h"
 #include "manager.h"
 
-//#include "jsmn.h"
-/* USER CODE END Includes */
+extern LPTIM_HandleTypeDef hlptim1;
 
-/* Private variables ---------------------------------------------------------*/
+/*	LORA_CONF	*/
 
-/* USER CODE BEGIN PV */
-/* Private variables ---------------------------------------------------------*/
-//extern Port_t* entities[];
-/* USER CODE END PV */
+typedef enum {
+	LOWPOWER, RX, RX_TIMEOUT, RX_ERROR, TX, TX_TIMEOUT,
+} States_t;
 
-/* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-void Error_Handler(void);
-void MX_FREERTOS_Init(void);
+#define APP_TX_DUTYCYCLE                            10000
+#define LORAWAN_ADR_ON                              0
+#define LORAWAN_CONFIRMED_MSG                    DISABLE
+#define LORAWAN_APP_PORT                            1700
+#define LORAWAN_DEFAULT_DATARATE                    DR_5
+#define JOINREQ_NBTRIALS                            3
 
-/* USER CODE BEGIN PFP */
-/* Private function prototypes -----------------------------------------------*/
+static LoRaParam_t LoRaParamInit = { TX_ON_EVENT,
+APP_TX_DUTYCYCLE, CLASS_A,
+LORAWAN_ADR_ON, LORAWAN_DEFAULT_DATARATE, LORAWAN_PUBLIC_NETWORK,
+JOINREQ_NBTRIALS };
 
-/* USER CODE END PFP */
+/* call back when LoRa will transmit a frame*/
+static void LoraTxData(lora_AppData_t *AppData, FunctionalState* IsTxConfirmed);
 
-/* USER CODE BEGIN 0 */
+/* call back when LoRa has received a frame*/
+static void LoraRxData(lora_AppData_t *AppData);
 
-/* USER CODE END 0 */
+static LoRaMainCallback_t LoRaMainCallbacks = { HW_GetBatteryLevel,
+		HW_GetUniqueId, HW_GetRandomSeed, LoraTxData, LoraRxData };
 
-int main(void)
-{
+/*	////LORA_CONF	*/
 
-  /* USER CODE BEGIN 1 */
+/**
+ * Main application entry point.
+ */
+extern Port_t* devices;
+int main(void) {
 
-  /* USER CODE END 1 */
+	HAL_Init();
 
-  /* MCU Configuration----------------------------------------------------------*/
+	SystemClock_Config();
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	DBG_Init();
 
-  /* Configure the system clock */
-  SystemClock_Config();
+	HW_Init();
+	GPIO_Init();
+	MX_TIM2_Init();
+	MX_TIM3_Init();
+	MX_LPTIM1_Init();
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_USART2_UART_Init();
-  MX_TIM3_Init();
-  MX_TIM2_Init();
-  MX_ADC1_Init();
+	lora_Init(&LoRaMainCallbacks, &LoRaParamInit);
 
-  /* USER CODE BEGIN 2 */
-
-
-	comm_start();
-//	comm_send_msg("\nApplication starting...");
 	manager_init_all();
-
-
-//	  HAL_ADC_Start(&hadc1);
-//	  HAL_ADC_PollForConversion(&hadc1, 100);
-//	  volatile uint32_t adcResult;
-//	  adcResult = HAL_ADC_GetValue(&hadc1);
-//	  HAL_ADC_Stop(&hadc1);
-//
-//	  char* msg[MAX_COMM_MSG_LENGTH];
-//	  sprintf(msg, "%d %d", adcResult);
-//	  comm_send_msg(msg);
-
 //	manager_update_data_all();
-//	manager_send_data_all();
 
-//	manager_print_all_devices();
+//	seconds = period / (clock_speed / prescaler)
+//	period = (seconds * clock_speed) / prescaler
 
-//	HAL_Delay(1000);
-//	manager_update_data_all();
-//	manager_send_data_all();
+	HAL_LPTIM_Counter_Start_IT(&hlptim1, 2560);
 
-  /* USER CODE END 2 */
-
-  /* Call init function for freertos objects (in freertos.c) */
-  MX_FREERTOS_Init();
-
-  /* Start scheduler */
-  osKernelStart();
-  
-  /* We should never get here as control is now taken by the scheduler */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
+	/* main loop*/
 	while (1) {
-  /* USER CODE END WHILE */
+		/* run the LoRa class A state machine*/
+		lora_fsm();
 
-  /* USER CODE BEGIN 3 */
+		DISABLE_IRQ( );
 
-	}
-  /* USER CODE END 3 */
+//		OnSendEvent();
 
-}
+		/* if an interrupt has occurred after DISABLE_IRQ, it is kept pending
+		 * and cortex will not enter low power anyway  */
+//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 1);
+		if (lora_getDeviceState() == DEVICE_STATE_SLEEP) {
+#ifndef LOW_POWER_DISABLE
+//			if(timeout_flag_set) -> get_sensor_data -> send_msg
 
-/** System Clock Configuration
-*/
-void SystemClock_Config(void)
-{
-
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_PeriphCLKInitTypeDef PeriphClkInit;
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSE
-                              |RCC_OSCILLATORTYPE_MSI;
-  RCC_OscInitStruct.LSEState = RCC_LSE_ON;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
-  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-  RCC_OscInitStruct.MSICalibrationValue = 0;
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_11;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_MSI;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_ADC;
-  PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
-  PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
-  PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_HSI;
-  PeriphClkInit.PLLSAI1.PLLSAI1M = 1;
-  PeriphClkInit.PLLSAI1.PLLSAI1N = 8;
-  PeriphClkInit.PLLSAI1.PLLSAI1P = RCC_PLLP_DIV7;
-  PeriphClkInit.PLLSAI1.PLLSAI1Q = RCC_PLLQ_DIV2;
-  PeriphClkInit.PLLSAI1.PLLSAI1R = RCC_PLLR_DIV2;
-  PeriphClkInit.PLLSAI1.PLLSAI1ClockOut = RCC_PLLSAI1_ADC1CLK;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-    /**Configure LSE Drive Capability 
-    */
-  __HAL_RCC_LSEDRIVE_CONFIG(RCC_LSEDRIVE_LOW);
-
-    /**Configure the main internal regulator output voltage 
-    */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-    /**Configure the Systick interrupt time 
-    */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
-
-    /**Configure the Systick 
-    */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-
-    /**Enable MSI Auto calibration 
-    */
-  HAL_RCCEx_EnableMSIPLLMode();
-
-  /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0);
-}
-
-/* USER CODE BEGIN 4 */
-
-/* USER CODE END 4 */
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @param  None
-  * @retval None
-  */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler */
-	/* User can add his own implementation to report the HAL error return state */
-	while (1) {
-	}
-  /* USER CODE END Error_Handler */ 
-}
-
-#ifdef USE_FULL_ASSERT
-
-/**
-   * @brief Reports the name of the source file and the source line number
-   * where the assert_param error has occurred.
-   * @param file: pointer to the source file name
-   * @param line: assert_param error line source number
-   * @retval None
-   */
-void assert_failed(uint8_t* file, uint32_t line)
-{
-  /* USER CODE BEGIN 6 */
-	/* User can add his own implementation to report the file name and line number,
-	 ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
-
-}
-
+			LowPower_Handler();
 #endif
+		}
+		ENABLE_IRQ();
+//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 0);
+	}
+}
 
-/**
-  * @}
-  */ 
+void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim) {
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+}
 
-/**
-  * @}
-*/ 
+static void LoraTxData(lora_AppData_t *AppData, FunctionalState* IsTxConfirmed) {
+	AppData->Buff[0] = 10;
+//	AppData->Buff[1] = 2;
+//	AppData->Buff[2] = 3;
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+	AppData->BuffSize = 1;
+	AppData->Port = LORAWAN_APP_PORT;
+//	*IsTxConfirmed =  LORAWAN_CONFIRMED_MSG;
+}
+
+static void LoraRxData(lora_AppData_t *AppData) {
+	int i = 0;
+}
+
+

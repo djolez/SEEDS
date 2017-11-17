@@ -1,7 +1,11 @@
 #ifndef __SWITCH_H
 #define __SWITCH_H
 
-#include "gpio.h"
+#import "manager.h";
+
+#define SWITCH_INIT(structure) do{\
+	HW_GPIO_SetIrq((device)->GPIOx, (device)->GPIO_Pin, 5, &switch_interrupt_handler);\
+}while(0);
 
 #define RELAY_INIT(structure) do{\
 	GPIO_InitTypeDef tmp;\

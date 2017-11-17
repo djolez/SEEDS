@@ -1,5 +1,3 @@
-#include "cmsis_os.h"
-
 #include "manager.h"
 #include <stdlib.h>
 #include <string.h>
@@ -104,14 +102,12 @@ void manager_init_specific(Port_t* device) {
 		dht11_init(device);
 		break;
 	case RELAY:
-		RELAY_INIT(device)
-		;
+		RELAY_INIT(device);
 		break;
 	case SWITCH:
-
+		SWITCH_INIT(device);
 		break;
 	case ANALOG:
-
 		break;
 	default:
 		break;
@@ -249,17 +245,22 @@ void manager_print_all_devices() {
 	}
 }
 
-extern osTimerId timer_handle;
-extern uint16_t interrupt_pin;
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+void switch_interrupt_handler() {
+//	TODO: needs a debouncer
 
 	NVIC_DisableIRQ(EXTI9_5_IRQn);
-	interrupt_pin = GPIO_Pin;
-	xTimerStartFromISR(timer_handle, pdFALSE);
+
+//		uint32_t uTime = SystemCoreClock/1000000UL * 480;
+//		HAL_TIM_Base_Init(&htim3);
+//		HAL_TIM_Base_Start(&htim3);
+//		while(__HAL_TIM_GET_COUNTER(&htim3) < uTime ){}
+
+//	interrupt_pin = GPIO_Pin;
+//	xTimerStartFromISR(timer_handle, pdFALSE);
 
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
 //		Change this to somehow check GPIO port, TYPE is just a temp solution
-		if (devices[i]->GPIO_Pin == GPIO_Pin && devices[i]->Type == SWITCH) {
+		if (devices[i]->GPIO_Pin == GPIO_PIN_7 && devices[i]->Type == SWITCH) {
 			//Send a notification to the server
 			GPIO_PinState current_value = HAL_GPIO_ReadPin(devices[i]->GPIOx,
 					devices[i]->GPIO_Pin);
@@ -267,9 +268,33 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			sprintf(msg, "interrupt$%d_%d\r", devices[i]->db_id, current_value);
 //			xQueueSendFromISR(comm_handle_tx, msg, NULL);
 			comm_send_msg(msg);
+			NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 			break;
 		}
 	}
 
 }
+
+//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+//
+//	NVIC_DisableIRQ(EXTI9_5_IRQn);
+////	interrupt_pin = GPIO_Pin;
+////	xTimerStartFromISR(timer_handle, pdFALSE);
+//
+//	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
+////		Change this to somehow check GPIO port, TYPE is just a temp solution
+//		if (devices[i]->GPIO_Pin == GPIO_Pin && devices[i]->Type == SWITCH) {
+//			//Send a notification to the server
+//			GPIO_PinState current_value = HAL_GPIO_ReadPin(devices[i]->GPIOx,
+//					devices[i]->GPIO_Pin);
+//			char* msg[MAX_COMM_MSG_LENGTH];
+//			sprintf(msg, "interrupt$%d_%d\r", devices[i]->db_id, current_value);
+////			xQueueSendFromISR(comm_handle_tx, msg, NULL);
+//			comm_send_msg(msg);
+//
+//			break;
+//		}
+//	}
+//
+//}
