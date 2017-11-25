@@ -29,7 +29,7 @@ c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.20
 c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.201701200843/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mallocr.o)
                               c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.201701200843/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-malloc.o) (_malloc_r)
 c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.201701200843/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-memcpy.o)
-                              Middlewares/Lora/Mac/region/RegionEU868.o (memcpy)
+                              Middlewares/Lora/Mac/region/RegionAS923.o (memcpy)
 c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.201701200843/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-memset.o)
                               c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.201701200843/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu/crt0.o (memset)
 c:/ac6/systemworkbench/plugins/fr.ac6.mcu.externaltools.arm-none.win32_1.13.1.201701200843/tools/compiler/bin/../lib/gcc/arm-none-eabi/5.4.1/../../../../arm-none-eabi/lib/armv7e-m/fpu\libc.a(lib_a-mlock.o)
@@ -5895,6 +5895,890 @@ Discarded input sections
  .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/Region.o
  .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/Region.o
  .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/Region.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionAS923.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAS923.o
+ .bss           0x00000000       0xc6 Middlewares/Lora/Mac/region/RegionAS923.o
+ .rodata        0x00000000       0xb0 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.VerifyTxFreq
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x148 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923GetPhyParam
+                0x00000000      0x218 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923InitDefaults
+                0x00000000       0x6c Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923Verify
+                0x00000000      0x160 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923ApplyCFList
+                0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923ChanMaskSet
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923AdrNext
+                0x00000000      0x100 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923ComputeRxWindowParameters
+                0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923RxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923TxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923LinkAdrReq
+                0x00000000      0x224 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923RxParamSetupReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923NewChannelReq
+                0x00000000       0xb8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923DlChannelReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923AlternateDr
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923NextChannel
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923ChannelAdd
+                0x00000000      0x184 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923ChannelsRemove
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923SetContinuousWave
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .text.RegionAS923ApplyDrOffset
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_info    0x00000000     0x1bc8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_abbrev  0x00000000      0x29d Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_aranges
+                0x00000000       0xf0 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_ranges  0x00000000       0xe0 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000      0x109 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_line    0x00000000      0xe3a Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_str     0x00000000    0xfcf20 Middlewares/Lora/Mac/region/RegionAS923.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionAS923.o
+ .debug_frame   0x00000000      0x40c Middlewares/Lora/Mac/region/RegionAS923.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionAS923.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionAU915.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAU915.o
+ .bss           0x00000000      0x384 Middlewares/Lora/Mac/region/RegionAU915.o
+ .rodata        0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x124 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915GetPhyParam
+                0x00000000      0x1a8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915InitDefaults
+                0x00000000      0x16c Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915Verify
+                0x00000000      0x104 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915ApplyCFList
+                0x00000000       0x14 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915ChanMaskSet
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915AdrNext
+                0x00000000       0xe8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915ComputeRxWindowParameters
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915RxConfig
+                0x00000000      0x110 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915TxConfig
+                0x00000000      0x14c Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915LinkAdrReq
+                0x00000000      0x25c Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915RxParamSetupReq
+                0x00000000       0xd4 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915NewChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915DlChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915AlternateDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915NextChannel
+                0x00000000      0x144 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915ChannelAdd
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915ChannelsRemove
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915SetContinuousWave
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionAU915.o
+ .text.RegionAU915ApplyDrOffset
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_info    0x00000000     0x1ab0 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_abbrev  0x00000000      0x2c2 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_aranges
+                0x00000000       0xe8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_ranges  0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_line    0x00000000      0xde1 Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_str     0x00000000    0xfcd92 Middlewares/Lora/Mac/region/RegionAU915.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionAU915.o
+ .debug_frame   0x00000000      0x3f8 Middlewares/Lora/Mac/region/RegionAU915.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionAU915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionCN470.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN470.o
+ .bss           0x00000000      0x498 Middlewares/Lora/Mac/region/RegionCN470.o
+ .rodata        0x00000000       0x78 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x124 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470GetPhyParam
+                0x00000000      0x1a8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470InitDefaults
+                0x00000000       0xd4 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470Verify
+                0x00000000      0x104 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470ApplyCFList
+                0x00000000       0x14 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470ChanMaskSet
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470AdrNext
+                0x00000000       0xec Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470ComputeRxWindowParameters
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470RxConfig
+                0x00000000      0x128 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470TxConfig
+                0x00000000      0x13c Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470LinkAdrReq
+                0x00000000      0x220 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470RxParamSetupReq
+                0x00000000       0xb8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470NewChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470DlChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470AlternateDr
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470NextChannel
+                0x00000000      0x13c Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470ChannelAdd
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470ChannelsRemove
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470SetContinuousWave
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionCN470.o
+ .text.RegionCN470ApplyDrOffset
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_info    0x00000000     0x1a2a Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_abbrev  0x00000000      0x2b7 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_aranges
+                0x00000000       0xe8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_ranges  0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_line    0x00000000      0xd99 Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_str     0x00000000    0xfcd51 Middlewares/Lora/Mac/region/RegionCN470.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionCN470.o
+ .debug_frame   0x00000000      0x3fc Middlewares/Lora/Mac/region/RegionCN470.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionCN470.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionCN779.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN779.o
+ .bss           0x00000000       0xc6 Middlewares/Lora/Mac/region/RegionCN779.o
+ .rodata        0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.VerifyTxFreq
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x148 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779GetPhyParam
+                0x00000000      0x1a8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779InitDefaults
+                0x00000000       0x7c Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779Verify
+                0x00000000      0x120 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779ApplyCFList
+                0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779ChanMaskSet
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779AdrNext
+                0x00000000       0xc8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779ComputeRxWindowParameters
+                0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779RxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779TxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779LinkAdrReq
+                0x00000000      0x224 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779RxParamSetupReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779NewChannelReq
+                0x00000000       0xb8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779DlChannelReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779AlternateDr
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779NextChannel
+                0x00000000      0x130 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779ChannelAdd
+                0x00000000      0x184 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779ChannelsRemove
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779SetContinuousWave
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .text.RegionCN779ApplyDrOffset
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_info    0x00000000     0x1b3a Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_abbrev  0x00000000      0x29d Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_aranges
+                0x00000000       0xf0 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_ranges  0x00000000       0xe0 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0xed Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_line    0x00000000      0xe18 Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_str     0x00000000    0xfce49 Middlewares/Lora/Mac/region/RegionCN779.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionCN779.o
+ .debug_frame   0x00000000      0x40c Middlewares/Lora/Mac/region/RegionCN779.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionCN779.o
  .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCommon.o
  .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCommon.o
  .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionCommon.o
@@ -6043,6 +6927,228 @@ Discarded input sections
  .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionCommon.o
  .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionCommon.o
  .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionCommon.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionEU433.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionEU433.o
+ .bss           0x00000000       0xc6 Middlewares/Lora/Mac/region/RegionEU433.o
+ .rodata        0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.VerifyTxFreq
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x148 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433GetPhyParam
+                0x00000000      0x1a8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433InitDefaults
+                0x00000000       0x7c Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433Verify
+                0x00000000      0x120 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433ApplyCFList
+                0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433ChanMaskSet
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433AdrNext
+                0x00000000       0xc8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433ComputeRxWindowParameters
+                0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433RxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433TxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433LinkAdrReq
+                0x00000000      0x224 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433RxParamSetupReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433NewChannelReq
+                0x00000000       0xb8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433DlChannelReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433AlternateDr
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433NextChannel
+                0x00000000      0x130 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433ChannelAdd
+                0x00000000      0x184 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433ChannelsRemove
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433SetContinuousWave
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .text.RegionEU433ApplyDrOffset
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_info    0x00000000     0x1b3a Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_abbrev  0x00000000      0x29d Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_aranges
+                0x00000000       0xf0 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_ranges  0x00000000       0xe0 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0xed Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_line    0x00000000      0xe18 Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_str     0x00000000    0xfce49 Middlewares/Lora/Mac/region/RegionEU433.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionEU433.o
+ .debug_frame   0x00000000      0x40c Middlewares/Lora/Mac/region/RegionEU433.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionEU433.o
  .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU868.o
  .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU868.o
  .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionEU868.o
@@ -6196,6 +7302,898 @@ Discarded input sections
  .debug_macro   0x00000000      0x109 Middlewares/Lora/Mac/region/RegionEU868.o
  .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionEU868.o
  .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionEU868.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionIN865.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionIN865.o
+ .bss           0x00000000       0xc6 Middlewares/Lora/Mac/region/RegionIN865.o
+ .rodata        0x00000000       0xac Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.VerifyTxFreq
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x148 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865GetPhyParam
+                0x00000000      0x1a8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865InitDefaults
+                0x00000000       0x7c Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865Verify
+                0x00000000      0x120 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865ApplyCFList
+                0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865ChanMaskSet
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865AdrNext
+                0x00000000       0xc8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865ComputeRxWindowParameters
+                0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865RxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865TxConfig
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865LinkAdrReq
+                0x00000000      0x224 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865RxParamSetupReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865NewChannelReq
+                0x00000000       0xb8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865DlChannelReq
+                0x00000000       0x84 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865AlternateDr
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865NextChannel
+                0x00000000      0x130 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865ChannelAdd
+                0x00000000      0x18c Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865ChannelsRemove
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865SetContinuousWave
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .text.RegionIN865ApplyDrOffset
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_info    0x00000000     0x1b73 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_abbrev  0x00000000      0x29d Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_aranges
+                0x00000000       0xf0 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_ranges  0x00000000       0xe0 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0xed Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_line    0x00000000      0xe2c Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_str     0x00000000    0xfce62 Middlewares/Lora/Mac/region/RegionIN865.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionIN865.o
+ .debug_frame   0x00000000      0x40c Middlewares/Lora/Mac/region/RegionIN865.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionIN865.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionKR920.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionKR920.o
+ .bss           0x00000000       0xc6 Middlewares/Lora/Mac/region/RegionKR920.o
+ .rodata        0x00000000       0x9c Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.GetMaxEIRP
+                0x00000000       0x28 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.LimitTxPower
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.VerifyTxFreq
+                0x00000000       0x7c Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x148 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920GetPhyParam
+                0x00000000      0x1a8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920InitDefaults
+                0x00000000       0x7c Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920Verify
+                0x00000000      0x120 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920ApplyCFList
+                0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920ChanMaskSet
+                0x00000000       0x4c Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920AdrNext
+                0x00000000       0xc8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920ComputeRxWindowParameters
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920RxConfig
+                0x00000000      0x128 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920TxConfig
+                0x00000000      0x18c Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920LinkAdrReq
+                0x00000000      0x224 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920RxParamSetupReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920NewChannelReq
+                0x00000000       0xb8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920DlChannelReq
+                0x00000000       0x78 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920AlternateDr
+                0x00000000       0xa4 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920NextChannel
+                0x00000000      0x1a4 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920ChannelAdd
+                0x00000000      0x150 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920ChannelsRemove
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920SetContinuousWave
+                0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionKR920.o
+ .text.RegionKR920ApplyDrOffset
+                0x00000000       0x38 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_info    0x00000000     0x1ba3 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_abbrev  0x00000000      0x29d Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_aranges
+                0x00000000       0xf8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_ranges  0x00000000       0xe8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000      0x102 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_line    0x00000000      0xe87 Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_str     0x00000000    0xfcec0 Middlewares/Lora/Mac/region/RegionKR920.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionKR920.o
+ .debug_frame   0x00000000      0x430 Middlewares/Lora/Mac/region/RegionKR920.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionKR920.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .bss           0x00000000      0x384 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .rodata        0x00000000       0xcc Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.ReenableChannels
+                0x00000000       0xac Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.CountBits
+                0x00000000       0x54 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.LimitTxPower
+                0x00000000       0x68 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.ValidateChannelsMask
+                0x00000000      0x16c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x124 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridGetPhyParam
+                0x00000000      0x19c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridSetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridInitDefaults
+                0x00000000      0x168 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridVerify
+                0x00000000      0x120 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridApplyCFList
+                0x00000000       0x14 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridChanMaskSet
+                0x00000000       0xbc Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridAdrNext
+                0x00000000       0xc8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridComputeRxWindowParameters
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridRxConfig
+                0x00000000      0x110 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridTxConfig
+                0x00000000      0x144 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridLinkAdrReq
+                0x00000000      0x27c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridRxParamSetupReq
+                0x00000000       0xe0 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridNewChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridTxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridDlChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridAlternateDr
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridCalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridNextChannel
+                0x00000000      0x144 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridChannelAdd
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridChannelsRemove
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridSetContinuousWave
+                0x00000000       0x9c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .text.RegionUS915HybridApplyDrOffset
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_info    0x00000000     0x1c24 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_abbrev  0x00000000      0x2da Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_aranges
+                0x00000000      0x100 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_ranges  0x00000000       0xf0 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0xd1 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_line    0x00000000      0xe9b Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_str     0x00000000    0xfcf8a Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .debug_frame   0x00000000      0x464 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .group         0x00000000        0x8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text          0x00000000        0x0 Middlewares/Lora/Mac/region/RegionUS915.o
+ .data          0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915.o
+ .bss           0x00000000      0x384 Middlewares/Lora/Mac/region/RegionUS915.o
+ .rodata        0x00000000       0xcc Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.GetNextLowerTxDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.GetBandwidth
+                0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.LimitTxPower
+                0x00000000       0x68 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.CountNbOfEnabledChannels
+                0x00000000      0x124 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915GetPhyParam
+                0x00000000      0x19c Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915SetBandTxDone
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915InitDefaults
+                0x00000000      0x16c Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915Verify
+                0x00000000      0x120 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915ApplyCFList
+                0x00000000       0x14 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915ChanMaskSet
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915AdrNext
+                0x00000000       0xe8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915ComputeRxWindowParameters
+                0x00000000       0xa0 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915RxConfig
+                0x00000000      0x110 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915TxConfig
+                0x00000000      0x144 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915LinkAdrReq
+                0x00000000      0x25c Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915RxParamSetupReq
+                0x00000000       0xe0 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915NewChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915TxParamSetupReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915DlChannelReq
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915AlternateDr
+                0x00000000       0x3c Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915CalcBackOff
+                0x00000000       0x50 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915NextChannel
+                0x00000000      0x144 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915ChannelAdd
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915ChannelsRemove
+                0x00000000       0x18 Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915SetContinuousWave
+                0x00000000       0x9c Middlewares/Lora/Mac/region/RegionUS915.o
+ .text.RegionUS915ApplyDrOffset
+                0x00000000       0x44 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_info    0x00000000     0x1ab0 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_abbrev  0x00000000      0x2c2 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_aranges
+                0x00000000       0xe8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_ranges  0x00000000       0xd8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x420 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x8c2 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x22 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x4c Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x8d Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x9c Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x174 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x4a Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x1f Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x20 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x187 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x30d Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x35 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xfd Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x5e Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x1df Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x1e1 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xc4 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x28 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x3b Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x50 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0xe66 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000    0x1a13b Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x43 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000     0x36a1 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x1c Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x52 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x40 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xd7 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x16 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x57 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000     0x1566 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x59e Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x148 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x18b Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x25d Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x23a Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x401 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x5c8 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x367 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x10 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xe4 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x202 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x61 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x90 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x272 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x126 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x3dc Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x321 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x4ce Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xdd Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x2e2 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x9cd Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x1e0 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x535 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x44 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x320 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x1a7 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000      0x13b Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x34 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xec Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0xd1 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x11 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_macro   0x00000000       0x2e Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_line    0x00000000      0xde3 Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_str     0x00000000    0xfcd70 Middlewares/Lora/Mac/region/RegionUS915.o
+ .comment       0x00000000       0x6f Middlewares/Lora/Mac/region/RegionUS915.o
+ .debug_frame   0x00000000      0x3f4 Middlewares/Lora/Mac/region/RegionUS915.o
+ .ARM.attributes
+                0x00000000       0x39 Middlewares/Lora/Mac/region/RegionUS915.o
  .group         0x00000000        0x8 Middlewares/Lora/Utilities/delay.o
  .group         0x00000000        0x8 Middlewares/Lora/Utilities/delay.o
  .group         0x00000000        0x8 Middlewares/Lora/Utilities/delay.o
@@ -10071,8 +12069,17 @@ LOAD Middlewares/Lora/Crypto/cmac.o
 LOAD Middlewares/Lora/Mac/LoRaMac.o
 LOAD Middlewares/Lora/Mac/LoRaMacCrypto.o
 LOAD Middlewares/Lora/Mac/region/Region.o
+LOAD Middlewares/Lora/Mac/region/RegionAS923.o
+LOAD Middlewares/Lora/Mac/region/RegionAU915.o
+LOAD Middlewares/Lora/Mac/region/RegionCN470.o
+LOAD Middlewares/Lora/Mac/region/RegionCN779.o
 LOAD Middlewares/Lora/Mac/region/RegionCommon.o
+LOAD Middlewares/Lora/Mac/region/RegionEU433.o
 LOAD Middlewares/Lora/Mac/region/RegionEU868.o
+LOAD Middlewares/Lora/Mac/region/RegionIN865.o
+LOAD Middlewares/Lora/Mac/region/RegionKR920.o
+LOAD Middlewares/Lora/Mac/region/RegionUS915-Hybrid.o
+LOAD Middlewares/Lora/Mac/region/RegionUS915.o
 LOAD Middlewares/Lora/Utilities/delay.o
 LOAD Middlewares/Lora/Utilities/low_power.o
 LOAD Middlewares/Lora/Utilities/timeServer.o
