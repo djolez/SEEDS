@@ -45,13 +45,13 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: lora_seeds.elf
+all: SEEDS.elf
 
 # Tool invocations
-lora_seeds.elf: $(OBJS) $(USER_OBJS)
+SEEDS.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU GCC Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T"C:\Users\Djordje\workspace\lora_seeds\LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "lora_seeds.elf" @"objects.list" $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T"C:\Users\Djordje\workspace\thesis\stm32\LinkerScript.ld" -Wl,-Map=output.map -Wl,--gc-sections -lm -o "SEEDS.elf" @"objects.list" $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build
@@ -63,8 +63,8 @@ clean:
 
 post-build:
 	-@echo 'Generating binary and Printing size information:'
-	arm-none-eabi-objcopy -O binary "lora_seeds.elf" "lora_seeds.bin"
-	arm-none-eabi-size "lora_seeds.elf"
+	arm-none-eabi-objcopy -O binary "SEEDS.elf" "SEEDS.bin"
+	arm-none-eabi-size "SEEDS.elf"
 	-@echo ' '
 
 .PHONY: all clean dependents

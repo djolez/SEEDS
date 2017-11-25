@@ -70,6 +70,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <string.h>
+#include "stm32l4xx_nucleo.h"
+#include "stm32l4xx.h"
 #include "hw.h"
 #include "radio.h"
 #include "timeServer.h"
@@ -77,8 +79,6 @@
 #include "low_power.h"
 #include "vcom.h"
 #include "lora.h"
-#include "stm32l4xx_nucleo.h"
-#include "stm32l4xx.h"
 
 #include "config.h"
 //#include "communication.h"
@@ -95,7 +95,7 @@ typedef enum {
 #define APP_TX_DUTYCYCLE                            10000
 #define LORAWAN_ADR_ON                              0
 #define LORAWAN_CONFIRMED_MSG                    DISABLE
-#define LORAWAN_APP_PORT                            1700
+#define LORAWAN_APP_PORT                            111
 #define LORAWAN_DEFAULT_DATARATE                    DR_5
 #define JOINREQ_NBTRIALS                            3
 
@@ -114,6 +114,22 @@ static LoRaMainCallback_t LoRaMainCallbacks = { HW_GetBatteryLevel,
 		HW_GetUniqueId, HW_GetRandomSeed, LoraTxData, LoraRxData };
 
 /*	////LORA_CONF	*/
+
+bool lptim1_expired = false;
+
+typedef enum eManagerState
+{
+	IDLE,
+    WRITE,
+	UPDATE,
+	UPDATE_ALL,
+	WRITE_TO_BUFFER,
+	WRITE_TO_BUFFER_ALL,
+	UPDATE_SEND_ALL
+} ManagerState_t;
+
+ManagerState_t current_manager_state;
+
 
 /**
  * Main application entry point.
@@ -141,42 +157,55 @@ int main(void) {
 //	seconds = period / (clock_speed / prescaler)
 //	period = (seconds * clock_speed) / prescaler
 
-	HAL_LPTIM_Counter_Start_IT(&hlptim1, 2560);
+//	HAL_LPTIM_Counter_Start_IT(&hlptim1, 2560); //10 seconds
+//	HAL_LPTIM_Counter_Start_IT(&hlptim1, 1280); //5 seconds
+	HAL_LPTIM_Counter_Start_IT(&hlptim1, 9000);
 
-	/* main loop*/
+//	Cannot use this because there is a limit on minimum number of channels
+//	LoRaMacChannelRemove(1);
+//	LoRaMacChannelRemove(2);
+
 	while (1) {
 		/* run the LoRa class A state machine*/
 		lora_fsm();
-
 		DISABLE_IRQ( );
-
-//		OnSendEvent();
 
 		/* if an interrupt has occurred after DISABLE_IRQ, it is kept pending
 		 * and cortex will not enter low power anyway  */
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 1);
+
 		if (lora_getDeviceState() == DEVICE_STATE_SLEEP) {
-#ifndef LOW_POWER_DISABLE
-//			if(timeout_flag_set) -> get_sensor_data -> send_msg
+			if(lptim1_expired) {
+				current_manager_state = UPDATE_SEND_ALL;
+				OnSendEvent();
+				lptim1_expired = false;
+			}
 
 			LowPower_Handler();
-#endif
 		}
 		ENABLE_IRQ();
-//		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, 0);
 	}
 }
 
 void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim) {
-	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	if(hlptim->Instance==LPTIM1) {
+		lptim1_expired = true;
+	}
 }
 
+static uint8_t tmp[64];
 static void LoraTxData(lora_AppData_t *AppData, FunctionalState* IsTxConfirmed) {
-	AppData->Buff[0] = 10;
-//	AppData->Buff[1] = 2;
-//	AppData->Buff[2] = 3;
 
-	AppData->BuffSize = 1;
+	memcpy(&AppData->Buff[0], &tmp, 64);
+	AppData->BuffSize = 0;
+	AppData->Port = 0;
+
+	switch(current_manager_state) {
+		case UPDATE_SEND_ALL: {
+			manager_update_data_all();
+			manager_write_to_buffer_all(AppData);
+			current_manager_state = IDLE;
+		}
+	}
 	AppData->Port = LORAWAN_APP_PORT;
 //	*IsTxConfirmed =  LORAWAN_CONFIRMED_MSG;
 }
