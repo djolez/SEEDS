@@ -19,9 +19,9 @@ void manager_init_all() {
 
 
 	devices[0] = malloc(sizeof(Port_t));
-	devices[0]->Name = "dht11-PA9";
+	devices[0]->Name = "dht11-PA5";
 	devices[0]->GPIOx = GPIOA;
-	devices[0]->GPIO_Pin = GPIO_PIN_9;
+	devices[0]->GPIO_Pin = GPIO_PIN_5;
 	devices[0]->Type = DHT11;
 	devices[0]->db_id = 1;
 
@@ -42,8 +42,8 @@ void manager_init_all() {
 	devices[2]->db_id = 3;
 
 	devices[3] = malloc(sizeof(Port_t));
-	devices[3]->Name = "relay-light-PB6";
-	devices[3]->GPIOx = GPIOB;
+	devices[3]->Name = "relay-light-PA6";
+	devices[3]->GPIOx = GPIOA;
 	devices[3]->GPIO_Pin = GPIO_PIN_6;
 	devices[3]->Type = RELAY;
 	devices[3]->Num_Sub_devices = 0;

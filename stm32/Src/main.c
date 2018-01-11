@@ -151,15 +151,15 @@ int main(void) {
 
 	lora_Init(&LoRaMainCallbacks, &LoRaParamInit);
 
-	manager_init_all();
+//	manager_init_all();
 //	manager_update_data_all();
 
 //	seconds = period / (clock_speed / prescaler)
 //	period = (seconds * clock_speed) / prescaler
 
-//	HAL_LPTIM_Counter_Start_IT(&hlptim1, 2560); //10 seconds
+	HAL_LPTIM_Counter_Start_IT(&hlptim1, 2560); //10 seconds
 //	HAL_LPTIM_Counter_Start_IT(&hlptim1, 1280); //5 seconds
-	HAL_LPTIM_Counter_Start_IT(&hlptim1, 9000);
+//	HAL_LPTIM_Counter_Start_IT(&hlptim1, 9000);
 
 //	Cannot use this because there is a limit on minimum number of channels
 //	LoRaMacChannelRemove(1);
@@ -195,14 +195,17 @@ void HAL_LPTIM_AutoReloadMatchCallback(LPTIM_HandleTypeDef *hlptim) {
 static uint8_t tmp[64];
 static void LoraTxData(lora_AppData_t *AppData, FunctionalState* IsTxConfirmed) {
 
-	memcpy(&AppData->Buff[0], &tmp, 64);
-	AppData->BuffSize = 0;
-	AppData->Port = 0;
+//	memcpy(&AppData->Buff[0], &tmp, 64);
+//	AppData->BuffSize = 0;
+//	AppData->Port = 0;
+
+	memcpy(&AppData->Buff[0], "F", 1);
+	AppData->BuffSize = 1;
 
 	switch(current_manager_state) {
 		case UPDATE_SEND_ALL: {
-			manager_update_data_all();
-			manager_write_to_buffer_all(AppData);
+//			manager_update_data_all();
+//			manager_write_to_buffer_all(AppData);
 			current_manager_state = IDLE;
 		}
 	}
