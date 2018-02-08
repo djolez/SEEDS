@@ -1,6 +1,5 @@
 # SEEDS 
 <img align="right" src="https://github.com/djolez/SEEDS/blob/master/seeds_logo.png"></img>
-**SE**nsor**E**d hy**D**roponic **S**ystem is an application developed for health, money saving and ecology purposes: thanks to it you can make your own farm! By using your prefered kind of a microcontroller and sensors you will be able to manage your indoor growing hydroponic system.
 
 ## Functionalities
 The app is based on a _client-server_ approach. First of all, the server interfaces directly to a microcontroller through serial connection, and it represents the entry point to all the devices that can measure the data about the hydroponic system. The board can communicate with connected devices thanks to embedded C scripts that poll the data according to the settings provided by the server. Then, the server runs a web server exposing _REST APIs_ which can be consumed by the client in order to retrieve data. Of course, users can also send data to the server and/or devices through those _APIs_. In fact, a user can set, for the devices that allow it, a range of acceptable values, a time schedule to work in, a polling interval and a check interval and finally which devices to show data about. When setting up the system, the user is able to specify as many boards he preferes, along with the devices attached to it. 
