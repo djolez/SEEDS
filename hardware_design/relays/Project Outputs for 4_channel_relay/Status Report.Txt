@@ -1,9 +1,12 @@
-Output: Bill of Materials
-Type  : BOM
-From  : Variant [[No Variations]] of Project [4_channel_relay.PrjPcb]
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [4_channel_relay.PrjPcb]
+   Generated File[4_channel_relay.TXT]
+   Generated File[4_channel_relay.LDP]
+   Generated File[4_channel_relay.DRR]
 
 
-Files Generated   : 0
+Files Generated   : 3
 Documents Printed : 0
 
-Finished Output Generation At 5:27:12 PM On 01-Feb-18
+Finished Output Generation At 10:48:27 AM On 14-Feb-18

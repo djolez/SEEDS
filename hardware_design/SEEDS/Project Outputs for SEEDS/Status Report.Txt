@@ -1,9 +1,12 @@
-Output: Bill of Materials
-Type  : BOM
-From  : Variant [[No Variations]] of Project [SEEDS.PrjPcb]
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [SEEDS.PrjPcb]
+   Generated File[seeds.TXT]
+   Generated File[seeds.LDP]
+   Generated File[seeds.DRR]
 
 
-Files Generated   : 0
+Files Generated   : 3
 Documents Printed : 0
 
-Finished Output Generation At 1:26:26 PM On 09-Feb-18
+Finished Output Generation At 10:51:15 AM On 14-Feb-18
