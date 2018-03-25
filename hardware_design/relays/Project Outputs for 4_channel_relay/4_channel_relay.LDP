@@ -1,2 +1,3 @@
 Layer Pairs Export File for PCB: C:\Users\Djordje\workspace\thesis\hardware_design\relays\4_channel_relay.PcbDoc
-LayersSetName=Top_Bot_Thru_Holes|DrillFile=4_channel_relay.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Plated_Thru_Holes|DrillFile=4_channel_relay-plated.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_NonPlated_Thru_Holes|DrillFile=4_channel_relay-nonplated.txt|DrillLayers=gtl,gbl

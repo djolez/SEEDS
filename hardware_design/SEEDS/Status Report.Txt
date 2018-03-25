@@ -1,0 +1,9 @@
+Output: Bill of Materials
+Type  : BOM
+From  : Variant [[No Variations]] of Project [Free Documents]
+
+
+Files Generated   : 0
+Documents Printed : 0
+
+Finished Output Generation At 1:42:20 PM On 25-Mar-18

@@ -1,12 +1,13 @@
 Output: NC Drill Files
 Type  : NC Drill
 From  : Project [SEEDS.PrjPcb]
-   Generated File[seeds.TXT]
+   Generated File[seeds-Plated.TXT]
+   Generated File[seeds-NonPlated.TXT]
    Generated File[seeds.LDP]
    Generated File[seeds.DRR]
 
 
-Files Generated   : 3
+Files Generated   : 4
 Documents Printed : 0
 
-Finished Output Generation At 10:51:15 AM On 14-Feb-18
+Finished Output Generation At 3:33:54 PM On 25-Mar-18

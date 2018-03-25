@@ -1,2 +1,3 @@
 Layer Pairs Export File for PCB: C:\Users\Djordje\workspace\thesis\hardware_design\SEEDS\seeds.PcbDoc
-LayersSetName=Top_Bot_Thru_Holes|DrillFile=seeds.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Plated_Thru_Holes|DrillFile=seeds-plated.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_NonPlated_Thru_Holes|DrillFile=seeds-nonplated.txt|DrillLayers=gtl,gbl

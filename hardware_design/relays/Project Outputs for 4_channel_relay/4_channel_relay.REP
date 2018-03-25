@@ -79,6 +79,32 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
+Generating : Top Paste
+      File : 4_channel_relay.GTP
+
+    Adding Layer      : Top Paste
+
+    Adding Layer      : Top Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
+    D16
+    D17
+    D18
+    D19
+    D20
+    D21
+*************************************************************
+
+*************************************************************
 Generating : Top Solder
       File : 4_channel_relay.GTS
 
@@ -132,89 +158,5 @@ Used DCodes :
     D30
     D31
     D32
-*************************************************************
-
-*************************************************************
-Generating : Bottom Overlay
-      File : 4_channel_relay.GBO
-
-    Adding Layer      : Bottom Overlay
-
-
-Used DCodes :
-*************************************************************
-
-*************************************************************
-Generating : Keep-Out Layer
-      File : 4_channel_relay.GKO
-
-    Adding Layer      : Keep-Out Layer
-
-
-Used DCodes :
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 1
-      File : 4_channel_relay.GM1
-
-    Adding Layer      : Mechanical 1
-
-
-Used DCodes :
-    D35
-    D41
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 9
-      File : 4_channel_relay.GM9
-
-    Adding Layer      : Mechanical 9
-
-
-Used DCodes :
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 10
-      File : 4_channel_relay.GM10
-
-    Adding Layer      : Mechanical 10
-
-
-Used DCodes :
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 11
-      File : 4_channel_relay.GM11
-
-    Adding Layer      : Mechanical 11
-
-
-Used DCodes :
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 13
-      File : 4_channel_relay.GM13
-
-    Adding Layer      : Mechanical 13
-
-
-Used DCodes :
-    D42
-*************************************************************
-
-*************************************************************
-Generating : Mechanical 15
-      File : 4_channel_relay.GM15
-
-    Adding Layer      : Mechanical 15
-
-
-Used DCodes :
-    D42
 *************************************************************
 

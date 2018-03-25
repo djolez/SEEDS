@@ -1,9 +1,10 @@
 ----------------------------------------------------------------------------------------------------------------------------------
-NCDrill File Report For: 4_channel_relay.PcbDoc   14-Feb-18  10:48:27 AM
+NCDrill File Report For: 4_channel_relay.PcbDoc   25-Mar-18  8:15:44 PM
 ----------------------------------------------------------------------------------------------------------------------------------
 
 Layer Pair : Top Layer to Bottom Layer
-ASCII RoundHoles File : 4_channel_relay.TXT
+ASCII Plated RoundHoles File : 4_channel_relay-Plated.TXT
+ASCII Non-Plated RoundHoles File : 4_channel_relay-NonPlated.TXT
 
 Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
 ----------------------------------------------------------------------------------------------------------------------------------
