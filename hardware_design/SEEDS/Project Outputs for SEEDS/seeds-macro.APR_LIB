@@ -1,8 +1,8 @@
-G04:AMPARAMS|DCode=15|XSize=39.37mil|YSize=98.42mil|CornerRadius=0mil|HoleSize=0mil|Usage=FLASHONLY|Rotation=315.000|XOffset=0mil|YOffset=0mil|HoleType=Round|Shape=Rectangle|*
-%AMROTATEDRECTD15*
-4,1,4,-0.04872,-0.02088,0.02088,0.04872,0.04872,0.02088,-0.02088,-0.04872,-0.04872,-0.02088,0.0*
-%
-G04:AMPARAMS|DCode=16|XSize=39.37mil|YSize=98.42mil|CornerRadius=0mil|HoleSize=0mil|Usage=FLASHONLY|Rotation=45.000|XOffset=0mil|YOffset=0mil|HoleType=Round|Shape=Rectangle|*
-%AMROTATEDRECTD16*
+G04:AMPARAMS|DCode=21|XSize=39.37mil|YSize=98.42mil|CornerRadius=0mil|HoleSize=0mil|Usage=FLASHONLY|Rotation=45.000|XOffset=0mil|YOffset=0mil|HoleType=Round|Shape=Rectangle|*
+%AMROTATEDRECTD21*
 4,1,4,0.02088,-0.04872,-0.04872,0.02088,-0.02088,0.04872,0.04872,-0.02088,0.02088,-0.04872,0.0*
+%
+G04:AMPARAMS|DCode=22|XSize=39.37mil|YSize=98.42mil|CornerRadius=0mil|HoleSize=0mil|Usage=FLASHONLY|Rotation=315.000|XOffset=0mil|YOffset=0mil|HoleType=Round|Shape=Rectangle|*
+%AMROTATEDRECTD22*
+4,1,4,-0.04872,-0.02088,0.02088,0.04872,0.04872,0.02088,-0.02088,-0.04872,-0.04872,-0.02088,0.0*
 %
