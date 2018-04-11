@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\Djordje\workspace\thesis\hardware_design\relays\4_channel_relay.PcbDoc
-Date     : 05-Apr-18
-Time     : 5:10:14 PM
+Date     : 11-Apr-18
+Time     : 12:27:00 PM
 
 Processing Rule : Clearance Constraint (Gap=0.15mm) (All),(All)
 Rule Violations :0
@@ -24,13 +24,13 @@ Rule Violations :0
 Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.175mm) (Conductor Width=0.2mm) (Air Gap=0.2mm) (Entries=4) (All)
 Rule Violations :0
 
+Processing Rule : Minimum Annular Ring (Minimum=0.175mm) (((ObjectKind = 'Pad') OR (ObjectKind = 'Via')) And (Layer = 'MultiLayer') And (HoleDiameter <= AsMM(0.45)))
+Rule Violations :0
+
 Processing Rule : Minimum Annular Ring (Minimum=0.125mm) (((ObjectKind = 'Pad') OR (ObjectKind = 'Via')) And (Layer = 'MultiLayer') And (HoleDiameter > AsMM(0.45)))
 Rule Violations :0
 
-Processing Rule : Minimum Annular Ring (Minimum=0.125mm) (((ObjectKind = 'Pad') OR (ObjectKind = 'Via')) And (Layer = 'MultiLayer') And (HoleDiameter <= AsMM(0.45)))
-Rule Violations :0
-
-Processing Rule : Hole Size Constraint (Min=0.25mm) (Max=2mm) (All)
+Processing Rule : Hole Size Constraint (Min=0.3mm) (Max=2mm) (All)
 Rule Violations :0
 
 Processing Rule : Hole To Hole Clearance (Gap=0.35mm) (All),(All)
