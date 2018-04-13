@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\Djordje\workspace\thesis\hardware_design\relays\4_channel_relay.PcbDoc
 Date     : 11-Apr-18
-Time     : 12:27:00 PM
+Time     : 4:45:13 PM
 
 Processing Rule : Clearance Constraint (Gap=0.15mm) (All),(All)
 Rule Violations :0
@@ -56,4 +56,4 @@ Rule Violations :0
 
 
 Violations Detected : 0
-Time Elapsed        : 00:00:01
+Time Elapsed        : 00:00:00

@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------------------------
-Gerber File Extension Report For: 4_channel_relay.GBR   05-Apr-18  5:16:04 PM
+Gerber File Extension Report For: 4_channel_relay.GBR   11-Apr-18  4:45:52 PM
 ------------------------------------------------------------------------------------------
 
 
@@ -12,4 +12,5 @@ Layer Extension     Layer Description
 .GTP                Top Paste                               
 .GTS                Top Solder                              
 .GBS                Bottom Solder                           
+.GM9                Mechanical 9                            
 ------------------------------------------------------------------------------------------

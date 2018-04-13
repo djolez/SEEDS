@@ -10,4 +10,4 @@ From  : Project [4_channel_relay.PrjPcb]
 Files Generated   : 4
 Documents Printed : 0
 
-Finished Output Generation At 5:16:42 PM On 05-Apr-18
+Finished Output Generation At 4:46:18 PM On 11-Apr-18

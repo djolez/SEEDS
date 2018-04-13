@@ -69,7 +69,7 @@ Generating : Top Overlay
 
 
 Used DCodes :
-    D23
+    D22
     D34
     D35
     D36
@@ -162,5 +162,16 @@ Used DCodes :
     D31
     D32
     D33
+*************************************************************
+
+*************************************************************
+Generating : Mechanical 9
+      File : 4_channel_relay.GM9
+
+    Adding Layer      : Mechanical 9
+
+
+Used DCodes :
+    D22
 *************************************************************
 

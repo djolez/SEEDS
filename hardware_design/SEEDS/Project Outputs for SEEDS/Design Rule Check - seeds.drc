@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Users\Djordje\workspace\thesis\hardware_design\SEEDS\seeds.PcbDoc
 Date     : 11-Apr-18
-Time     : 12:27:39 PM
+Time     : 3:43:37 PM
 
 Processing Rule : Clearance Constraint (Gap=0.15mm) (All),(All)
 Rule Violations :0
@@ -28,11 +28,7 @@ Processing Rule : Minimum Annular Ring (Minimum=0.114mm) (((ObjectKind = 'Pad') 
 Rule Violations :0
 
 Processing Rule : Minimum Annular Ring (Minimum=0.175mm) (((ObjectKind = 'Pad') OR (ObjectKind = 'Via')) And (Layer = 'MultiLayer') And (HoleDiameter <= AsMM(0.45)))
-   Violation between Minimum Annular Ring: (0.104mm < 0.175mm) Pad U6-V(43.8mm,9.2mm) on Multi-Layer (Annular Ring=0.104mm) On (Top Layer)
-   Violation between Minimum Annular Ring: (0.104mm < 0.175mm) Pad U6-V(43.8mm,9.987mm) on Multi-Layer (Annular Ring=0.104mm) On (Top Layer)
-   Violation between Minimum Annular Ring: (0.104mm < 0.175mm) Pad U6-V(44.587mm,9.2mm) on Multi-Layer (Annular Ring=0.104mm) On (Top Layer)
-   Violation between Minimum Annular Ring: (0.104mm < 0.175mm) Pad U6-V(44.587mm,9.987mm) on Multi-Layer (Annular Ring=0.104mm) On (Top Layer)
-Rule Violations :4
+Rule Violations :0
 
 Processing Rule : Hole Size Constraint (Min=0.3mm) (Max=3.6mm) (All)
 Rule Violations :0
@@ -59,5 +55,5 @@ Processing Rule : Height Constraint (Min=0mm) (Max=25mm) (Prefered=12.5mm) (All)
 Rule Violations :0
 
 
-Violations Detected : 4
-Time Elapsed        : 00:00:01
+Violations Detected : 0
+Time Elapsed        : 00:00:02
