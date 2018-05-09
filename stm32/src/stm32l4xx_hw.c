@@ -208,6 +208,7 @@ void SystemClock_Config( void )
 	  /**Configure the Systick
 	  */
 	HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
+//	HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
 
 	  /**Enable MSI Auto calibration
 	  */

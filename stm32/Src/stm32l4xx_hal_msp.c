@@ -129,7 +129,7 @@ void HAL_RTC_MspInit(RTC_HandleTypeDef *hrtc)
 
   /* -b- Select LSI as RTC clock source */
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_RTC;
-  PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
+  PeriphClkInitStruct.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
   if(HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -278,10 +278,14 @@ void GPIO_Init(void)
 	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
 	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-	GPIO_InitStruct.Pin = GPIO_PIN_5;
+
+	/*Configure GPIO pins : PA2 PAPin */
+	GPIO_InitStruct.Pin = GPIO_PIN_2;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 }
 
 void HAL_LPTIM_MspInit(LPTIM_HandleTypeDef* hlptim)

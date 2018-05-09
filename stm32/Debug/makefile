@@ -26,8 +26,8 @@ RM := rm -rf
 -include Drivers/STM32L4xx_Nucleo/subdir.mk
 -include Drivers/HAL_Driver/Src/subdir.mk
 -include Drivers/HAL_Driver/Inc/subdir.mk
--include Drivers/BSP/sx1272mb2das/subdir.mk
--include Drivers/BSP/sx1272/subdir.mk
+-include Drivers/BSP/sx1276mb1las/subdir.mk
+-include Drivers/BSP/sx1276/subdir.mk
 -include subdir.mk
 -include objects.mk
 

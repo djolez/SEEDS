@@ -149,6 +149,12 @@ int main(void) {
 	MX_TIM3_Init();
 	MX_LPTIM1_Init();
 
+	while(1){
+		FunctionalTEST();
+//		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_2);
+//		HAL_Delay(500);
+	}
+
 	lora_Init(&LoRaMainCallbacks, &LoRaParamInit);
 
 //	manager_init_all();

@@ -118,7 +118,7 @@ void HW_SPI_Init( void )
   initStruct.Mode =GPIO_MODE_AF_PP;
   initStruct.Pull = GPIO_PULLDOWN;
   initStruct.Speed = GPIO_SPEED_HIGH;
-  initStruct.Alternate= SPI1_AF ;
+  initStruct.Alternate= GPIO_AF5_SPI1 ;
 
   HW_GPIO_Init( RADIO_SCLK_PORT, RADIO_SCLK_PIN, &initStruct);
   HW_GPIO_Init( RADIO_MISO_PORT, RADIO_MISO_PIN, &initStruct);
