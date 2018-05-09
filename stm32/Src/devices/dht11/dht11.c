@@ -1,6 +1,5 @@
 #include "dht11.h"
 #include <string.h>
-#include "task.h"
 
 //Value_t values[] = {
 //		{.Name = "Temperature"},
@@ -15,11 +14,16 @@ void dht11_init(Port_t* port)
 	}
 	port->GPIO_Pin_Pos = position-1;
 
-	strcpy(port->Sub_devices[0].Name, "Temperature");
-	strcpy(port->Sub_devices[1].Name, "Humidity");
-//	port->Sub_devices[0].Name = "Temperature";
-//	port->Sub_devices[1].Name = "Humidity";
+//	strcpy(port->Sub_devices[0].Name, "Temperature");
+//	strcpy(port->Sub_devices[1].Name, "Humidity");
+	strcpy(port->Sub_devices[0].Name, "temp");
+	strcpy(port->Sub_devices[1].Name, "hum");
 	port->Num_Sub_devices = 2;
+
+	port->Sub_devices[0].db_id = 11;
+	port->Sub_devices[1].db_id = 12;
+//	port->Sub_devices[0].Last_Value = 1900;
+//	port->Sub_devices[1].Last_Value = 3310;
 }
 
 void dht11_update(Port_t* port) {
@@ -70,10 +74,8 @@ void dht11_update(Port_t* port) {
 	}
 
 	//Temp
-//	port->Last_Values[0].Value = sensor_values[2] * 100 + sensor_values[3];
 	port->Sub_devices[0].Last_Value = sensor_values[2] * 100 + sensor_values[3];
 	//Humidity
-//	port->Last_Values[1].Value = sensor_values[0] * 100 + sensor_values[1];
 	port->Sub_devices[1].Last_Value = sensor_values[0] * 100 + sensor_values[1];
 
 }

@@ -1,0 +1,53 @@
+Altium Designer Pick and Place Locations
+C:\Users\Djordje\workspace\thesis\hardware_design\relays\Project Outputs for 4_channel_relay\Pick Place for 4_channel_relay.txt
+
+========================================================================================================================
+File Design Information:
+
+Date:       23-04-18
+Time:       14:41
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mil
+
+Designator Comment        Layer    Footprint         Center-X(mil) Center-Y(mil) Rotation Description                                
+C10        100nF          TopLayer 0603C             2775.591      1348.819      360      Capacitor                                  
+C9         Cap Semi       TopLayer 1608[0603]        2458.662      296.063       270      Capacitor (Semiconductor SIM Model)        
+REL4       ADW1103W       TopLayer ADW1103W          1092.126      352.756       180                                                 
+REL3       ADW1103W       TopLayer ADW1103W          1095.669      1031.102      180                                                 
+REL2       ADW1103W       TopLayer ADW1103W          1093.701      1725.197      180                                                 
+REL1       ADW1103W       TopLayer ADW1103W          1092.126      2415.354      180                                                 
+C1         100nF          TopLayer 0603C             1976.378      2137.795      90       Capacitor                                  
+C2         10pF[N/A]      TopLayer 0603C             2561.811      1436.614      90       Capacitor                                  
+C3         10pF[N/A]      TopLayer 0603C             2500.787      1437.402      90       Capacitor                                  
+C4         Cap Semi       TopLayer 1608[0603]        2326.772      1498.819      360      Capacitor (Semiconductor SIM Model)        
+C5         100nF          TopLayer 0603C             2099.803      850.039       90       Capacitor                                  
+C6         100nF          TopLayer 0603C             2802.756      1242.520      180      Capacitor                                  
+C7         100nF          TopLayer 0603C             2645.669      685.827       90       Capacitor                                  
+C8         100nF          TopLayer 0603C             2098.425      1198.622      270      Capacitor                                  
+CN1        Header 6X1     TopLayer 1*6P              2270.472      142.126       360      Header, 6-Pin, Single row                  
+L1         Bead           TopLayer INDC1608L         2260.787      1578.701      270      Inductor                                   
+R5         4K7            TopLayer 0603R             2424.016      1608.268      0        Resistor                                   
+R6         4K7            TopLayer 0603R             3127.559      1123.622      90       Resistor                                   
+X1         32.768K[N/A]   TopLayer XTAL_4SM_8X3R8    2835.433      1495.276      360                                                 
+U3         RFM95W-868S2   TopLayer XCVR_RFM95W-868S2 3249.370      575.512       90                                                  
+P1         relay_header_3 TopLayer ac_header_3       279.134       2415.748      90                                                  
+P2         relay_header_3 TopLayer ac_header_3       278.740       1738.976      90                                                  
+P3         relay_header_3 TopLayer ac_header_3       279.134       1054.724      90                                                  
+P4         relay_header_3 TopLayer ac_header_3       279.134       368.504       90                                                  
+LD1        Green          TopLayer 0603D             2065.236      1602.146      90       Typical RED, GREEN, YELLOW, AMBER GaAs LED 
+R7         510            TopLayer 0603R             2166.929      1627.992      0        Resistor                                   
+R8                        TopLayer varistor          3629.134      1683.858      180      Resistor                                   
+M1         MAX4821        TopLayer MAX4821           2275.197      438.386       180                                                 
+R1         50             TopLayer 0603R             1687.401      2316.732      90       Resistor                                   
+R2         50             TopLayer 0603R             1687.401      2478.150      270      Resistor                                   
+R3         50             TopLayer 0603R             1688.976      1610.886      90       Resistor                                   
+R4         50             TopLayer 0603R             1688.976      1776.181      270      Resistor                                   
+R9         50             TopLayer 0603R             1690.945      944.291       90       Resistor                                   
+R10        50             TopLayer 0603R             1690.945      1109.646      270      Resistor                                   
+R11        50             TopLayer 0603R             1687.401      258.071       90       Resistor                                   
+R12        50             TopLayer 0603R             1687.401      427.362       270      Resistor                                   
+U2         RAC01-3.3SC    TopLayer RAC01-3.3SC       2705.906      2163.780      180      AC/DC converter                            
+P5         AC_HEADER      TopLayer ac_header_2       3608.268      2313.780      270                                                 
+F1         fuse           TopLayer fuse              3635.433      1941.732      180      240VAC 1A                                  
+U1         MCU_LQFP64     TopLayer LQFP64            2424.803      1040.040      180                                                 

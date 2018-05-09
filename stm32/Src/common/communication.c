@@ -1,8 +1,5 @@
 #include "communication.h"
 #include <string.h>
-#include "usart.h"
-#include "FreeRTOS.h"
-#include "queue.h"
 
 #include "global.h"
 
@@ -22,12 +19,12 @@ char rx_data[2], rx_indx, rx_buffer[MAX_COMM_MSG_LENGTH];
 uint8_t msg_pending = 0;
 
 void comm_start() {
-	HAL_UART_Receive_IT(&huart2, rx_data, 1);
+//	HAL_UART_Receive_IT(&huart2, rx_data, 1);
 }
 
 void comm_send_msg(char* msg) {
-	HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
-	HAL_UART_Transmit(&huart2, (uint8_t*) "\n", strlen("\n"), HAL_MAX_DELAY);
+//	HAL_UART_Transmit(&huart2, (uint8_t*) msg, strlen(msg), HAL_MAX_DELAY);
+//	HAL_UART_Transmit(&huart2, (uint8_t*) "\n", strlen("\n"), HAL_MAX_DELAY);
 }
 
 char* error_msg = "error$";
@@ -62,7 +59,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			else //if received data == "\n"
 			{
 //				comm_send_msg("-----------------------------------------");
-				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
+//				xQueueSendFromISR(comm_handle, rx_buffer, NULL);
 
 				rx_indx = 0;
 			}
@@ -77,7 +74,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 			rx_indx = 0;
 //			HAL_UART_Receive_IT(&huart2, rx_data, 1);
 		}
-		HAL_UART_Receive_IT(&huart2, rx_data, 1);
+//		HAL_UART_Receive_IT(&huart2, rx_data, 1);
 	}
 }
 

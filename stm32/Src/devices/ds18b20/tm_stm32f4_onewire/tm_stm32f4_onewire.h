@@ -103,7 +103,17 @@ extern TIM_HandleTypeDef htim3;
 //HAL_TIM_Base_Start(&htim3);\
 //while(__HAL_TIM_GET_COUNTER(&htim3) < uTime ){}\
 //}while(0);
+
+//#define custom_delay(x) do{\
+//uint32_t uTime = SystemCoreClock/1000000UL * x;\
+//HAL_TIM_Base_Init(&htim3);\
+//HAL_TIM_Base_Start(&htim3);\
+//while(__HAL_TIM_GET_COUNTER(&htim3) < uTime ){}\
+//}while(0);
+
 #define ONEWIRE_DELAY(x) DELAY(x)
+//#define ONEWIRE_DELAY(x) DelayMs(x)
+//#define ONEWIRE_DELAY(x) custom_delay(x)
 
 /* Pin settings */
 #define ONEWIRE_INIT_GPIO(structure)	do{\

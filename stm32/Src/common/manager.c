@@ -1,35 +1,29 @@
-#include "cmsis_os.h"
-
 #include "manager.h"
-#include <stdlib.h>
-#include <string.h>
-#include "config.h"
-#include "communication.h"
-
-//Port_t* tmp;
-
-//Port_t* entities[] = {
-//	{ .Name = "ds18b20", .GPIOx = GPIOC, .GPIO_Pin = GPIO_PIN_7, .Type = DS18B20 },
-//	{ .Name = "dht11", .GPIOx = GPIOA, .GPIO_Pin = GPIO_PIN_9, .Type = DHT11 },
-//	{ .Name = "relay.light", .GPIOx = GPIOB, .GPIO_Pin = GPIO_PIN_6, .Type = RELAY }
-//};
 
 /*
  This should be located in config.h
  */
 
-//Port_t* entities[3];
-//uint8_t entities_length;
 Port_t* devices[NUMBER_OF_ENTITIES];
 
 void manager_init_all() {
+// change NUMBER_OF_ENTITIES
+
+//	devices[0] = malloc(sizeof(Port_t));
+//	devices[0]->Name = "dht11";
+//	devices[0]->GPIOx = GPIOA;
+//	devices[0]->GPIO_Pin = GPIO_PIN_9;
+//	devices[0]->Type = DHT11;
+////	devices[0]->Last_Value = 2840;
+//	devices[0]->db_id = 1;
+
 
 	devices[0] = malloc(sizeof(Port_t));
-	devices[0]->Name = "dht11-PA9";
+	devices[0]->Name = "dht11-PA5";
 	devices[0]->GPIOx = GPIOA;
-	devices[0]->GPIO_Pin = GPIO_PIN_9;
+	devices[0]->GPIO_Pin = GPIO_PIN_5;
 	devices[0]->Type = DHT11;
-//	devices[0]->db_id = 1;
+	devices[0]->db_id = 1;
 
 	//Stopped working for no reason
 	devices[1] = malloc(sizeof(Port_t));
@@ -37,7 +31,7 @@ void manager_init_all() {
 	devices[1]->GPIOx = GPIOC;
 	devices[1]->GPIO_Pin = GPIO_PIN_7;
 	devices[1]->Type = DS18B20;
-//	devices[1]->db_id = 2;
+	devices[1]->db_id = 2;
 
 	devices[2] = malloc(sizeof(Port_t));
 	devices[2]->Name = "float-switch-PA7";
@@ -45,15 +39,15 @@ void manager_init_all() {
 	devices[2]->GPIO_Pin = GPIO_PIN_7;
 	devices[2]->Type = SWITCH;
 	devices[2]->Num_Sub_devices = 0;
-//	devices[2]->db_id = 3;
+	devices[2]->db_id = 3;
 
 	devices[3] = malloc(sizeof(Port_t));
-	devices[3]->Name = "relay-light-PB6";
-	devices[3]->GPIOx = GPIOB;
+	devices[3]->Name = "relay-light-PA6";
+	devices[3]->GPIOx = GPIOA;
 	devices[3]->GPIO_Pin = GPIO_PIN_6;
 	devices[3]->Type = RELAY;
 	devices[3]->Num_Sub_devices = 0;
-//	devices[3]->db_id = 4;
+	devices[3]->db_id = 4;
 
 //	devices[4] = malloc(sizeof(Port_t));
 //	devices[4]->Name = "analog-light-PA6";
@@ -63,35 +57,9 @@ void manager_init_all() {
 //	devices[4]->Num_Sub_devices = 0;
 //	devices[4]->db_id = 5;
 
-	uint8_t i;
-	char msg[MAX_COMM_MSG_LENGTH];
-	sprintf(msg, "board_init$STM32:");
-
-	for (i = 0; i < NUMBER_OF_ENTITIES; i++) {
+	for (uint8_t i = 0; i < NUMBER_OF_ENTITIES; i++) {
 		manager_init_specific(devices[i]);
-
-		int j = 0;
-		sprintf(msg, "%s%s.%d", msg, devices[i]->Name, devices[i]->Type);
-		// For the ds18b20, in the above line subdevice name is ok,
-		// when it goes to the bottom line the name is changed to rubbish
-		for (j = 0; j < devices[i]->Num_Sub_devices; j++) {
-			if (j == 0)
-				sprintf(msg, "%s_", msg);
-
-			sprintf(msg, "%s%s", msg, devices[i]->Sub_devices[j].Name);
-
-			if (j < devices[i]->Num_Sub_devices - 1)
-				sprintf(msg, "%s,", msg);
-		}
-
-		if (i < NUMBER_OF_ENTITIES - 1)
-			sprintf(msg, "%s|", msg);
 	}
-
-//	TODO: Check if this works
-
-	comm_send_msg(msg);
-//	comm_send_msg("\n");
 }
 
 void manager_init_specific(Port_t* device) {
@@ -104,14 +72,12 @@ void manager_init_specific(Port_t* device) {
 		dht11_init(device);
 		break;
 	case RELAY:
-		RELAY_INIT(device)
-		;
+		RELAY_INIT(device);
 		break;
 	case SWITCH:
-
+		SWITCH_INIT(device);
 		break;
 	case ANALOG:
-
 		break;
 	default:
 		break;
@@ -210,6 +176,38 @@ void manager_send_data_specific(Port_t* port) {
 	comm_send_msg(msg);
 }
 
+void manager_write_to_buffer_all(lora_AppData_t *AppData) {
+
+	AppData->Buff[0] = NUMBER_OF_ENTITIES;
+	AppData->BuffSize = 1;
+
+	for (uint8_t i = 0; i < NUMBER_OF_ENTITIES; i++) {
+		manager_write_to_buffer_specific(devices[i], AppData);
+	}
+}
+
+void manager_write_to_buffer_specific(Port_t* port, lora_AppData_t *AppData) {
+	uint8_t current_buff_index = AppData->BuffSize;
+
+	AppData->Buff[current_buff_index++] = port->db_id;
+	AppData->Buff[current_buff_index++] = port->Num_Sub_devices;
+
+	if (port->Num_Sub_devices > 0) {
+
+		for (uint8_t i = 0; i < port->Num_Sub_devices; i++) {
+			AppData->Buff[current_buff_index++] = port->Sub_devices[i].db_id;
+
+			memcpy(&AppData->Buff[current_buff_index], &port->Sub_devices[i].Last_Value, 2);
+			current_buff_index += 2;
+		}
+	} else {
+		memcpy(&AppData->Buff[current_buff_index], &port->Last_Value, 2);
+		current_buff_index += 2;
+	}
+
+	AppData->BuffSize = current_buff_index;
+}
+
 void manager_update_device_id(char* name, char* parent_name, int id) {
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
 		if (parent_name && strcmp(devices[i]->Name, parent_name) == 0) {
@@ -249,17 +247,22 @@ void manager_print_all_devices() {
 	}
 }
 
-extern osTimerId timer_handle;
-extern uint16_t interrupt_pin;
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+void switch_interrupt_handler() {
+//	TODO: needs a debouncer
 
 	NVIC_DisableIRQ(EXTI9_5_IRQn);
-	interrupt_pin = GPIO_Pin;
-	xTimerStartFromISR(timer_handle, pdFALSE);
+
+//		uint32_t uTime = SystemCoreClock/1000000UL * 480;
+//		HAL_TIM_Base_Init(&htim3);
+//		HAL_TIM_Base_Start(&htim3);
+//		while(__HAL_TIM_GET_COUNTER(&htim3) < uTime ){}
+
+//	interrupt_pin = GPIO_Pin;
+//	xTimerStartFromISR(timer_handle, pdFALSE);
 
 	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
 //		Change this to somehow check GPIO port, TYPE is just a temp solution
-		if (devices[i]->GPIO_Pin == GPIO_Pin && devices[i]->Type == SWITCH) {
+		if (devices[i]->GPIO_Pin == GPIO_PIN_7 && devices[i]->Type == SWITCH) {
 			//Send a notification to the server
 			GPIO_PinState current_value = HAL_GPIO_ReadPin(devices[i]->GPIOx,
 					devices[i]->GPIO_Pin);
@@ -267,9 +270,33 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 			sprintf(msg, "interrupt$%d_%d\r", devices[i]->db_id, current_value);
 //			xQueueSendFromISR(comm_handle_tx, msg, NULL);
 			comm_send_msg(msg);
+			NVIC_EnableIRQ(EXTI9_5_IRQn);
 
 			break;
 		}
 	}
 
 }
+
+//void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+//
+//	NVIC_DisableIRQ(EXTI9_5_IRQn);
+////	interrupt_pin = GPIO_Pin;
+////	xTimerStartFromISR(timer_handle, pdFALSE);
+//
+//	for (int i = 0; i < NUMBER_OF_ENTITIES; i++) {
+////		Change this to somehow check GPIO port, TYPE is just a temp solution
+//		if (devices[i]->GPIO_Pin == GPIO_Pin && devices[i]->Type == SWITCH) {
+//			//Send a notification to the server
+//			GPIO_PinState current_value = HAL_GPIO_ReadPin(devices[i]->GPIOx,
+//					devices[i]->GPIO_Pin);
+//			char* msg[MAX_COMM_MSG_LENGTH];
+//			sprintf(msg, "interrupt$%d_%d\r", devices[i]->db_id, current_value);
+////			xQueueSendFromISR(comm_handle_tx, msg, NULL);
+//			comm_send_msg(msg);
+//
+//			break;
+//		}
+//	}
+//
+//}

@@ -29,7 +29,7 @@ void ds18b20_init_all(Port_t* port)
 		sprintf(tmp_name, "temp-%d", count);
 //		port->Sub_devices[count].Name = "temp-0";
 		strcpy(port->Sub_devices[count].Name, tmp_name);
-//		port->Sub_devices[count].Name = "Water";
+		port->Sub_devices[count].db_id = 21;
 		/* Increase counter */
 		count++;
 

@@ -17,7 +17,7 @@
  * |----------------------------------------------------------------------
  */
 #include "tm_stm32f4_onewire.h"
-
+extern TIM_HandleTypeDef htim3;
 //void TM_OneWire_Init(TM_OneWire_t* OneWireStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 //	/* Initialize delay if it was not already */
 //	TM_DELAY_Init();
