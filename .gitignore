@@ -1,8 +1,8 @@
 hardware_design/*/History*
 server/logs*
 
-stm32/.settings/
-stm32/Debug/
+stm32/.settings*
+stm32/Debug*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
