@@ -149,10 +149,16 @@ int main(void) {
 	MX_TIM3_Init();
 	MX_LPTIM1_Init();
 
+	lora_Init(&LoRaMainCallbacks, &LoRaParamInit);
+
 	while(1){
-		FunctionalTEST();
-//		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_2);
-//		HAL_Delay(500);
+//		FunctionalTEST();
+		lora_fsm();
+
+		current_manager_state = UPDATE_SEND_ALL;
+		OnSendEvent();
+		DelayMs(500);
+		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_2);
 	}
 
 	lora_Init(&LoRaMainCallbacks, &LoRaParamInit);
@@ -166,10 +172,6 @@ int main(void) {
 	HAL_LPTIM_Counter_Start_IT(&hlptim1, 2560); //10 seconds
 //	HAL_LPTIM_Counter_Start_IT(&hlptim1, 1280); //5 seconds
 //	HAL_LPTIM_Counter_Start_IT(&hlptim1, 9000);
-
-//	Cannot use this because there is a limit on minimum number of channels
-//	LoRaMacChannelRemove(1);
-//	LoRaMacChannelRemove(2);
 
 	while (1) {
 		/* run the LoRa class A state machine*/
@@ -208,13 +210,13 @@ static void LoraTxData(lora_AppData_t *AppData, FunctionalState* IsTxConfirmed) 
 	memcpy(&AppData->Buff[0], "F", 1);
 	AppData->BuffSize = 1;
 
-	switch(current_manager_state) {
-		case UPDATE_SEND_ALL: {
-//			manager_update_data_all();
-//			manager_write_to_buffer_all(AppData);
-			current_manager_state = IDLE;
-		}
-	}
+//	switch(current_manager_state) {
+//		case UPDATE_SEND_ALL: {
+////			manager_update_data_all();
+////			manager_write_to_buffer_all(AppData);
+//			current_manager_state = IDLE;
+//		}
+//	}
 	AppData->Port = LORAWAN_APP_PORT;
 //	*IsTxConfirmed =  LORAWAN_CONFIRMED_MSG;
 }
